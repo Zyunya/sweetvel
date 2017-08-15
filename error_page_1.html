@@ -1,0 +1,19 @@
+<div class = 'container'>
+<div class = 'row'>
+
+<div class = 'col-md-12'>
+
+<div class = 'col-md-12 boxsh1 backsw2 inln text-center mrgn1' style = 'height:98%;'>
+    <img src='img/media/icon1.png' height='230px'><br>
+    <img src='img/media/noavatar.png' height='150px'><br><br><br>
+    <span class='font2 color0 fsize15px'>Your Account is currently Unactive,you can recover it before <strong>{{active_time}}</strong> ,after this period your account will be permanently deleted</span>
+     <br>
+     <button data-ng-click='toggle_profile(1)' class='mt_8px  cursor backsw3 center-block fsize12px  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>{{"%recover%" | translate}} {{"%profile%" | translate}}</button>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- avatar = $row['active'] == '1' ? $row['avatar'] : 'media/img/avatarerror.png' ->

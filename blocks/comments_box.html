@@ -1,0 +1,116 @@
+<style>
+
+  </style>
+
+<!-- COMMENT_BOX-->
+
+<div id="comments" class="modal" role="dialog" >
+ 
+  <div class="modal-dialog modal-lg">
+ 
+    <!-- Modal content-->
+    <div class="modal-content" style='height:93% !important'>
+
+      <div class="modal-body w100  pdngno" style='overflow:scroll;position:absolute;top:0px;bottom:75px;'>
+
+        <div class='backsw2  pdngno ht35px br2 z' style='position:fixed;left:2px;right:2px;top:1px;'>
+          <button type="button" class="close w10 fr  " data-dismiss="modal">&times;</button>
+
+          <!-- LIKERS_PANEL -->
+          <div class='ht40px  pdng5px mr_2'>
+            <a data-toggle="tab" data-target='#gallerybox' class='nodec text-left pull-left'>
+              <i class=' cursor color5 fa fa-camera mr_2 iconhov  fsize25px '></i>
+            </a>
+            <a data-toggle="tab" data-target='#commentbox' class='nodec ml_2  pull-left mr_2'>
+              <i class=' cursor color5 fa fa-comments iconhov  fsize25px '></i>
+            </a>
+            <a data-toggle="tab" data-target='#likersbox' class = ' pull-left mr_2'>
+              <i class=' cursor color5 fa fa-thumbs-up  iconhov  fsize25px '></i>
+            </a>
+            <div class='ht40px w40px boxsh1  br backimgprop fl left-block' data-ng-repeat='l in statisticperson_likes | limitTo : 4'
+              style='background-image:url({{l.avatar }}),url(../img/media/imgerror.jpg);border:2px solid white;'>
+            </div>
+          </div>
+          <!-- LIKERS_PANEL -->
+        </div><br>
+
+        <div class="tab-content w100 mt_8px" style = ''>
+
+          <div id="gallerybox" class=" tab-pane fade in active w100" style = 'height:95%;'>
+
+            <!-- GALLERY_BOX-->
+             <div data-ng-show = '!gallerybox_spinner'  class='mdl-spinner mdl-js-spinner is-active valcenter3 w60px ht60px'></div>
+            <div  data-ng-show = 'gallery_loaded'  id='gallery_posts' class='br3 ' style='z-index:1100'>
+              <div   class='col-md-12  pdngno '  style = 'height:100%;'>
+                <div id="myCarousel_post_images" class="carousel slide carousel_post_images"   data-ride="carousel" data-interval=false>
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner item_inner" style='height:100%;'>
+                    <div class="item posts_img ht50px" data-ng-dblclick="closegal('.mask_gallery')" data-ng-repeat='x in label_posts_img'
+                      data-img-id='{{x.id}}'>
+                      <img  ng-src="{{x.image}}" alt="" style = 'height:auto;width:auto'>
+                    </div>
+                  </div>
+                  <!-- Left and right controls -->
+                  <a class="left carousel-control color5"   id="post_img_back" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="right carousel-control color5" id="post_img_next" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- GALLERY_BOX-->
+
+          </div>
+
+          <div id="commentbox" class="tab-pane fade in ">
+            <br>
+            <commentbox></commentbox>
+          </div>
+
+          <div id="likersbox" class="tab-pane fade in w100 ">
+            <likers style='position:relative !important;left:0px !important;right:0px !important;top:5px !important;display:block !important'></likers>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div style='position:absolute;bottom:0px;left:0px;right:0px;min-height:10%' class='w100 br3 modal-footer  backsw2'>
+        <table border='0' class='text-center   w100'>
+          <tr>
+            <td id='emoji_block' class='dp' colspan='2'>
+              <emoji inpid='comment_text'></emoji>
+            </td>
+          </tr>
+          <tr>
+            <td class='pdng3px'>
+              <input placeholder="Your Comment" value="" type='text' id='comment_text' class='fsize13px inputbot w90 color2 font2' />
+            </td>
+            <td class='pdng7px'>
+              <i data-ng-click="send_comment(comment_type,'comment_text')" class='ml_2px  fa fa-commenting iconhov cursor color5 fsize30px '></i>
+              <i data-ng-click='emoji_toggle()' class='color5 ml_2  fa fa-smile-o  cursor iconhov fsize30px '></i>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    //$('.carousel').carousel({interval: 3000});
+    //$( "#myCarousel" ).find( ".item" ).css( "-webkit-transition", "transform 0.1s ease-in-out 0s" ).css( "transition", "transform 0.1s ease-in-out 0s" )
+    $("#myCarousel_post_images").swiperight(function (e) { $(this).carousel('prev') });
+    $("#myCarousel_post_images").swipeleft(function () { $(this).carousel('next'); });
+    $("#post_img_back").click(function (e) { $('#myCarousel_post_images').carousel('prev'); e.preventDefault(); });
+    $("#post_img_next").click(function (e) { $('#myCarousel_post_images').carousel('next'); e.preventDefault(); });
+
+  });
+
+</script>

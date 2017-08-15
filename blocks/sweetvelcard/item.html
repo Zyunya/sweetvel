@@ -1,0 +1,219 @@
+
+
+   <div class = 'row '>
+
+    <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+      <i class="w10 color5 fa fa-paint-brush fa-3x textshgrt icon_sw"></i>
+        <span class = 'textshgrt   color2 fsize20px font1 '></span>
+          </div>
+  
+      <div class = 'col-md-8 col-md-offset-2  text-center pdngno mt_2'>
+        <table  ng-repeat = 'x in themeres' border = '0' style = 'display:inline-block;' class = 'lnht40 mt_8px'>
+         <tr>
+           <td  align = 'center' width = '100px'>
+              <div  theme = '{{x.id}}'themestyle = '{{x.back}}:{{x.color}}:{{x.altcolor}}:{{x.font}}:{{x.musicimg}}'
+               ng-style = "{'background' :'{{x.back}}' }" class = ' cursor textshgrt themepreview'>
+                <i style = ''class=" nobrdrw10  fa   fa-2x textshgrt icon_sw icon_theme color5 "></i>
+                   </div>
+                      <span class = 'textshgrt color2 fsize20px fontlobster' >{{x.name}}</span></td>
+                        </tr>
+                           </table>
+                                </div>
+
+           <div class = 'col-md-8 col-md-offset-2 text-center  mt_2'>
+              <i class="w10 color5 fa fa-music fa-3x textshgrt  icon_sw"></i>
+               <span class = 'textshgrt   color2 fsize20px font1 '></span>
+                  </div> 
+
+             <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+               <table ng-repeat = 'x in audiores' cellspacing = '5px'  border = '0'  class = 'audiotable inln' >
+               <tr>
+               <td  width = '125px'  align = 'center' colspan = '4' ><span class = 'textshgrt cursor choosedtrack td fontlobster fsize22px'>{{x.audioname}}</span>
+               </td>
+               </tr>
+               <tr>
+               <td  height = '100px'width = '100px' align = 'center' >
+               
+               <img onclick = 'audio_pause(this)' ontouchstart = 'audio_pause(this)'   src = 'img/media/pr2.gif'      class = 'audiotrackimg2 ht55px cursor hover1'>
+               <img onclick = 'audio_play(this);' ontouchstart = 'audio_play(this)'  src = 'img/media/frederic.gif' class = 'audiotrackimg ht55px cursor hover1'>
+               <audio class = 'audiotrack' data-author = '{{x.author}}' data-license = '{{x.license}}' data-atr = '{{x.number}}' ng-src="{{x.audio}}"></audio>
+              
+               </td>
+               </tr>
+               <tr><td align = 'center' class = 'track_pause'><span class = 'textshgrt cursor  td fontlobster fsize17px color1'>SweetRing</td></tr>
+               </table>
+            </div>    
+
+            <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+               <ul >
+                 <li>
+                   <a class ='color2 audio_license_link' target = ''href = ''><span id = 'audio_license' class = 'font2 color2'></span></a>
+                   </li>
+                     <li>
+                      <a class = 'font2 color10 audio_author_link' target = '' href = ''><span id = 'audio_author' class = 'font2 color2'></span></a>
+                      </li>
+                         </ul>
+                           </div>   
+
+             <div class = 'col-md-8 col-md-offset-2 mt_2 ht40px  '>
+                    <i id = 'eventlist' class="w10 cursor color5 fa fa-tags  z fr iconhov fsize35px textshgrt "></i>
+                       </div>   
+
+              <div class = 'col-md-8 col-md-offset-2'>
+                <input ng-model = '$parent.event' type = 'text'  id = 'event' class = ' color2 font2 bb4 input1 w100 fsize20px' placeholder = "{{'%events%' | translate}}">
+                  </div>   
+
+             <div class = 'col-md-8 col-md-offset-2 pdngno mt_2'>
+              <div class = 'toolblock eventsblock w100' >
+                 <table cellspacing = '10' border = '0'><tr>
+                 <td><label ng-click = "listtype('eventlistbs','event','eventres')" class =' cursor br1 boxsh1 fsize17px fontlobster swtypelabel' >{{'%promotion%' | translate}}</label></td>
+                 <td><label ng-click = "listtype('eventlist'  ,'event','eventres')" class =' cursor br1 boxsh1 fsize17px fontlobster swtypelabel'  >{{'%greeting%' | translate}}</label></td>
+                 </tr></table>
+                 <table ng-repeat = "x in eventres" class = 'cursor minilabel_event' border = '0px'>
+                 <tr>
+                 <td ><span class = 'colorwht fontkurale bold fsize20px'>{{x.row}}</span></td>
+                 <td  align = 'right'><img src = 'img/media/plus.png' class = 'plusimg ht20px cursor'>
+                 <input type = 'hidden'class = 'hidden_event' value = '{{x.row}}'></td>
+                 </tr>
+                 </table>
+              </div>
+              </div>    
+
+             <div class = 'col-md-8 col-md-offset-2 '>
+                <table width = '100%' border = '0' align  = 'center'>
+                <tr>
+                <td  width = '25%' align = 'center' ><input id = 'receiver' ng-model = "$parent.receiver_preview"  type = 'text' class = 'font2 bb4 color2  input1 w100 fsize20px' placeholder = "{{'%receiver%' | translate}}"></td>
+                <td align = 'center' width = '10%'><i id = 'wishlist' class="w10 cursor color5 fa fa-share-alt fa-2x textshgrt w"></i></td>
+                <td  width = '25%'  align = 'center' ><input id = 'sender' ng-model = "$parent.sender_preview"   type = 'text' class = ' font2 bb4 color2  input1 w100 fsize20px' placeholder = "{{'%sender%' | translate}}"></td>
+                </tr>
+                </table>
+              </div>    
+
+            <div class = 'col-md-8 col-md-offset-2 ht40px'>
+              <div class = ''><span class = 'textshgrt color2 fsize20px font1 ml_5'></span>
+                <i id = 'wishlist' class="w10 cursor color5 fa fa-tags z iconhov fr fsize35px textshgrt "></i>
+                  </div>
+                    </div>   
+
+            <div class = 'col-md-8 col-md-offset-2 '>
+              <div class = 'toolblock wishblock w100' >
+              <table cellspacing = '10' border = '0'><tr>
+              <td><label ng-click = "listtype('wishlistbs','wish','wishres')" class =' cursor br1 boxsh1  fsize17px fontlobster swtypelabel' >{{'%promotion%' | translate}}</label></td>
+              <td><label ng-click = "listtype('wishlist','wish','wishres'  )" class =' cursor br1 boxsh1  fsize17px fontlobster swtypelabel'  >{{'%greeting%' | translate}}</label></td>
+              </tr></table>
+              <table  ng-repeat = "x in wishres" class = 'cursor minilabel_wish' border = '0px'>
+              <tr>
+              <td><span  class = 'colorwht fontkurale bold fsize20px'>{{x.row}}
+              </span></td>
+              <td align = 'right'><img src = 'img/media/plus.png' class = 'plusimg ht20px cursor'>
+              <input  type = 'hidden'class = 'hidden_wish' value = '{{x.row}}'>
+              </td>
+              </tr>
+              </table>
+              </div>
+            </div> 
+
+         <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+           <textarea ng-model = '$parent.wishes' id = 'wishes' class = ' color2 font2 bb4 input1 w100 fsize20px' placeholder = "{{'%description%' | translate}}"></textarea>
+            </div> 
+
+            <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+               <i class="w10 color5 fa fa-image fa-3x textshgrt icon_sw"></i>
+               <span class = 'textshgrt   color2 fsize20px font1 '></span>
+                 </div>
+
+            <div class = 'col-md-8 col-md-offset-2 mt_2 text-center'>
+                  <table width = '100%' id = 'imageset' border = '0'>
+        
+     <tr><td align = 'center'>
+       <div id = 'img_preview'><label for = 'files' class="w10  cursor color5 fa fa-cloud-download iconhov fa-4x textshgrt icon_sw"></label></div>
+         <input onchange = 'imgprev(this)'type="file" id="files" name="img_file" class = 'dp'  />
+         </td></tr>
+         <tr><td align = 'center'><output class = 'color2 font2 fsize15px'id="list"></output></td> </tr>
+</td>
+        
+  
+    </table>
+                </div>   
+
+            <div class = 'col-md-8 col-md-offset-2  text-center'>
+              <i class="w10 color5 fa fa-anchor fa-3x textshgrt icon_sw"></i>
+               <span class = 'textshgrt color2 fsize20px font1 '></span>
+                </div>  
+
+            <div class = 'col-md-8 col-md-offset-2 mt_2 pdngno' style ='height:250px'>
+               <input id="pac-input"    class="controls font2" name = 'eventplace' type="text" placeholder="{{'%your%' | translate}} {{'%adress%' | translate}}">
+                  <div id="map" style = 'z-index:5'></div>
+                   </div> 
+
+            <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+                <table border = '0' class = 'w100 table nobrdr'>   
+
+                <tr>
+                <td  width = '10%'colspan = '1'><i class=" nobrdrw10 color5 fa fa-star  fa-2x textshgrt icon_sw"></i></td>
+                <td colspan = '3'>
+                 <div  data-ng-repeat = 'lb in label'data-label-id = "{{lb.id}}" class = 'center-block mt_4px choose_label labelsw1  fl ml_4px fsize15px cursor w100px telips'>{{lb.name | translate}}</div>
+                 
+                  </td>
+                </tr>   
+
+                <tr>
+                <td  width = '10%' colspan = '1'><i class="w10 color5 fa fa-volume-control-phone        fa-2x textshgrt icon_sw"></td>
+                <td colspan = '3'><input type = 'text' id = 'phone' name = 'phone' ng-model = "$parent.phone_preview" class = 'font2 fsize20px w100 input1' placeholder = "{{'%your%' | translate}} {{'%phone%' | translate}}"></td>
+                </tr>
+                 
+                <tr><td  width = '10%'colspan = '1'><i class="w10 color5 fa fa-facebook  fa-2x textshgrt icon_sw"></i></td><td colspan = '3'><input ng-model = "$parent.fb_preview"    placeholder = 'Facebook'  name = "social_fb"    type = 'text' class = 'font2 fsize20px w100 input1'></td></tr>
+                <tr><td  width = '10%'colspan = '1'><i class="w10 color5 fa fa-vk        fa-2x textshgrt icon_sw"></i></td><td colspan = '3'><input ng-model = "$parent.vk_preview"    placeholder = 'Vkontakte' name = "social_vk"    type = 'text' class = 'font2 fsize20px w100 input1'></td></tr>
+                <tr><td  width = '10%'colspan = '1'><i class="w10 color5 fa fa-instagram fa-2x textshgrt icon_sw"></i></td><td colspan = '3'><input ng-model = "$parent.insta_preview" placeholder = 'Instagram' name = "social_insta" type = 'text' class = 'font2 fsize20px w100 input1'></td></tr>
+                <tr>
+                <td  width = '10%' colspan = '1'><i class="w10 color5 fa fa-envelope    fa-2x textshgrt icon_sw"></i></td>
+                <td colspan = '3'><input type = 'text' class = 'font2 fsize20px input1 w100' name = 'email' placeholder = "{{'%email%' | translate}}">
+                </td>
+                </tr>
+                    </table>
+
+             <div class = 'col-md-8 col-md-offset-2  pdngno'>
+                <label ng-click = 'createitem()'  class = 'boxmat back4 textshgrt  font2 colorwht fsize15px cursor button1'>{{'%creategc%' | translate}}</label>
+                    </div><br><br><br><br><br><br>
+
+                <div class = 'testblock'>
+                  <input type = 'hidden' id = 'theme'>
+                  <input type = 'hidden' id = 'audiotrack'>
+                  <input type = 'hidden' id = 'place'>
+                  <input type = 'hidden' id = 'label_id'>
+                </div>       
+
+         
+    </div>
+
+ 
+
+ <script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+
+         if (f.type.match('image/png|image/jpeg')) {
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate.toLocaleDateString(), '</li>');
+         }
+         else{alert('only images allowed'); document.querySelector('input[type=file]').value = "";}
+     
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+function imgprev(elem){
+  var reader = new FileReader();
+  var file = elem.files[0];
+    reader.addEventListener("load", function () {
+     document.querySelector('#img_preview').style.backgroundImage = "url('"+ reader.result+"')";
+   
+  })
+  reader.readAsDataURL(file);
+}
+</script>

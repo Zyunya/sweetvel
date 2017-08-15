@@ -1,0 +1,16 @@
+
+   <div class="media" data-ng-repeat = 'fl in followers'>
+     <div class="media-left" >
+     <a ui-sref = 'sketch.profile({sk:fl.id})'>
+      <div class = 'ht40px w40px backimgprop boxsh1 br4 ' style = 'background-image:url({{fl.avatar}})'>
+        </div>
+        </a>
+          </div>
+            <div class="media-body">
+              <span data-ng-show = 'show_if_account' data-ng-click = 'confirm_friend(fl.id)' class="fr fsize13px mr_2 cursor labelsw1 labelswhov backsw3 colorwht br4 boxsh1 textshgrt">{{"%add%" | translate }}</span> 
+                <h5 style = 'font-family:Segoe UI' class="media-heading color5 ">{{fl.firstname}} {{fl.lastname}}</h5>
+                  <p class = 'color2 fsize10px'>{{fl.date}} {{fl.month | month | translate}} {{fl.hours}}:{{fl.minutes}}</p>
+                    </div><hr>
+                      </div>
+                        
+

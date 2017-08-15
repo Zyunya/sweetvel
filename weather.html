@@ -1,0 +1,72 @@
+<div class='container'>
+
+    <div class='row'>
+
+        <div class='col-md-10 col-md-offset-1 mobile_block'>
+            <div class='boxsh1 backsw2 w100 text-center' style='display:inline-block;'>
+
+                <table class='w100 font2 color0 table' border='0'>
+                    <tr>
+                        <td width='50px'><i class="ml_8px w20 material-icons fsize40px colorgld fl">brightness_low</i></td>
+                        <td><span class='font1 fsize12px fsize20px'>{{'%weather%' | translate}}</span></td>
+                        <td class='color5 fsize13px'><span>{{weather.city}} </span> <span> {{weather.country}}</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan='3' height='150'>
+                            <div id="openweathermap-widget-19" class='pdng7px' style='overflow:scroll;width:100%'></div>
+                        </td>
+          
+                    <tr class='fsize13px'>
+                        <td width='50px'><i class="ml_8px  material-icons fsize25px color5 fl">wifi_tethering</i></td>
+                        <td><span class='font3 fsize12px'>Location</span></td>
+                        <td><span class='fsize12px'>{{weather.city}} </span> <span> {{weather.country}}</span></td>
+                    </tr>
+                    <tr class='fsize13px'>
+                        <td><i class="ml_8px  material-icons fsize25px color5 fl">local_offer</i></td>
+                        <td><span class='font3 fsize12px'>Temperature</span></td>
+                        <td><span class='fsize12px'>{{weather.temperature}} &#8451;</span></td>
+
+                    </tr>
+                    <tr class='fsize13px'>
+                        <td><i class="ml_8px  material-icons fsize25px color5 fl">beach_access</i></td>
+                        <td><span class='font3 fsize12px'>Description</span></td>
+                        <td><span class='fsize12px'>{{weather.desc2}}</span></td>
+
+                    </tr>
+                    <tr class='fsize13px'>
+                        <td><i class="ml_8px  material-icons fsize25px color5 fl">poll</i></td>
+                        <td><span class='font3 fsize12px'>Humidity</span></td>
+                        <td><span class='fsize12px'>{{weather.humidity}} %</span></td>
+
+                    </tr>
+                    <tr class='fsize13px'>
+                        <td>
+                            <i class="ml_8px  material-icons fsize25px color5 fl">brightness_low</i>
+
+                        </td>
+                        <td><span class='font3 fsize12px'>Sunrise</span></td>
+                        <td><span class='fsize12px'>{{weather.sunrise}}</span></td>
+
+                    </tr>
+                    <tr class='fsize13px'>
+                        <td width='50px'>
+                            <i class="ml_8px w20 material-icons fsize25px color5 fl">brightness_medium</i>
+
+                        </td>
+                        <td><span class='font3 fsize12px'>Sunset</span></td>
+                        <td><span class='fsize12px'>{{weather.sunset}}</span></td>
+                    </tr>
+                    <tr>
+                        <td height='50' colspan = '3'></td>
+                    </tr>
+                </table>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+

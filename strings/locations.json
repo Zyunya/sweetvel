@@ -1,0 +1,5 @@
+{
+ "Ukraine"     :["Odessa","Chernomorsk","Kiev","Nikolaev","Kharkov","Kherson","Zaporozhie","Krivoy-Rog","Chernigov","Sumi","Poltava","Zhitomir","Mariupol","Lvov","Dnepr","Vinitsa","Ternopil","Donetsk","Lugansk","Simferopol","Sevastopol","Chernovtsi"],
+ "Russia"      :["Moscow","Sankt-Peterburg","Ekaterinburng","Perm","Rostov-na-Donu","Kemerovo","Voronezh","Volgograd","Novosibirsk","Omsk","Kazan","Ufa","Krasnoyarsk","Chelyabinsk","Samara","Nizhniy-Novgorod"],
+ "Belarussia"  :["Minsk","Brest","Grodno","Gomel","Vitebsk","Mogilev","Bobruisk","Baranovochi","Borisov","Pinsk","Orsha","Lida","Svetlogorsk","Novopolotsk"]
+}

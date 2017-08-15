@@ -1,0 +1,29 @@
+<div id="modal_options" class="modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body" style = 'min-height:85%'>
+      <div data-ng-show = '!options_preloader'  class='mdl-spinner mdl-js-spinner center-block is-active valcenter3 w60px ht60px '></div>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div  data-ng-show = 'options_block_loaded'>
+        <div class='media ' data-ng-repeat='ll in statisticperson_options'>
+          <div class='media-left pdng7px'>
+            <a data-ui-sref='account.sketch({sk : ll.owner_id})'>
+              <div class='ht40px ml_4 w40px boxsh1 fl br backimgprop boxsh1' style='background-image:url({{ll.avatar}}),url({{host}}/img/media/noavatar.png)'>
+              </div>
+              <div class='media-body pdng7px bb4'>
+                <span class='font2 color5 pull-left fsize12px'>{{ll.firstname}} {{ll.lastname}}</span>
+                <i class='ml_2 dp0  fa fa-thumbs-o-up pull-right color5 fsize25px '></i><br>
+                <p class='fsize10px mr_2 pull-left color0 '>{{ll.date}} {{ll.month | month | translate}} 20{{ll.year}} {{ll.hours}}:{{ll.minutes}}</p>
+            </a>
+            </div>
+            <button data-ng-show='$last && show_more_person_followers' data-ng-click="get_more_person_followers(ll.object_followed)"
+              class='mdl-button mdl-js-button center-block backsw3 fsize13px mt_4px mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>{{'%more%' | translate}}</button>
+            <button data-ng-show='$last && show_more_person_viewslikes' data-ng-click="get_more_viewslikes(ll.table,ll.object_id,'label')"
+              class='mdl-button mdl-js-button center-block backsw3 fsize13px mt_4px mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>{{'%more%' | translate}}</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,106 @@
+<style>
+
+  </style>
+<div data-ng-init = 'sendmessage_preload()'  class = 'container  pdngno  '  >
+
+  <div class = 'chat_container col-md-8 col-md-offset-2   pdngno'  >
+        
+   <div  id = 'chat_cont' class = 'chat_container_scroll col-md-12 col-md-offset-0     font2'  style = 'overflow-y:scroll;min-height:90%;max-height:90%;'>   
+      
+      <div data-ng-show ='preloader2' class="mdl-spinner mdl-js-spinner is-active center-block pull-center w50px ht50px" style = 'margin-top:200px'></div>
+
+     <chatbox2></chatbox2>
+      
+       </div>
+
+   <div style = 'width:300px;left:0;right:0;margin-left:auto;margin-right:auto;' class = 'ta_center  pa pdng10px br3 z backsw2 boxsh1 brdrgrey color0 font2 fsize12px' id = 'user_type_status'> </div>
+   
+    <div class = 'w100  br3  pa' style = 'bottom:0px;border-top:0px solid white' >
+     <table border = '0' class  ='text-center  w100'>
+            <!--span ng  class = 'color5 fsize10px fr mr_2 backsw3 pdng3px font1 boxsh1 colorwht' id = 'opponent_online_status'></span !-->
+        <tr>
+          <td colspan = '5' class = ' dp'   id = 'chat_og_preview' data-ng-click = "show_hide('chat_og_preview')">
+           <div class="media boxsh1 backsw2 backimgprop">
+               <div class="media-left">
+                  <div  class="media-object backimgprop boxsh1" style = 'background-image:url({{og_data.image}});height:100px;width:100px'>
+                    </div>
+                      </div>
+                        <div class="media-body text-left pdng5px">
+                          <i class = 'fa fa-close fa-2px color0 fr cursor iconhov'></i>
+                           <h5 class="media-heading color2">{{og_data.title | substrcustom : 50}}</h5>
+                             <span class = 'color2 fsize10px'>{{og_data.desc | substrcustom : 75}}</span>
+                              <span class = 'color0 fsize10px'>{{og_data.url}}</span>
+                               </div>
+                                  </div>
+          </td>
+         </tr> 
+         <tr>
+           <td colspan = '5' class = ''>
+              <div  class = 'boxsh1 backsw2 w100 text-center dp' style = 'height:100px;' id = 'upload_chat_img_preview_block'>
+                <i data-ng-click  = 'dp($event)' class = 'fa fa-close fa-2px color0 fr cursor iconhov'></i>
+               <!-- IMAGES PREVIEW -->
+               <div data-ng-repeat = "mi in message_img_preview" style = "background-image:url({{mi.file}});height:100px;width:100px" class = 'inln backimgprop' >
+                 <i data-ng-click = 'delete_preloaded_file($index,mi.filerel)'  class = 'preloaded_image_delete fa fa-close fsize20px cursor iconhov color5 fr'></i>
+               </div>
+              </div>
+              <input  type = 'file' multiple class = 'dp'   id = 'message_file'>
+            </td>
+           </tr>
+       <tr>
+          <td id = 'emoji_block' class = 'dp backsw' colspan = '5'>
+            <emoji inpid = 'comment_text'></emoji>
+          </td>
+         </tr>
+         <tr>
+           <td colspan = '5' class = ''>
+               <div id="upload_chat_audio_preview" style = '' class = 'pdng7px brdrgrey backsw boxsh1 w100 br4 dp'>
+                 <div class = 'chat_audio_ready'>
+                 <i id = 'recorder_btn'            class = 'start_record colorwht mr_4 fa fa-microphone backsw3 br pdng7px boxsh1  cursor  fsize25px ' style = 'width:38px'></i>
+                 <i id = 'chat_audio_preview_play' class = 'colorwht fa fa-play-circle  cursor iconhov fsize25px boxsh1 backsw3 br pdng7px  cursor  fsize25px ' style = 'width:38px'></i>
+                 <i id = 'chat_audio_preview_pause'class = 'ml_4 colorwht fa fa-pause-circle  cursor iconhov fsize25px boxsh1 backsw3 br pdng7px  cursor  fsize25px ' style = 'width:38px'></i>
+                 <i id = 'sendmessage_audio'       class = 'dp0 ml_4 colorwht fa fa-send  cursor iconhov backsw3 br boxsh1  cursor  fsize20px ' style = 'width:38px;padding:9px'></i>
+                 <i   data-ng-click = "show_hide('upload_chat_audio_preview')"   class = 'fr  fa fa-close mt_8px  cursor iconhov color5 cursor  fsize20px ' ></i>
+                 <i id = 'deletemessage_audio'  data-ng-click = 'delete_preloaded_file($index,preloaded_audio)'   class = 'dp0 ml_4 colorwht fa fa-close  cursor iconhov backsw3 br boxsh1  cursor  fsize20px ' style = 'width:38px;padding:9px'></i>
+                 </div>
+                   <audio id = 'chat_audio_preview' src=""></audio>
+                    </div>
+             </td>
+           </tr>
+         <tr>
+           <td colspan = '5' class = ''>
+               <div class="alert alert-success alert-dismissable fade in" style = 'display:none'>
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <span class = 'fsize15px' id = 'upload_chat_img_outp'></span>
+                    </div>
+             </td>
+           </tr>
+       <tr style = 'height:55px'>
+         <td><label for = 'message_file' class = ''><i  class = '   fa fa-camera color5  cursor iconhov fsize25px '></i></label></td>
+       <td class = '' width = '60%'>
+        <input style = 'border-bottom:1px solid yellowgreen;' type = 'text' class = 'backsw0 inputbot w100 fsize15px font2 text-left color2' id = 'comment_text' placeholder = '{{"%send%" |translate}} {{"%message%" |translate}}' >
+         </td>
+       <td  align = 'center'class = ''>
+         <i  id ='sender' class=" color5 common_message   fa fa-paper-plane  cursor iconhov fsize25px "></i>
+         </td>
+         <td align = 'center'><i data-ng-click = 'emoji_toggle()' class = 'color5   fa fa-smile-o  cursor iconhov fsize25px '></i></td>
+         <td align = 'center'>
+         <i data-ng-click = "audio_recorder_option()"  class = 'color5 fa fa-music  cursor iconhov fsize25px '></i>
+           </td>
+       </tr>
+       </table>
+
+      </div> 
+
+   </div>  
+   
+      
+
+<script>
+  $(document).ready(function(){
+ setTimeout(function(){$('#chat_cont').animate({ scrollTop: $('#chat_cont').prop('scrollHeight')}, 1000)},1000);
+})
+ </script>
+
+
+
+  

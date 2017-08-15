@@ -1,0 +1,446 @@
+<body data-ng-cloak>
+
+
+  <errorpage></errorpage>
+
+  <a data-toggle="tab" data-target="#options" class='tab_opt  nodec'>
+    <div class='container-fluid'>
+      <div class='row '>
+        <div class='cursor text-center  col-md-2 col-md-offset-2   col-xs-3   pdng7px'>
+          <i class=" cursor iconhov color5 fa fa-tasks fsize30px  "></i><br>
+          <span></span>
+        </div>
+  </a>
+
+  <a data-toggle="tab" data-target="#images" class='tab_opt '>
+    <div class='cursor text-center  col-md-2 col-md-offset-0  col-xs-3   pdng7px '>
+      <i class=" cursor iconhov color5 fa fa-photo fsize30px  "></i><br>
+    </div>
+  </a>
+
+  <a data-toggle="tab" data-target="#posts" class='tab_opt '>
+    <div class='cursor text-center  col-md-2 col-md-offset-0  col-xs-3   pdng7px'>
+      <i class=" cursor iconhov color5 fa fa-share-alt-square fsize30px  "></i><br>
+    </div>
+  </a>
+  <a data-toggle="tab" ui-sref='account.privatelabel({pl : onelabel.id})' class='tab_opt '>
+    <div class='cursor text-center  col-md-2 col-md-offset-0  col-xs-3 pdng7px'>
+      <i class=" cursor iconhov color5 fa fa-mail-forward fsize30px  "></i><br>
+    </div>
+  </a>
+  <br>
+  </br>
+  <br><br>
+
+
+
+  <div class="tab-content" ng-cloak>
+
+    <div id='options' class='tab-pane fade in  container lnht40' data-ng-show='privatelabel' ng-cloak>
+
+
+      <div class='row text-center  mt_8px'>
+        <div class='col-md-8 col-md-offset-2'>
+          <i class="w10 color5 fa fa-object-group fa-3x  "></i>
+          <!-- span class = ' ml_2 color2 fsize17px font2 '> {{'%createlogo%' | translate}} -</span-->
+        </div>
+      </div>
+
+
+      <div class='row  mt_8px'>
+        <div style='background: {{onelabel.logoback}} !important;color:{{onelabel.logocolor}} !important;font-family:{{onelabel.logofont}} !important'
+          class='logo_canvas brdrgrey   fontlobster logo_option_preview brd col-md-8 col-md-offset-2 col-xs-12 col-xs-offset-0 '>
+          <span class=' w90 ta_center'>{{onelabel.name | translate}} </span>
+        </div>
+      </div>
+      <br>
+
+      <div class='row'>
+        <div class='col-md-8 col-md-offset-2 pdngno'>
+          <input id='label_logo_input' ng-model='onelabel.name' value='{{onelabel.name | translate}} ' type='text' class='font2 color2 ta_center backsw0  w100 fsize20px'
+            placeholder="Logo Text">
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-8 col-md-offset-2 pdngno'>
+
+          <div class='col-md-10 col-md-offset-1  text-center mt_8px' style=''>
+
+            <div class='themepicker mt_4   w100 text-center' data-ng-repeat='x in themeres' style='margin:5px;'>
+              <div onclick='createlogo.settheme(this)' theme='{{x.id}}' themestyle='{{x.back}}:{{x.color}}:{{x.altcolor}}:{{x.font}}:{{x.musicimg}}'
+                ng-style="{'background' :'{{x.back}}' }" class='cursor  boxsh1 br5 label_logo_theme'>
+                <img class='imgprev' src=''>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div><br>
+
+      <div class='row text-center  mt_8px'>
+        <div class='col-md-8 col-md-offset-2'>
+          <i class="w10 color5 fa fa-tags fa-3x "></i>
+          <!--span class = ' ml_2 color2 fsize17px font2 '> {{'%description%' | translate}} -</span-->
+        </div>
+      </div>
+
+      <div class='row text-center'>
+        <div class='col-md-8 col-md-offset-2 pdngno'>
+          <textarea class="textarea_label font2 color2 ta_center backsw0   w100 fsize20px" placeholder='description' id="label_description">{{onelabel.description}}</textarea>
+          <div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class='row text-center  mt_8px'>
+        <div class='col-md-8 col-md-offset-2'>
+          <i class="w10 color5 fa fa-hashtag fa-3x "></i>
+          <!--span class = ' ml_2 color2 fsize17px font2 '> {{'%tags%' | translate}} -</span-->
+        </div>
+      </div>
+
+      <div class='row text-center'>
+        <div class='col-md-8 col-md-offset-2 pdngno'>
+          <textarea class="textarea_label backsw0  font2 colortg ta_center  w100 fsize20px" placeholder='#tagone#tagtwo#tagthree' id="label_tags">{{onelabel.tags}}</textarea>
+          <div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class='row text-center'>
+        <div class='col-md-8 col-md-offset-2'>
+          <i class="w10 color5 fa fa-anchor fa-3x "></i>
+          <!--span class = ' ml_2 color2 fsize17px font2 '> {{'%contacts%' | translate}} -</span-->
+        </div>
+      </div>
+
+
+      <div class='row  mt_8px'>
+        <div class='col-md-8 col-md-offset-2 pdngno'>
+          <input style='z-index:999;background:rgba(118, 188, 28, 0.3)' id="pac-input" class="controls  font2" value="{{onelabel.placename}}"
+            name='eventplace' type="text" placeholder="{{'%your%' | translate}} {{'%adress%' | translate}}">
+          <div id="map" style='z-index:5;height:250px;'></div>
+        </div>
+      </div>
+      <br>
+
+      <div class='row color2'>
+        <div class='col-md-1 col-md-offset-2'><i class="w10 color5 fa fa-volume-control-phone  fa-2x  "></i></div>
+        <div class='col-md-7 col-md-offset-0 '>
+          <input value='{{onelabel.phone}}' type='text' id='phone' name='phone' class='backsw0  font2 fsize17px w100 inputbot' placeholder="{{'%your%' | translate}} {{'%phone%' | translate}}">
+        </div>
+      </div>
+
+      <div class='row color2'>
+        <div class='col-md-1 col-md-offset-2'><i class="w10 color5 fa fa-facebook  fa-2x  "></i></div>
+        <div class='col-md-7 col-md-offset-0 '>
+          <input value='{{onelabel.vk}}' placeholder='Facebook' name="social_fb" type='text' class='backsw0  font2 fsize17px w100 inputbot'>
+        </div>
+      </div>
+
+      <div class='row color2'>
+        <div class='col-md-1 col-md-offset-2'><i class="w10 color5 fa fa-vk  fa-2x  "></i></div>
+        <div class='col-md-7 col-md-offset-0'>
+          <input value='{{onelabel.vk}}' placeholder='Vkontakte' name="social_vk" type='text' class='backsw0  font2 fsize17px w100 inputbot'>
+        </div>
+      </div>
+
+      <div class='row color2'>
+        <div class='col-md-1 col-md-offset-2'><i class="w10 color5 fa fa-instagram fa-2x  "></i></div>
+        <div class='col-md-7 col-md-offset-0'>
+          <input value='{{onelabel.insta}}' placeholder='Instagram' name="social_insta" type='text' class='backsw0  font2 fsize17px w100 inputbot'>
+        </div>
+      </div>
+
+      <div class='row color2'>
+        <div class='col-md-1 col-md-offset-2'><i class=" color5 fa fa-envelope    fa-2x  "></i></div>
+        <div class='col-md-7 col-md-offset-0'>
+          <input value='{{onelabel.email}}' type='text' class='backsw0  font2 fsize17px w100 inputbot' name='email' placeholder="{{'%email%' | translate}}">
+        </div>
+      </div>
+      <br>
+
+      <div class='row text-left'>
+        <div class='col-md-8 col-md-offset-2'>
+          <div class="alert alert-success alert-dismissable" data-ng-show='alert1'>
+            <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <span class='alert_output'></span>
+          </div>
+        </div>
+      </div>
+
+      <div class='row '>
+        <div class='col-md-8 col-md-offset-2 text-center'>
+          <br>
+          <button ng-click="createlabel()" class=" fl mdl-button mdl-js-button mdl-button--raised fsize13px mdl-js-ripple-effect backsw3 mdl-button--accent">{{'%edit%' | translate }}</button>
+        </div>
+      </div>
+      <br>
+
+    </div>
+
+    <div id='images' class=' container lnht40 tab-pane fade in' ng-cloak>
+
+      <div class='row text-left '>
+        <div class='col-md-8 col-md-offset-2 text-center mt_8px'>
+          <label data-ng-click="show_hide('upload_label_img_block')"><i  class=" pull-center ta_center color5 fa fa-camera iconhov cursor fsize35px  "></i></label>
+          <!--span class = ' ml_2 color2 fsize17px font2 '>{{'%download%' | translate}} {{'%images%' | translate}} -</span-->
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='backsw2 br3 boxsh1 col-md-8 col-md-offset-2 dp' id='upload_label_img_block'>
+          <i data-toggle="tab" data-target="#upload_label_img_tab" class="color5 mt_8px fa fa-camera iconhov cursor fsize25px  "></i>
+          <i data-toggle="tab" data-target="#upload_label_img_canvas" class="ml_2 mt_8px pull-center ta_center color5 fa fa-pencil-square iconhov cursor fa-2x  "></i>
+
+          <div class="tab-content">
+
+            <div id="upload_label_img_tab" class="tab-pane fade ">
+              <div class='preloader_block' data-ng-show='preloader_block'></div>
+              <table class='w100' border='0'>
+                <tr>
+                  <td align='center' colspan='4' height='341px'>
+                    <img src='' id='upload_label_img_preview' style='max-height:341px;height:auto;max-width:100%' />
+                  </td>
+                </tr>
+                <tr>
+                  <td id='emoji_block_createlabel' class='dp' colspan='4'>
+                    <emoji inpid='label_img_text'></emoji>
+                  </td>
+                </tr>
+                <tr>
+                  <td width='70%' class='pdng7px'>
+                    <input placeholder="Your Comment" value="" type='text' id='label_img_text' class='sw_input w90 color2 font2' />
+                  </td>
+                  <td align='center' width='10%' class='pdng7px'>
+                    <i id='upload_label_img_confirm' class='  fa fa-send iconhov cursor color5 fsize30px '></i>
+                  </td>
+                  <td align='center' width='10%'>
+                    <i data-ng-click="emoji_toggle_arg('emoji_block_createlabel')" class='color5   fa fa-smile-o  cursor iconhov fsize30px '></i>
+                  </td>
+                  <td align='center' width='10%' class='pdng7px'>
+                    <label for='labelimageloader' class='mt_8px'><i class='  fa fa-camera iconhov cursor color5 fsize35px '></i></label>
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+
+            <div id="upload_label_img_canvas" class="tab-pane fade in active">
+              <div class='preloader_block' data-ng-show='preloader_block'></div>
+              <table border='0' class='w100'>
+                <tr>
+                  <td align='center' colspan='3' height='300px'>
+                    <div id='upload_label_img_canvaspreview' class='fsize35px ta_center w100'>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td align='center' colspan='3'>
+                    <div style='display:flex;' class='mt_8px'>
+
+                      <div class='cursor ht40px w100  boxsh1' data-ng-repeat='x in themeres' style='margin:3px;' onclick='createlabelimg.settheme(this)'
+                        theme='{{x.id}}' data-themestyle='{{x.back}}:{{x.color}}:{{x.altcolor}}:{{x.font}}:{{x.musicimg}}'
+                        ng-style="{'background' :'{{x.back}}' }">
+                      </div>
+
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td id='emoji_block_createlabel_2' class='dp' colspan='3'>
+                    <emoji inpid='comment_text_2'></emoji>
+                  </td>
+                </tr>
+                <tr>
+                  <td class='pdng7px'>
+                    <input placeholder="Your Comment" value="" type='text' id='comment_text_2' class='sw_input w90 color2 font2' />
+                  </td>
+                  <td align='center' class='pdng7px'>
+                    <i data-ng-click='uploadlabelimg_canvas()' class='  fa fa-send iconhov cursor color5 fsize30px '></i>
+                  </td>
+                  <td align='center'>
+                    <i data-ng-click="emoji_toggle_arg('emoji_block_createlabel_2')" class='color5   fa fa-smile-o  cursor iconhov fsize30px '></i>
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class='row text-left mt_8px'>
+        <div class='col-md-8 col-md-offset-2'>
+          <div class="alert alert-success alert-dismissable" data-ng-show='alert2'>
+            <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <span class='alert_output'></span>
+          </div>
+        </div>
+      </div>
+
+      <div class='row text-left'>
+        <div id="options_label_images" class='col-md-8 col-md-offset-2  pdngno'>
+          <img src='img/media/loader.gif' height='100px' data-ng-show='preloader_label_img' class='abscenterh abscenterv z' style='position:fixed'>
+         
+          <div data-toggle='modal' data-target='#image_gallery_full' id = 'image_{{$index}}' data-ng-click = 'label_img_gal($event);put_uri(x.id,x.owner_id)' data-img-id = '{{$index}}' data-ng-repeat = 'x in labelimagesprivate' class = 'options_label_images cursor imghov' style = 'background-image:url({{x.image}});background-color:#ccc'>
+            </div>
+
+        </div>
+      </div>
+      <br>
+
+
+      <div class='row text-left'>
+        <div id="" class='dp col-md-8 col-md-offset-2 boxsh1'>
+          <input onchange="angular.element(this).scope().imgupload()" type='file' id='labelimageloader'>
+        </div>
+        <div class='col-md-8 col-md-offset-2 text-center'>
+        </div>
+      </div>
+
+    </div>
+
+    <div id='posts' class='tab-pane  fade in  active container pdngno' ng-cloak>
+
+     <div style='border-bottom:0px solid #ccc;padding-top:15px;padding-bottom:0px' class='boxsh1 col-md-8 col-md-offset-2  brdrlight br3 backsw2'>
+     
+              <table border='0' class='text-center   w100'>
+                <tr >
+                  <td><label for='timeline_file' class=''><i  class = 'color5   fa fa-camera  cursor iconhov fsize25px '></i></label></td>
+                  <td class='' width='60%'>
+                    <input ng-paste='open_graph_timeline($event)' style='border-bottom:1px solid yellowgreen;' type='text' class='nobrdr inputbot w100 fsize15px font2 text-left color2'
+                      id='timeline_text' placeholder='{{"%writesomething%" |translate}}'>
+                  </td>
+                  <td align='center' class=''>
+                    <i data-ng-click="clickenable || sendmessage_timeline()" id='sender' class=" color5   fa fa-paper-plane  cursor iconhov fsize25px "></i>
+                  </td>
+                  <td align='center'><i data-ng-click="emoji_toggle_arg('emoji_block_timeline')" class='color5   fa fa-smile-o  cursor iconhov fsize25px '></i></td>
+                </tr>
+                <tr>
+                  <td colspan='5' class=' dp' id='chat_og_preview' data-ng-click="show_hide('chat_og_preview')">
+                    <div class="media boxsh1 backsw2 backimgprop">
+                      <div class="media-left">
+                        <div src="{{og_data.image}}" class="media-object backimgprop boxsh1" style='background-image:url({{og_data.image}});height:100px;width:100px'>
+                        </div>
+                      </div>
+                      <div class="media-body text-left ">
+                        <i class='fa fa-close fa-2px color0 fr cursor iconhov'></i>
+                        <h5 class="media-heading color2">{{og_data.title | substrcustom : 50}}</h5>
+                        <span class='color2 fsize10px'>{{og_data.desc | substrcustom : 75}}</span>
+                        <span class='color0 fsize10px'>{{og_data.url}}</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan='5' class=''>
+                    <div class='boxsh1 backsw2 w100 text-center dp' style='height:100px;' id='upload_timeline_img_preview_block'>
+                      <i data-ng-click='dp($event)' class='fa fa-close fa-2px color0 fr cursor iconhov'></i>
+                      <!-- IMAGES PREVIEW -->
+                    </div>
+                    <input onchange="angular.element(this).scope().message_preview_timeline(this)" type='file' multiple class='dp' id='timeline_file'>
+                  </td>
+                </tr>
+                <tr>
+                  <td id='emoji_block_timeline' class='dp' colspan='5'>
+                    <emoji inpid='timeline_text'></emoji>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan='5' class='pdng7px'>
+                    <div class="alert alert-success alert-dismissable fade in" style='display:none'>
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <span class='fsize15px' id='upload_chat_img_outp'></span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+          
+            </div>
+
+      <div class='col-md-8 col-md-offset-2  pdngno text-center mt_8px'>
+
+        <div class="alert alert-success alert-dismissable" data-ng-show='alert_create_post'>
+          <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <span class='alert_output'></span>
+        </div>
+
+        <timeline></timeline>
+        <div data-ng-show='preloader2' class='ht30px w30px mdl-spinner mdl-js-spinner mt_4px is-active abscenterh abscenterv z'></div>
+        <i data-ng-click='getpostprivate_more()' class='pull-center center-block cursor  fa fa-angle-double-down iconhov color5 fa-3x '></i>
+      </div>
+
+    </div>
+    </br>
+
+
+
+  </div>
+
+
+  <input type='hidden' id='theme' value='{{onelabel.themeid}}'>
+  <input type='hidden' id='placename' value='{{onelabel.placename}}'>
+  <input type='hidden' id='placeadress' value='{{onelabel.placeadress}}'>
+  <input type='hidden' id='placeid' value='{{onelabel.placeid}}'>
+
+
+
+</body>
+
+
+
+<script>
+                                            var createlogo = {
+
+                                              logo: document.querySelector('.logo_canvas'),
+                                              theme: document.querySelector('#theme'),
+
+                                              settheme: function (elem) {
+                                                var fullstyle = elem.getAttribute('theme');
+                                                var style = elem.getAttribute('themestyle').split(":");
+                                                this.logo.style.backgroundColor = style[0];
+                                                this.logo.style.fontFamily = style[3];
+                                                this.logo.style.color = style[1];
+                                                this.theme.value = fullstyle;
+                                              },
+                                            }
+
+
+                                            var createlabelimg = {
+
+                                              logo: document.querySelector('#upload_label_img_canvaspreview'),
+                                              theme: document.querySelector('#theme'),
+                                              emoji: document.getElementsByClassName('emoji'),
+                                              inp: document.getElementById('comment_text_2'),
+
+                                              settheme: function (elem) {
+                                                var fullstyle = elem.getAttribute('theme');
+                                                var style = elem.getAttribute('data-themestyle').split(":");
+                                                this.logo.style.backgroundColor = style[0];
+                                                this.logo.style.fontFamily = style[3];
+                                                this.logo.style.color = style[1];
+                                              },
+                                              setemoji: function () {
+                                                var emoji1 = document.getElementsByClassName('emoji');
+                                                var logo = this.logo;
+                                                var inp = this.inp;
+                                                for (var i = 0; i < emoji1.length; i++) {
+                                                  emoji1[i].addEventListener('click', function () {
+                                                    logo.innerHTML += this.innerHTML;
+                                                  })
+                                                }
+                                                inp.addEventListener('input', function () {
+                                                  logo.innerHTML = this.value;
+                                                })
+                                              },
+
+                                            }
+                                            setTimeout(function () { createlabelimg.setemoji() }, 300);
+
+</script>

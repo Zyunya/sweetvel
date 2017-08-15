@@ -1,0 +1,62 @@
+<style>
+
+#live_popup1,#live_popup2,#live_popup3{
+  text-align:left;
+  display:none;
+  position:fixed;
+  bottom:8px;
+  left:8px;
+  padding:5px;
+  width:330px;
+  border-radius:4px;
+}
+
+  </style>
+
+
+  <div id = 'live_popup2' class = 'boxsh1 backsw5 z' >
+
+<a href = 'messenger.html'><i class="cursor  color1 fa fa-envelope fsize20px textshgrt icon_sw pulse"></i></a>
+          <span class = 'colorwht ml_2 textshgrt font1 fsize13px bb'>{{'%new%'|translate}} {{'%message%'|translate}}</span>
+          <span class = 'colorwht ml_2 textshgrt  font1 fsize17px bb'> </span>
+          <span  class = 'color1 ml_2 textshgrt  font1 fsize17px bb'></span>
+          <i data-ng-click = "close_modal('live_popup2')" class="cursor iconhov colormessenger fa fa-close fsize20px pull-right textshgrt icon_sw"></i>
+          <br>
+          <div  style = 'background-image:url({{messenger_main.senderavatar}})' class   = 'backimgprop fl br4 mt_8px ht40px w40px'></div>
+          <span class = 'colorgld ml_2 textshgrt  font1 fsize13px bb'>{{who_liked.label | translate}}</span>
+          <br>
+          <span  class = 'colorwht ml_2 textshgrt  font1 fsize13px bb'>{{messenger_main.sender}}</span>
+           
+  </div>
+
+   <div id = 'live_popup3' class = 'boxsh1 backsw5 z'>
+
+     <table border = '0' class = 'w100'>
+       <tr>
+          <td align = 'center' ><i ng-class="{friend_confirm:'fa-handshake-o color1',friend_req:'fa-handshake-o color1',like:'fa-thumbs-up colormessenger', follow:'fa-podcast color1',comment :'fa-commenting colormessenger'}[activity_param.actiontype]"  class=' fa fsize27px'></i></td>
+          <td></td>
+          <td>     
+           <i data-ng-click = "close_modal('live_popup3')" class="cursor iconhov colormessenger fa fa-close fsize20px pull-right textshgrt icon_sw"></i>
+           </td>
+         </tr>
+       <tr>
+         <td  align = 'center'  height = '70px' width = '60px' rowspan = '2'>
+           <div  style = 'background-image:url({{activity_param.activator_avatar}})' class   = 'backimgprop  br4 ht40px w40px mt_4px'></div>
+        </td>
+         <td>
+            <span  class = 'colorwht textshgrt  font1 fsize13px bb'>{{activity_param.activator_fname}} {{activity_param.activator_lname}}</span><br>
+            <span class = 'colorgld textshgrt  font3 fsize13px bb'>{{activity_param.title | translate | substrcustom : 70}}</span>
+         </td>
+          <td align = 'center' rowspan = '2' width = '50px' >
+           <div  style = 'background-image:url({{activity_param.object_target}})' class   = 'backimgprop  mr_2 br4 ht40px w40px mt_4px'></div>
+           
+          </td>
+         </tr>
+         <tr>
+            <td><span class = 'colorwht textshgrt font3 fsize13px '>{{activity_param.title2 | trust | translate | substrcustom : 15}}</span></td>
+           </tr>
+     
+       </table>
+  </div>
+
+ 

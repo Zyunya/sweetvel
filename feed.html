@@ -1,0 +1,84 @@
+<style>
+  body {
+    height: 100%;
+  }
+  
+  #activity_plane {
+    display: none;
+  }
+  /* Стартовые настройки при появлении блока  */
+  
+  [ui-view].ui_2.ng-enter {
+    position: absolute !important;
+    max-width: 100%;
+    left: -450px !important;
+    opacity: 0 !important;
+    transition: 1s !important;
+  }
+  /* Действие окончание ng-enter  */
+  
+  [ui-view].ui_2.ng-enter-active {
+    transform: translateX(450px) !important;
+    opacity: 1 !important;
+  }
+  /* Стартовые настройки при покидании блока  */
+  
+  [ui-view].ui_2.ng-leave {
+    transition: 1s !important;
+    opacity: 1 !important;
+  }
+  /* Действие окончание ng-leave  */
+  
+  [ui-view].ui_2.ng-leave-active {
+    transform: translateX(450px) !important;
+    opacity: 0 !important;
+  }
+</style>
+
+
+
+<body class='backsw'>
+
+
+  <div class='container-fluid'>
+
+    <img src='img/media/loader.gif' height='100px' data-ng-show='preloader2' class='abscenterh abscenterv z' style='position:fixed'>
+
+    <div class='row '>
+      <div class='col-md-6 col-md-offset-3 pdngno text-center'>
+        <div class = ' backsw2 boxsh1 inln w100 mt_4px pdng3px'>
+        <a ui-sref=".feedlabel">
+          <div class='cursor text-center   col-md-4 col-md-offset-0  col-xs-4  '>
+            <i class=" cursor iconhov color5 fa fa-photo fsize27px  "></i><br>
+            <span class='ml_2   color5 fsize12px font2 '>Labels</span>
+          </div>
+        </a>
+
+        <a ui-sref=".friendsactivity">
+          <div class='cursor text-center   col-md-4 col-md-offset-0  col-xs-4  '>
+            <i class=" cursor iconhov color5 fa fa-share-alt-square fsize27px  "></i><br>
+            <span class='ml_2   color5 fsize12px font2 '>Activity</span>
+          </div>
+        </a>
+        <a ui-sref=".posts">
+          <div class='cursor text-center   col-md-4 col-md-offset-0  col-xs-4  '>
+            <i class=" cursor iconhov color5 fa fa-feed fsize27px  "></i><br>
+            <span class='ml_2   color5 fsize12px font2 '>Posts</span>
+          </div>
+        </a>
+      </div>
+      </div>
+    </div>
+
+    <div class='row pdngno'>
+
+      <div class='col-md-6 col-md-offset-3 ui2 pdngno ui_2 mt_8px' ui-view></div>
+
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>

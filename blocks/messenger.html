@@ -1,0 +1,35 @@
+<div class='container  pdngno'>
+  <div class='chat_container col-md-8 col-md-offset-2 pdngno backsw2 boxsh1'>
+    <div data-ng-show='!spinner2' class="mdl-spinner mdl-js-spinner is-active valcenter2 ht60px w60px z"></div>
+    <div class=' w100 '>
+      <input data-ng-keyup="search_contact()" type='search' id='search_contact' class='sw_input ta_center font2 ht50px  w50' placeholder='Search'>
+    </div>
+    <div class='chat_container_scroll col-md-12 col-md-offset-0  backsw2 pdngno  font2 ' style='overflow:scroll'>
+      <!--CONTACT_LIST  -->
+      <div data-ng-show='searchcontact_box' data-ng-repeat='lt in searchcontact' class='mt_4px '>
+        <div style="background-image:url({{lt.avatar}}),url('{{host}}/img/media/noavatar.png')" class='br boxsh1 ml_2 ht40px   w40px fl backimgprop'></div>
+        <span class='font2  color2 fsize12px ml_2'>{{lt.firstname}} {{lt.lastname}}</span>
+        <button data-ng-click='invite_to_chat(lt.id)' class=" fr mr_2 mt_8px  fsize10px backsw3 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">{{'%add_to_chat%' | translate}}</button><br><br>
+        <hr>
+      </div>
+      <!-- MESSENGER  -->
+      <a data-ng-repeat='m in messenger' class='nodec' ui-sref="account.chat({'sn':m.opponentid * hash})" data-ng-click='chat(m.opponentid )'>
+        <div style='padding:0px' class = ' bb5  imghov2'>
+          <div class = 'w100  inln '>
+          <span class='fsize12px fl font2 color0 ml_4  mt_4px'> {{m.sendername | substrcustom:8}} {{m.senderlastname | substrcustom:8}}</span>
+          <span class='ml_8px fsize10px inln mr_2 font2 color5  fr mt_4px'> {{m.date | ten}} {{m.month | month | translate}}</span>
+          </div>
+          <div class = 'w100  inln pdng12px'>
+          <div style="background-image:url({{m.senderavatar}}),url('{{host}}/img/media/noavatar.png')" class='br boxsh1  ml_2 ht40px w40px fl  backimgprop'></div>
+          <div style="background-image:url({{m.receiveravatar}}),url('{{host}}/img/media/noavatar.png')" class='br boxsh1 fl  ml_2 ht30px w30px  backimgprop'></div>
+          <i data-ng-class=" m.status == 1 ? 'fa-flash color5' : 'fa-flash color0' " class="text-left  fl  ml_6px  fa  fsize25px  "></i>
+          <span data-user='{{m.opponentid * hash}}' class='message_list fl  ht30px w70 ml_6px color0  fsize12px pdng5px br4  font2  telips'> {{m.message | trust }}</span><br><br>
+          <!--span class = 'ml_8px fsize12px  font2 color2  '> {{m.receivername | substrcustom:8}}</span-->
+         
+         </div>
+          
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

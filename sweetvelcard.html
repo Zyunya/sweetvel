@@ -1,0 +1,158 @@
+<style>
+html,body{
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+
+}
+     /* Стартовые настройки при появлении блока  */ 
+    [ui-view].ui_sw.ng-enter {
+        position:absolute !important;
+         width:100%;
+        left:-450px !important;
+        opacity: 0 !important;
+        transition: 0.6s !important;
+    }
+    /* Действие окончание ng-enter  */ 
+    [ui-view].ui_sw.ng-enter-active {
+        transform: translateX(450px) !important;
+        opacity: 1 !important;
+    }
+     /* Стартовые настройки при покидании блока  */ 
+     [ui-view].ui_sw.ng-leave {
+      
+         transition: 0.6s !important;
+         opacity: 1 !important;       
+    }
+     /* Действие окончание ng-leave  */ 
+    [ui-view].ui_sw.ng-leave-active {
+      transform: translateX(450px) !important;
+        opacity: 0 !important;   
+      
+    }
+  </style>
+
+<head>
+
+
+
+</head>
+
+
+   <div data-ng-controller = 'creategcctr'  class = 'container-fluid backsw2' >
+
+  
+<div class = 'container-fluid'>
+<div class = 'row '>
+  <div  class = 'row  col-md-8 col-md-offset-2 pdngno'>
+  <a ui-sref =".bussiness">
+     <div  class = 'cursor text-center  col-md-4  col-xs-4'>
+       <i class=" cursor iconhov color5 fa fa-shopping-bag fa-3x grt icon_sw"></i><br>
+       <span class = 'ml_2 grt color2  fsize20px font2 bb2' > BS</span>
+      </div>
+     </a> 
+   <a  ui-sref =".item" >
+      <div  class = 'cursor text-center  col-md-4  col-xs-4'>
+        
+      </div>
+     </a>
+    <a  ui-sref =".greet" >
+      <div  class = 'cursor text-center  col-md-4  col-xs-4'>
+        <i class=" cursor iconhov color5 fa fa-gift fa-3x grt icon_sw"></i><br>
+        <span class = 'ml_2 grt  color2 fsize20px font2 bb2' > GIFT</span>
+      </div>
+    </a>
+
+
+   </div>
+     </div>
+     </div>  
+  
+  
+   <div class= 'ui_sw' ui-view></div>
+   <div ng-include="'blocks/widjet_preview.tpl'"></div>
+   <div ng-include="'blocks/preview.html'"></div>
+
+
+<div class="modal fade" id="alert_error" role="dialog" >
+    <div class="modal-dialog modal-xs">
+    
+      <div class="modal-content">
+        
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         
+        </div>
+        <div class="modal-body text-center">
+          <i  class=" color5  fa fa-shield fsize60px grt"></i>
+          <h4 class="modal-title  font2 color2 grt mt_8px" id = "alert_error_text"></h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default grt color2" data-dismiss="modal">{{"%close%" | translate}}</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="sw_result" role="dialog" >
+    <div class="modal-dialog modal-xs">
+    
+      <div class="modal-content">
+        
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         
+        </div>
+        <div class="modal-body text-center">
+          <div class = 'row'>
+          <div class = 'col-md-12 mt_4px'>
+          <div align = 'center' height = '150px'   id = 'ogpreview'></div>
+          </div>
+          <div class = 'col-md-12 mt_8px'>
+          <label data-clipboard-target="#gcresultlink" id = 'copy' class = 'grt font2  colorwht fsize20px cursor labelsw1'>{{"%copylink%" |translate}}</label>
+          </div>
+           
+           <div class = 'col-md-12 mt_4px'>
+              <input name = 'res_email' type = 'text' class = 'font2  input1 w100 fsize25px' placeholder = "{{'%email%' | translate}}">
+           </div>
+           <div class = 'col-md-12'>
+               <label data-clipboard-target="#gcresultlink" id = 'sendtomail' class = 'grt font2  colorwht fsize20px cursor labelsw1'>{{"%send%" |translate}}</label>
+             </div>
+           <div class = 'col-md-12 mt_8px'>
+             <a id = 'telegram'  href = 'tg://msg?text=No Sweetvel_Card Added'><i  class='ml_8px color5 iconhov fa fa-telegram  fa-2x grt icon_sw'></i></a>
+             <a id = 'vkontakte' href = 'vk://share?link=No Sweetvel_Card Added'><i class="ml_8px color5 iconhov fa fa-vk  fa-2x grt icon_sw"></i></a>
+             <a rel="nofollow" id = 'fb' href = 'https://www.facebook.com'><i class="ml_8px color5 iconhov fa fa-facebook-official fa-2x grt icon_sw"></i></a>
+             <a id = 'fbmessenger' href = 'fb-messenger://share?link=No Sweetvel_Card Added'><i class="ml_8px iconhov color5 fa fa-facebook fa-2x grt icon_sw"></i></a>
+             <a id = 'viber'    href = 'viber://forward?text=No Sweetvel_Card Added'><i class="ml_8px color5 iconhov fa fa-viber fa-2x grt icon_sw"></i></a>
+             <a id = 'whatsapp' href = 'whatsapp://send?text=No Sweetvel_Card Added'><i class="ml_8px color5 iconhov fa fa-whatsapp fa-2x grt icon_sw"></i></a>
+             </div>
+             
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default grt color2" data-dismiss="modal">{{"%close%" | translate}}</button>
+        </div>
+      </div>
+
+       
+   </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmB791RkbN_FF9wB2bqC5thrC0iMqp5kk&libraries=places&callback=initAutocomplete" async defer></script>
+
+
+<script>
+jQuery('#copy').on('click',function(){
+new Clipboard('#copy');
+jQuery(this).css("background","#ff5959");
+})
+</script>
+
+</div>
+</div>
+
+
+
+
+

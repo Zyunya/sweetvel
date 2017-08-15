@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html data-ng-app = 'swcard' data-ng-controller = 'swcardctr'>
+<head>
+<title>Sweetvel</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<meta id="viewport" name='viewport' content = "initial-scale=0.7,width=device-width">
+
+<link rel = "stylesheet" type = 'text/css' href = "/style/material.min.css" >
+<link rel = "shortcut icon" type = 'text/css' href="/favicon.png" type="image/png">
+<link rel = 'stylesheet' type = 'text/css' href = '/style/media.css'>
+<link rel = 'stylesheet' type = 'text/css' href = '/style/shablon.css'>
+<link rel = 'stylesheet' type = 'text/css' href = '/style/gift_card.css'>
+
+	
+<!--script type = 'text/javascript' src = 'js/metaiphoneipad.js'></script-->
+
+<script type = 'text/javascript' src  = '/js/jquery.min.js'></script>
+<script type = 'text/javascript' src  = '/js/jscommon.js'></script>
+<script type = 'text/javascript' src  = '/js/angular.js'   ></script>
+<script type = 'text/javascript' src  = '/js/angular-translate.js'></script>
+<script type = 'text/javascript' src  = "/js/material.js"               ></script>
+
+<script type = 'text/javascript' src  = '/strings/translation.js'></script>
+<script type = 'text/javascript' src  = '/js/controller.js'   ></script>
+
+<link   rel  = 'stylesheet'       type = 'text/css' href = '/style/bootstrap-social.css'>
+<link   rel  = 'stylesheet'       type = 'text/css' href = '/style/font-awesome.css'>
+<link   rel  = "stylesheet"       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<base href = '/' />
+
+</head>
+
+<errorpage2></errorpage2>
+<div data-ng-init = "get_card();card_existance('cardbs')" data-ng-show = 'show_card_check' style = "color:{{card.color}};font-family:{{card.font}};background:{{card.back}};line-height:70px" class = 'container-fluid'   data-ng-cloak >
+
+<div data-ng-show = 'business' class = 'row   text-center label_brand'>
+  <span class = 'fsize40px textshgrt' style = 'color:{{card.altcolor}};font-family:{{card.font}}' >  - {{card.sender}} -  </span>
+  </div>
+<div class = 'row'>
+ <div data-spy="affixx" data-offset-top="94" style = "color:{{card.altcolor}};background:{{card.back}}" class = 'sweet_player row col-md-12 col-md-offset-0 col-xs-12 col-xs-offset-0 text-center z'>
+  <audio id = 'audio' ng-src="{{card.audio}}" src="{{card.audio}}">{{playing}}</audio>
+
+<div class = 'col-md-3 col-xs-3 z' ng-click = 'play()'><i class="cursor fa  fa-play-circle-o fa-4x textshgrt icon_sw"></i></div>
+<div class = 'col-md-3 col-xs-3 z' ng-click = 'pause()'><i class="cursor fa fa-pause-circle-o  fa-4x textshgrt icon_sw"></i></div>
+<div class = 'col-md-3 col-xs-3 z' ng-click = 'stop()'><i class="cursor  fa fa-stop-circle  fa-4x textshgrt icon_sw"></i></div>
+<div class = 'col-md-3 col-xs-3 z mi1'><i  class="cursor  fa fa-music fsize45px textshgrt "></i></div>
+<div class = 'col-md-3 col-xs-3 z mi2 dp'><img class = 'center-block musicimg' src = '{{card.musicimg}}' height = '60px'></div>
+
+  </div>
+</div>
+  
+
+   <div class = 'row mt_2 'data-ng-cloak>
+     <div class = 'col-md-10 col-md-offset-1  '>
+       <i style = 'color:{{card.altcolor}}' class="w10 fa fa-user-circle-o fa-3x textshgrt  pulse"></i>
+     <span class = 'text1 textshgrt'>{{card.receiver}}</span>
+     <blockquote style = 'font-family:{{card.font}}' class = 'text-center'><span  class = 'text1 textshgrt'>{{card.event}}</span></blockquote>
+     </div>
+     </div>
+
+ 
+
+   <div class = 'row col-md-10 col-md-offset-1' data-ng-cloak>
+    <div class = ' col-md-4 text-center col-xs-4'><img class = 'gcimg'  ng-src = '{{card.img1}}' ></div>
+    <div class = ' col-md-4 text-center col-xs-4'><img class = 'gcimg'  ng-src = '{{card.img2}}' ></div>
+    <div class = ' col-md-4 text-center col-xs-4'><img class = 'gcimg'  ng-src = '{{card.img3}}' ></div>
+   </div>
+
+   <div class = 'row ' data-ng-cloak>
+     <div class = 'col-md-10 col-md-offset-1    lnht30'>
+     <i style = 'color:{{card.altcolor}}' class="w10 fa fa-tags fa-3x textshgrt pulse"></i>
+     <span  class = 'text1 textshgrt '>{{'%description%' | translate}}</span>
+     <blockquote style = 'font-family:{{card.font}}' class = 'text-center'><span  class = 'text1 textshgrt'>{{card.desc}}</span></blockquote>
+     </div>
+     </div>
+
+  
+
+     <div class = 'row col-md-10 col-md-offset-1' data-ng-cloak>
+    <div class = ' col-md-4 text-center col-xs-4'><img class = 'gcimg'  ng-src = '{{card.img4}}' ></div>
+    <div class = ' col-md-4 text-center col-xs-4'><img class = 'gcimg'  ng-src = '{{card.img5}}' ></div>
+    <div class = ' col-md-4 text-center col-xs-4'><img class = 'gcimg'  ng-src = '{{card.img6}}' ></div>
+   </div>
+
+  
+   <div class = 'row ' data-ng-cloak>
+     <div class = 'col-md-10 col-md-offset-1    lnht30'>
+     <i style = 'color:{{card.altcolor}}' class="w10 fa fa-podcast fa-3x textshgrt pulse"></i>
+     <span class = 'text1 textshgrt '>{{'%sender%' | translate}}</span>
+     <blockquote style = 'font-family:{{card.font}}' class = 'text-center'><span  class = 'text1 textshgrt'>{{card.sender}}</span></blockquote>
+     </div>
+     </div>
+
+<div data-ng-show = 'business' class = 'container-fluid pdngno' style  = "color:{{card.color}};font-family:{{card.font}};line-height:60px" data-ng-cloak>
+  <hr color = 'black'>
+
+  <div class = 'col-md-10 col-md-offset-1 '>
+   <i style = 'color:{{card.altcolor}}' class="w10 fa fa-anchor fa-3x textshgrt "></i>
+ <span class = 'textshgrt fsize35px '>{{'%contacts%' | translate}}</span>
+ </div>
+ 
+
+      <div class = 'row ' >
+        <div class = 'col-md-10 col-md-offset-1 pdngno'>
+             <input id = 'pac-input' value = '{{card.placeid}}'  name = 'activityplace' type='hidden' placeholder='%eventplace%'>
+                 <div id='map' style = 'z-index:10'></div>
+          </div>
+       </div>
+    
+    
+<div class = 'row  mt_2 ' data-ng-show = 'sw_contacts_check_label'>
+     <div class = 'col-md-2 col-xs-2 col-md-offset-1 col-xs-4 text-left'><i style = 'color:{{card.altcolor}}' class="text-left  fa fa-star fa-3x textshgrt icon_sw"></i><span class = 'text1 font2 fsize20px'></span></div>
+     <div class = 'col-md-8 col-xs-10 text-right  font2 fsize20px telips'><a href = '{{card.label}}'>{{card.label}}</a></div>
+     </div>
+
+   <div class = 'row' data-ng-show = 'sw_contacts_check_phone'>
+     <div class = 'col-md-2 col-xs-2 col-md-offset-1 col-xs-4 text-left'><i style = 'color:{{card.altcolor}}' class="text-left  fa fa-phone-square fa-3x textshgrt icon_sw"></i><span class = 'text1 font2 fsize20px'></span></div>
+     <div class = 'col-md-8 col-xs-10 text-right font2 fsize20px telips'>{{card.phone}}</div>
+     </div>
+
+     <div class = 'row' data-ng-show = 'sw_contacts_check_placeadress'>
+     <div class = 'col-md-2 col-xs-2 col-md-offset-1'><i style = 'color:{{card.altcolor}}' class="text-left  fa fa-map-signs fa-3x textshgrt icon_sw"></i><span class = 'text1 font2 fsize20px'></span></div>
+     <div class = 'col-md-8 col-xs-10 text-right font2 fsize20px telips'>{{card.placeadress }}</div>
+     </div>
+
+   <div class = 'row' data-ng-show = 'sw_contacts_check_email'>
+     <div class = 'col-md-2 col-xs-2 col-md-offset-1'><i style = 'color:{{card.altcolor}}' class="text-left  fa fa-envelope-square fa-3x textshgrt icon_sw"></i><span class = 'text1 font2 fsize20px'></span></div>
+     <div class = 'col-md-8 col-xs-10 text-right font2 fsize20px telips'>{{card.email}}</div>
+     </div>
+
+
+  <div class = 'row' data-ng-show = 'sw_contacts_check_fb'>
+     <div class = 'col-md-2 col-xs-2 col-md-offset-1'><i style = 'color:{{card.altcolor}}' class="text-left  fa fa-facebook-official fa-3x textshgrt icon_sw"></i><span class = 'text1 font2 fsize20px'></span></div>
+     <div class = 'col-md-8 col-xs-10 text-right font2 fsize20px telips'><a href = '{{card.fb}}'>{{card.fb}}</a></div>
+     </div>
+
+     <div class = 'row' data-ng-show = 'sw_contacts_check_vk'>
+     <div class = 'col-md-2 col-xs-2 col-md-offset-1  '><i style = 'color:{{card.altcolor}}' class="text-left  fa fa-vk fa-3x textshgrt icon_sw"></i><span class = 'text1 font2 fsize20px'></span></div>
+     <div class = 'col-md-8 col-xs-10 text-right font2 fsize20px telips'><a href = '{{card.vk}}'>{{card.vk}}</a></div>
+     </div>
+
+     <div class = 'row' data-ng-show = 'sw_contacts_check_insta'>
+     <div class = 'col-md-2 col-xs-2 col-md-offset-1 '><i style = 'color:{{card.altcolor}}' class=" text-left  fa fa-instagram fa-3x textshgrt icon_sw"></i><span class = 'text1 font2 fsize20px'></span></div>
+     <div class = 'col-md-8 col-xs-10 text-right font2 fsize20px telips'><a href = '{{card.insta}}'>{{card.insta}}</a></div>
+     </div>
+
+
+
+    <div class = 'row mt_2'  ng-show ='sender_exists'>
+    
+     <div class = 'col-md-5 col-md-offset-1 '>
+       <div class = ' text-left'><i style = 'color:{{card.altcolor}}' class="w10 fa fa-comments fa-3x textshgrt icon_sw"></i><span class = 'text1 font2 fsize20px'>  Your Quastion</span></div>
+       <input max-length = '16' class = 'w100 inputswc'        name = 'phone' type = 'text' placeholder = "Your phone number">
+       <input  max-length = '255'  class = 'w100 inputswc mt_1'name = 'question' type = 'text' placeholder = "Your Question">
+       <button type="button" class="w100 button2 mt_2 fsize22px">{{'%send%' | translate}}</button>
+      </div>
+
+     <div class = 'col-md-5  mt_2'>
+      <div class = '  '><i style = 'color:{{card.altcolor}}' class="w10 fa fa-heartbeat fa-3x textshgrt icon_sw"></i><span class = 'text1 font2 fsize20px'>  FeedBack</span></div>
+       <div class = ' text-center'><button type="button" class="btn btn-success btn-lg w70">I like it</button></div>  
+       <div class = ' text-center'><button type="button" class="btn btn-danger btn-lg w70">Not interesting</button></div>
+       <div class = ' mt_2'><i style = 'color:{{card.altcolor}}' class="w10 fa fa-info-circle fa-3x textshgrt icon_sw"></i><span class = 'text1 font2 fsize15px'> We Appriciate every your Feedback.Thank You.</span></div>    
+ 
+  </div>
+
+</div>
+
+      </div>
+<div class = 'container-fluid '>
+   <div class = 'row '>
+     <div class = 'col-md-10 col-md-offset-1'><a class = 'nodec' href = 'https://sweetvel.com' target = 'https://seetvel.com'><hr>
+			<span style = 'color:{{card.altcolor}}'class = 'fsize30px fontrancho textshgrt' >sweetvel.com / sweetvel 2017</span></a></div>
+     </div>
+     </div>
+
+     </div>
+
+<table     id = 'preloader_block' class = 'z'  border = '0' width = '100%' height = '100%'>
+  <tr><td align = 'center'>
+    <div id = 'logo_div_preloader' class = 'fontrancho'>Sweetvel</div>
+  </td></tr>
+  <tr><td valign = 'top' align = 'center'>
+    <div style = 'height:100px;width:100px;' class="mdl-spinner mdl-js-spinner is-active"></div>
+    </td></tr>
+</table>
+
+</html>
+
+
+<script>
+
+$(document).ready(
+  	
+	function(){
+	
+		$('#preloader_block').delay(2000).fadeOut(2000);
+})
+
+</script>
+<script>
+
+</script>
+
+<script>
+
+function geocodePlaceId(geocoder, map, infowindow) {
+  var placeId = document.getElementById('pac-input').value;
+
+  geocoder.geocode({'placeId': placeId}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      if (results[0]) {
+        map.setZoom(15);
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+        infowindow.setContent("<h4 class = 'color1'>"+results[0].formatted_address+"</h4>");
+        infowindow.open(map, marker);
+      } else {
+        console.log('No results found');
+      }
+    } else {
+      console.log('Geocoder failed due to: ' + status);
+    }
+  });
+}
+
+function initAutocomplete() {
+var map = new google.maps.Map(document.getElementById('map'), {
+  zoom: 8,
+     center: {lat: 40.72, lng: -73.96}
+   });
+   var geocoder = new google.maps.Geocoder;
+   var infowindow = new google.maps.InfoWindow;
+
+	 google.maps.event.trigger(map, 'resize');
+
+
+geocodePlaceId(geocoder, map, infowindow);
+};
+
+
+window.addEventListener('load', function() {
+	initAutocomplete();
+    
+})
+
+
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmB791RkbN_FF9wB2bqC5thrC0iMqp5kk&libraries=places&callback=initAutocomplete"
+     async defer></script>
+     <style>
+
+     #map {
+       height: 500px;
+       width:100%;
+       border-radius: 7px;
+       z-index:1;
+       
+
+
+     }
+     .controls {
+     margin-top: 10px;
+     border: 1px solid transparent;
+     border-radius: 2px 0 0 2px;
+     box-sizing: border-box;
+     -moz-box-sizing: border-box;
+     height: 32px;
+     outline: none;
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+     }
+
+     #pac-input {
+     background-color: #fff;
+     font-family: Roboto;
+     font-size: 15px;
+     font-weight: 300;
+     margin-left: 12px;
+     padding: 0 11px 0 13px;
+     text-overflow: ellipsis;
+     width: 300px;
+     }
+
+     #pac-input:focus {
+     border-color: #4d90fe;
+     }
+
+     .pac-container {
+     font-family: Roboto;
+     }
+
+     #type-selector {
+     color: #656565;
+     background-color: #4d90fe;
+     padding: 5px 11px 0px 11px;
+     }
+
+     #type-selector label {
+     font-family: Roboto;
+     font-size: 13px;
+     font-weight: 300;
+     }
+     #target {
+       width: 345px;
+     }
+     </style>

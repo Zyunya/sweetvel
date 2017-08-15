@@ -1,0 +1,216 @@
+<style>
+body{
+  height:100%;
+  width:100%;
+}
+
+</style>
+
+
+
+
+  <div data-ng-init="views('label');" class='container'  ng-cloak>
+  <errorpage></errorpage>
+
+    <div class='row'>
+    
+        <!--LOGO-->
+     
+          <div class='logo_common_container pdngno col-md-12 col-md-offset-0 backsw2 boxsh1 bb5'>
+
+            <div data-ng-click='closegal()' class='logo_common_container fontlobster boxsh1  backsw3 colorwht' style='background:{{onelabel.logoback}} !important;color:{{onelabel.logocolor}} !important;font-family:{{onelabel.logofont}} !important'>
+              <!--PROFILE-->
+              <a data-ui-sref='account.sketch({sk : onelabel.owner_id})'>
+                <div class='fsize15px font2 pa' style='top:5px;left:5px;'>
+                  <div class='fsize13px color2 cursor' data-ng-click='user_card_info_block(onelabel.owner_id)'>
+                    <div class='cursor backimgprop ht30px w30px br fl' style='background-image:url({{onelabel.labelowneravatar}}),url({{host}}/img/media/noavatar.png)'></div>
+                    <span class=' font2 colorwht  textshgrt ml_4px  fsize13px fl'>{{onelabel.labelownerfname | substrcustom: 15}} {{onelabel.labelownerlname | substrcustom: 15}}</span>
+                  </div>
+                </div>
+              </a>
+              <!--LOGO-->
+
+              <span class='logo_common '>{{onelabel.name | translate}}</span>
+            </div>
+
+            <!--IMAGES-->
+
+            <div class='col-md-12 col-md-offset-0  backsw2  bb5 br5 pdng3px'>
+              <i style='margin-top:50px;left:20px' class="z0 pa scroll_left  cursor hover2  text-left color5 fa fa-chevron-circle-left fsize30px  "></i>
+              <i style='right:20px;margin-top:50px;' class="z0 pa scroll_right  cursor hover2  text-left color5 fa fa-chevron-circle-right fsize30px  "></i>
+              <div id="options_label_images_common" class='pdngno col-md-12 col-md-offset-0  '>
+
+                <div class='alert alert-success w100 text-center' style='margin-top:25px' data-ng-show='no_label_images'>
+                  <i class='ml_2  text-left  color5 fa fa-comment fsize25px mr_2'></i> {{"%noimages%" | translate }}
+                </div>
+
+                <div class='inner_images '>
+                  <div data-toggle="modal" data-target="#image_gallery_full" data-ng-click="label_img_gal($event);put_uri(x.id,x.owner_id)" data-img-id='{{$index}}'
+                    data-ng-repeat='x in labelimagesall' class='brdrlite cursor imghov options_label_images_common gallery_img'
+                    style='background-image:url({{x.image}});background-color:#ccc'>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!--PANEL_ACTIONS-->
+        <div class = 'container'>
+        <div class = 'row pdngno'>
+              <div class='col-md-6 col-xs-12'>
+
+                <div id="" class='pdng5px  text-left  backsw2 mt_8px br5'>
+                  <i data-ng-click="like_label('label',onelabel);changeicon($event,'fa-thumbs-up','fa-thumbs-o-up','color5','color1')" ng-class="{1:'fa-thumbs-up color1', 0:'fa-thumbs-o-up color5'}[likestatus_label]"
+                    class="cursor hover2 mt_6px icon_hov  ml_2 fa fsize25px  icon_sw"></i>
+                  <span data-ng-click="person_likes_views('likes',onelabel.id,'label')" data-toggle="modal" data-target="#modal_options" class='colorwht pdng3px cursor boxsh1 ml_4px back4  font1  fsize12px '> {{likes_count_label}}</span>
+                  <i data-ng-click="person_likes_views('views',onelabel.id,'label')"  data-toggle="modal" data-target="#modal_options" class="cursor hover2 mt_6px iconhov  ml_6px fa fa-eye colormessenger fsize25px  "></i>
+                  <span class='colorwht pdng3px cursor boxsh1 back4 ml_4px  font1  fsize12px '> {{onelabel.views}}</span>
+                  <i class="cursor hover2 mt_6px icon_hov  ml_6px fa fa-star colorgld fsize25px  "></i>
+                  <span class='colorwht pdng3px cursor boxsh1 back4 ml_4px   font1  fsize12px '> {{onelabel.rating}}</span>
+                  <i data-ng-click=" person_followers(onelabel.id)" data-toggle="modal" data-target="#modal_options" class="cursor hover2 mt_6px iconhov  ml_6px fa fa-podcast color1 fsize25px  "></i>
+                  <span class='colorwht pdng3px cursor boxsh1 back4 ml_4px   font1  fsize12px '> {{onelabel.followers}}</span>
+                </div>
+              </div>
+              <div class='col-md-6 col-xs-12 '>
+                <div class = 'pdng7px'>
+                <button data-ng-init='checkfollow()' data-ng-click='follow();' ng-class="{0:' back3', 1:'backsw3'}[follow_status1]" class="xs-pull-left ml_2 mdl-button mdl-js-button fsize12px w150px mdl-button--raised mdl-js-ripple-effect mdl-button--accent fr">
+                     {{follow_status0}}
+                </button>
+                 <div data-ng-show='follow_loader' class="mdl-spinner mdl-js-spinner  is-active" style='height:25px;width:25px;'></div>
+              
+                </div>    
+              </div>
+              </div>
+              </div>
+
+            
+            <!--DESCRIPTION-->
+            <div class='col-md-12 col-md-offset-0 text-left  backsw2  bb5 mt_8px br5 pdng5px ' >
+              <i class="ml_2   color5 fa fa-life-saver fsize25px  icon_sw"></i>
+              <span class='color2  ml_2  font2 fsize12px'>{{"%description%" | translate}}</span>
+              <div class='ml_2  fsize13px font2 color2 lnht25'>{{onelabel.description}}</div>
+            </div>
+            <!--LOCATION-->
+            <div class='col-md-12  col-md-offset-0 bb5 text-left  backsw2  mt_8px br5 pdng5px'>
+              <i class="ml_2  color5 fa fa-location-arrow  fsize25px  icon_sw"></i>
+              <span class='color2  ml_2  font2 fsize12px'>{{"%location%" | translate}}</span>
+              <div class='fsize15px font2'>
+                <div class=' fsize13px color2'>
+                  <i class="ml_2 w30px text-left color5 fa fa-map-marker fsize25px  icon_sw"></i> {{onelabel.placename }}
+                  {{onelabel.placeadress}}
+                </div>
+              </div>
+              <input id='pac-input' value='{{onelabel.placeid}}' type='hidden'>
+              <input id='placeid' value='{{onelabel.placeid}}' type='hidden'>
+              <div id='map' style='height:170px'></div>
+            </div>
+            <!--CONTACTS-->
+            <div class='col-md-12 text-left col-md-offset-0 color2 backsw2 bb5  mt_8px br5 pdng5px'>
+              <i class="ml_2   color5 fa fa-anchor fsize25px  icon_sw"></i>
+              <span class='color2  ml_2  font2 fsize12px'>{{'%contacts%' | translate}}</span>
+              <div class='fsize13px font2'>
+                <div class=' inln ml_2' style='width:350px;min-width:350px;'>
+                  <i class=" w30px text-left color5 fa fa-vk fsize25px  icon_sw"></i> {{onelabel.vk | substr3}}
+                </div>
+                <div class=' inln ml_2' style='max-width:350px;min-width:350px;'>
+                  <i class="  w30px text-left color5 fa fa-facebook fsize25px  icon_sw"></i> {{onelabel.fb | substr3}}
+                </div>
+                <div class=' inln ml_2' style='max-width:350px;min-width:350px;'>
+                  <i class=" w30px text-left color5 fa fa-instagram fsize25px  icon_sw"></i> {{onelabel.insta | substr3}}
+                </div>
+                <div class=' inln ml_2' style='max-width:3500px;min-width:350px;'>
+                  <i class="= w30px text-left color5 fa fa-envelope-o fsize25px  icon_sw"></i> {{onelabel.email | substr3}}
+                </div>
+                <div class=' inln ml_2' style='max-width:350px;min-width:350px;'>
+                  <i class=" w30px text-left color5 fa fa-phone-square fsize25px  icon_sw"></i> {{onelabel.phone }}
+                </div>
+              </div>
+            </div>
+
+          </div>
+      
+        <!--POSTS-->
+        
+         <div class='col-md-12 pdngno col-md-offset-0'>
+            <timeline></timeline>
+          </div>
+
+  
+
+    </div>
+
+  </div>
+
+
+
+<style>
+  #map {
+    height: 210px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    z-index: 1;
+  }
+  
+  .controls {
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 300px;
+  }
+  
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+  
+  .pac-container {
+    font-family: Roboto;
+  }
+  
+  #type-selector {
+    color: #656565;
+    background-color: #4d90fe;
+    padding: 5px 11px 0px 11px;
+  }
+  
+  #type-selector label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  
+  #target {
+    width: 345px;
+  }
+</style>
+
+
+<script>
+  var left = document.getElementsByClassName('scroll_left')[0];
+  var right = document.getElementsByClassName('scroll_right')[0];
+  var speed = 500;
+  var scroll = 250;
+  right.onclick = function () {
+    // document.getElementById('options_label_images_common').scrollLeft += 60;
+    var right = $('#options_label_images_common').scrollLeft() + scroll;
+    $('#options_label_images_common').animate({ scrollLeft: right }, speed);
+  };
+  left.onclick = function () {
+    var left = $('#options_label_images_common').scrollLeft() - scroll;
+    $('#options_label_images_common').animate({ scrollLeft: left }, speed);
+    //document.getElementById('options_label_images_common').scrollLeft -= 60;
+  };
+
+</script>

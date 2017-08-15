@@ -1,0 +1,75 @@
+<style>
+
+  body {
+    height: 100%;
+  }
+</style>
+
+
+<body class='backsw' >
+
+  <div class='container topper'>
+
+    <div data-ng-init="label_search_img(c);likestatus_argument(c)" class='row   mt_8px ' data-ng-repeat='c in searcher_page'>
+      <div class='col-md-10 col-md-offset-1 backsw2  pdngno boxsh1'>
+
+        <div class='col-md-12 text-center brdrgrey' style='background:{{c.logoback}};color:{{c.logocolor}};font-family:{{c.logofont}};height:130px;vertical-align:middle;font-size:30px'>
+          <span class='valcenter w95'>{{c.labelname | translate}}</span>
+
+        </div>
+        <div class = 'container-fluid'>
+        <div class = 'row'>
+        <div class='col-md-12 '>
+          <div data-ui-sref='account.sketch({sk : c.ownerid})' class='boxsh1 fl cursor backimgprop mt_8px ht40px w40px br' style='background-image:url({{c.owneravatar}}),url(img/media/noavatar.png)'></div>
+          <div class = 'mt_8px fl ml_2'>
+          <span class='  font2 color2   mt_8px   fsize12px'>{{c.ownerfname}} {{c.ownerlname}}</span><br>
+          <span class=' font2 color5  fsize10px'>{{c.date | ten}} {{c.month | month | translate}} {{c.hours}}:{{c.minutes}} </span>
+          </div>
+           <a class = 'nodec'  data-ui-sref =  'account.privatelabel({pl:c.id})' ><button  class='backsw3 pull-right mt_8px  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>Go</button></a>
+        </div>
+        </div>
+        </div>
+        <div class = 'container'>
+        <div class = 'row'>
+        <div class='col-md-12' style = 'min-height:40px'>
+          <i data-ng-click="give_like(c);changeicon($event,'fa-thumbs-up','fa-thumbs-o-up','color5','color5')" ng-class="{1:'fa-thumbs-up color5', 0:'fa-thumbs-o-up color5'}[c.likestatusarg]"
+            class="cursor hover2 mt_6px   ml_4px fa fsize25px"></i>
+          <span data-ng-click="person_likes('likes',c.id,'label','50')" data-toggle="modal" data-target="#wholiked" class='color0 pdng3px cursor boxsh1 color0    font1  fsize12px '>{{c.likes_countarg}}</span>
+          <i data-ng-click="person_views('views',c.id)" data-toggle="modal" data-target="#whoviewed" class="cursor hover2 mt_6px   ml_8px fa fa-eye color0 fsize20px "></i>
+          <span class='color0 pdng3px cursor boxsh1 color0    font2  fsize12px '>{{c.views}}</span>
+          <i class="cursor hover2 mt_6px   ml_8px fa fa-star color0 fsize20px "></i>
+          <span class='color0 pdng3px cursor boxsh1 color0    font2  fsize12px '>{{c.rating}}</span>
+          <i data-ng-click="person_followers(c.id)" data-toggle="modal" data-target="#statistic_followers" class="cursor hover2 mt_6px   ml_8px fa fa-podcast color0 fsize20px"></i>
+          <span class='color0 pdng3px cursor boxsh1 color0  font2  fsize12px '>{{c.followers}}</span>
+        </div>
+        </div>
+        </div>
+
+        <div class='col-md-12 text-center pdngno mt_8px' style='display:flex;min-height:70px;'>
+          <div data-ng-click="label_img_gal_object($event,c);" data-img-id='{{$index}}' data-ng-repeat='y in c.labelsearchimg' class='backimgprop ht60px w100 br5 boxsh1 '
+            style="background-image:url({{y.image}});background-color:grey;margin:2px;">
+          </div>
+        </div>
+
+        <div class='col-md-12 font2 color2 ta_just pdng5px'>
+          <div class='pdng7px'>
+            <span class='fsize12px font2'>{{c.description| substr4 }}</span>
+          </div>
+          <hr>
+        </div>
+
+      </div>
+    </div>
+    <br>
+    <div data-ng-show='preloader2'  class='mdl-spinner mdl-js-spinner center-block is-active w40px ht40px '></div>
+    <button  data-ng-click='search_page_more()' class='backsw3 center-block mt_8px  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>{{'%more%' | translate}}</button>
+    <br>
+
+
+
+  </div>
+
+
+</body>
+
+</html>

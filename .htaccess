@@ -1,0 +1,50 @@
+AddDefaultCharset utf-8  
+AddCharset utf-8 *  
+<IfModule mod_charset.c>  
+    CharsetSourceEnc utf-8  
+    CharsetDefault utf-8  
+</IfModule>
+
+RewriteEngine on
+#RewriteRule ^private-label/([0-9]+)/?    private-label.html?label=$1    [L]
+RewriteRule ^labelframe/([0-9]+)/?       labelframe.html?label=$1       [L]
+RewriteRule ^createlabel/([0-9]+)/?      createlabel.html?label=$1      [L]
+RewriteRule ^explorer/([a-zA-z0-9]+)/?   explorer.html?search=$1        [L]
+RewriteRule ^sketch/([a-zA-z0-9]+)/?     sketch.html?id=$1              [L]
+#RewriteRule \.(php|htm|html|swf|fla|xml|ico|jpg|gif|png|js|css|ttf)$ - [L]
+
+RewriteRule ^swcard/([a-zA-z0-9]+)/([a-zA-z0-9]+)/?   /core/swcproxy.php?tab=$1&gc=$2       [L]
+RewriteRule ^swgift/([a-zA-z0-9]+)/?    swc.html?gc=$1     [L]
+RewriteRule ^switem/([a-zA-z0-9]+)/?    swi.html?gc=$1     [L]
+
+RewriteRule ^sc$ /swc.html
+RewriteRule ^ic$ /swi.html
+
+
+RewriteRule ^events/([0-9]+)/? event.php?id=$1        [L]
+#RewriteRule ^account([0-9]+)/?       account.html?id=$1     [L]
+
+
+
+
+
+#RewriteRule ^feed/([a-z]+)/? feed.php?lang=$1 [L]
+RewriteRule  ^feed$ /feed.html
+RewriteRule  ^sweetvelcard$ /sweetvelcard.html
+RewriteRule  ^sw$ /account.html
+
+
+
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+#Redirect 301 /core/swcproxy.php http://localhost/sc
+
+
+
+
+
+	
+
+
+

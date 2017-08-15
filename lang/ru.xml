@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE lang [
+  <!ENTITY string "string">
+]>
+<lang>
+
+  <string name = 'aboutgc'><value>О Gift_card</value></string>
+  
+  <string name = 'gcdesc'> <value>Описание Gift_Card</value></string>
+  
+  <string name = 'namecom'> <value>Имя Обязательно</value></string>
+
+</lang>

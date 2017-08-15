@@ -1,0 +1,41 @@
+<div class 'w100 backsw2 '>
+  <div class=' mb_8px  backsw2 boxsh1' data-ng-repeat='fpa in friends_posts_activity'>
+    <div class='w100 pdng12px'>
+      <div class='backimgprop  fl  w35px ht35px br boxsh1' style='background-image:url({{fpa.owner_avatar}}),url({{host}}/img/media/noavatar.png)'></div>
+
+      <!-- Options_DROPDOWN  xxxxxxxxxxxxxxxxxxxxxxxx -->
+      <div class="dropdown  fr">
+        <i data-toggle="dropdown" class="dropdown-toggle cursor hover2  iconhov   fa fa-share-alt-square color5 fsize27px  "></i>
+        <span class="caret color5"></span>
+        <ul class="dropdown-menu dropdown-menu-right color2">
+          <li data-ng-click="save_img(fpa.image)"><a href="">{{"%save%" | translate}}</a></li>
+        </ul>
+      </div>
+
+      <span class='font1 fsize11px color5 ml_2 '>{{fpa.owner_name}}</span><br>
+      <span class='font2 fsize10px color0  ml_2 '>{{fpa.date}} {{fpa.month | month | translate}} {{fpa.hours}}:{{fpa.minutes}}</span>
+
+    </div>
+    <div >
+      <img data-toggle='modal' data-target='#comments' data-ng-click="feed_img_gal(fpa.image);put_uri(fpa.id,fpa.owner_id);get_comments(fpa.id,fpa.object_type);who_liked_post('likes',fpa)"
+        src='{{fpa.image}}' style='width:100%;heigth:auto;' class='mt_4px imghov cursor'>
+    </div>
+
+    <div class='w100 pdng7px'>
+     
+   
+      <i data-ng-init="likestatus_argument(fpa)" data-ng-click="give_like(fpa);changeicon($event,'fa-thumbs-up','fa-thumbs-o-up','color5','colormessenger')"
+        ng-class="{1:'fa-thumbs-up color5', 0:'fa-thumbs-o-up color5'}[fpa.likestatusarg]" class='ml_2 cursor fl  fa iconhov fsize25px '></i>
+      <span class='color5 inln ml_2'>{{fpa.likes_countarg }}</span>
+      <a class='inln  ml_2' data-toggle="tab" data-target="#tab_comments">
+        <i class='  fa fa-comments iconhov cursor color5 fsize25px'></i><br>
+      </a>
+      <span class='color5 inln  ml_2'>{{fpa.comments_counter}}</span>
+
+    </div>
+
+  </div>
+
+
+
+</div>

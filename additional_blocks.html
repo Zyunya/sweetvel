@@ -1,0 +1,69 @@
+   <!-- ADDITIONAL_BLOCK -->
+   
+     <div  class = 'backsw2 boxsh1 mt_8px pdng12px ' style = 'min-height:436px' >
+        <div class = '  text-left'>
+        <i class="ml_2 mr_2 text-left color5 fa fa-info-circle fsize25px textshgrt icon_sw"></i>
+         <span class = 'ta_just font3 color2 fsize13px'>{{"%info%" | translate}}</span><hr>
+          <i class="ml_2 mr_2 text-left  colorinsta fa fa-podcast fsize25px textshgrt icon_sw"></i>
+          <span class = 'ta_just font3 color2 fsize10px'>{{"%follow%" | translate}}</span>
+         <span data-ng-init = 'checkfollow_sweetvel(1)'  data-ng-click = 'follow_sweetvel(1)' ng-class="{0:' back3', 1:'backsw3'}[follow_status1]"class = 'labelsw1 labelswhov fsize13px fr  textshgrt cursor pdng3px' style = 'min-width:80px'>
+           {{follow_status0}}
+           <img data-ng-show = 'follow_loader' src = 'img/media/loader.gif' height = '20px'>
+           </span><hr>
+         <i class="ml_2 mr_2 text-left  colorgld fa fa-star-half-o fsize25px textshgrt icon_sw"></i>
+         <span class = 'ta_just font3 color2 fsize10px'>Guide</span>
+          <span data-toggle="modal" data-target="#guide" class = 'labelsw1 labelswhov fsize13px fr  textshgrt cursor pdng3px  w80px '>Guide</span><hr>
+          <i class="ml_2 mr_2 text-left  color1 fa fa-external-link fsize25px textshgrt icon_sw"></i>
+         <span class = 'ta_just font3 color2 fsize10px '>{{"%delete%" | translate}} {{"%profile%" | translate}}</span>
+          <span data-ng-click = 'delete_profile()'  class = 'labelsw1 labelswhov fsize13px fr  textshgrt cursor pdng3px  w80px'>{{"%delete%" | translate}}</span><hr>
+       
+         </div>
+        </div>
+
+<!-- ACCOUNT_ACTIVITY_BLOCK -->
+     <div class = 'pdng2px text-left  backsw2 boxsh1 br5 mt_8px'>
+          <i  class="ml_2  text-left color5 fa fa-share-alt fsize25px textshgrt "></i>
+          <span class = 'color5 ml_2  font2 fsize12px'>{{"%activity%"| translate }}</span>
+          </div>
+
+          <div  class = 'boxsh1 w100 backsw2 mt_8px color2 text-left' style = 'padding:5px' >
+           <i  class="ml_2  text-left color5 fa fa-info-circle fsize25px textshgrt "></i>
+           <span class = 'color5 ml_2  font2 fsize13px'>{{"%welcome%" | translate}} {{"%to%" | translate}} Sweetvel</span><br/>
+             <blockquote class = 'fsize13px'>{{"%activity_start_info%" | translate}}</blockquote>
+               </div>
+
+          <div  class = 'boxsh1 w100 backsw2 mt_8px color2 text-left' style = 'padding:5px' >
+             <accountactivity></accountactivity>
+               </div>
+
+ <!-- SW_CARDS RIGHTT COLUMN-->
+
+  <div   class = 'col-md-offset-0 col-md-3 text-center  col-xs-offset-0 pdngno col-xs-12 top_blocks mobile_block fr'>
+    
+   <div class = 'text-left'>
+     <friends></friends>
+        </div>   
+
+    <div class = 'pdng2px text-left mt_8px  backsw2 boxsh1 br5'>
+      <i class="ml_2  text-left color5 fa fa-share-alt fsize25px textshgrt icon_sw"></i>
+       <span class = 'color5 ml_2  font2 fsize12px'>{{"%swcard%" | translate}}</span>
+         <i data-ng-click = 'switcher1($event)' class=" ml_4  iconhov cursor  text-left color5 fa fa-exchange fsize25px textshgrt icon_sw"></i>
+           <span class = 'color5 ml_2  font2 fsize12px' >{{cardtype}}</span>
+           <swcards   data-ng-show = 'swcards'></swcards>
+           <switems   data-ng-show = 'switems'></switems>
+              </div>   
+                </div>
+
+
+    <!-- LABELS  -->
+
+ <div class = 'mt_8px'  >  
+    <div class = 'pdng2px text-left  backsw2 boxsh1 br5 '>
+      <i class="ml_2  text-left color5 fa fa-line-chart fsize25px textshgrt icon_sw"></i>
+       <span class = 'color5 ml_2  font2 fsize12px'>{{"%statistic%" | translate}}</span>
+         </div>
+              </div>
+
+ <div  class = 'mobile_block' >
+   <labels></labels>
+     </div>

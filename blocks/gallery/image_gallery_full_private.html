@@ -1,0 +1,82 @@
+<div class='mask_gallery z'>
+ 
+  <div id='gallery_2' class='br3  tab-content col-md-10 col-md-offset-1 pdngno backimgprop'>
+
+
+    <a href=''><i  data-ng-click = "closegal('.mask_gallery')" style = 'right:10px'  class=" cursor hover2 z  pa mt_8px iconhov inln  mr_4px   fa fa-close color5 fsize20px  "></i></a>
+    <div id="myCarousel" class="carousel br3 slide tab-pane fade in active" style='z-index:-1;' data-ride="carousel" data-interval=false>
+
+      <!-- WRAPPER FOR SLIDES-->
+  
+        <gallerybox></gallerybox>
+  
+      <!-- WRAPPER FOR SLIDES-->
+     
+      <!-- GALLERY LEFT_RIGHT_CONTROL  xxxxxxxxxxxxxxxxxxxxxxxx -->
+      <a class="left carousel-control color5 " id='carousel_back' href="" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control color5" id='carousel_next' href="" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next </span>
+      </a>
+    </div>
+       <!-- GALLERY LEFT_RIGHT_CONTROL  xxxxxxxxxxxxxxxxxxxxxxxx -->
+
+    <!--COMMENTS_BLOCK         xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    <div id='tab_comments' class=' br3  backsw2 tab-pane fade pdng7px z' style='height:100%'>
+      <div class='ht40px  pdng5px'>
+        <a data-toggle="tab" data-target='#myCarousel' class='nodec text-left pull-left'><i class='ml_2 cursor color5 fa fa-chevron-circle-left iconhov  fsize30px '></i></a>
+        <i data-ng-click="show_hide('gallery_image_likers')" class='ml_2 cursor color5 fa fa-thumbs-up pull-left iconhov  fsize30px '></i>
+        <div class='ht40px w40px boxsh1  br backimgprop fl left-block' data-ng-repeat='l in statisticperson_likes | limitTo : 4'
+          style='background-image:url({{l.avatar }}),url(../img/media/imgerror.jpg);border:2px solid white;'>
+        </div>
+      </div><br>
+
+      <!--LIKERS         xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+      <likers></likers>
+
+      <div id='txt_txt' class=' text-left ' style='overflow-x:scroll;height:75%;max-height:75%'>
+        
+
+        <commentbox></commentbox>
+
+        <br>
+        <i data-ng-click="get_comments_more('image')" data-ng-show='show_get_more' class='pull-center ta_center center-block cursor  fa fa-angle-double-down iconhov color5 fa-3x '></i>
+      </div>
+
+      <div style='position:absolute;bottom:20px;left:0px;right:0px;min-height:70px' class='w100 br3 '>
+        <table class='w100' border='0'>
+          <tr>
+            <td align='center' id='emoji_block' class='dp pdng7px' colspan='2'>
+              <emoji inpid='comment_text'></emoji>
+            </td>
+          </tr>
+          <tr>
+            <td width='75%' align='center' class='pdng7px'>
+              <input placeholder="Your Comment" value="" type='text' id='comment_text' class='inputbot w90 color2 font2' />
+            </td>
+            <td align='center' class='pdng7px'>
+              <i data-ng-click="send_comment('image','comment_text')" class='ml_2px  fa fa-commenting iconhov cursor color5 fsize30px '></i>
+              <i data-ng-click='emoji_toggle()' class='color5 ml_2  fa fa-smile-o  cursor iconhov fsize30px '></i>
+            </td>
+          </tr>
+        </table>
+      </div>
+ </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        var currentslide = $('div.active').index() + 1;
+        $("#myCarousel").swiperight(function (e) { $(this).carousel('prev'); e.stopImmediatePropagation(); });
+        $("#myCarousel").swipeleft(function () { $(this).carousel('next'); });
+        $("#carousel_back").click(function () { $('#myCarousel').carousel('prev'); });
+        $("#carousel_next").click(function () { $('#myCarousel').carousel('next'); });
+
+
+      });
+
+    </script>

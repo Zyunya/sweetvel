@@ -1,0 +1,162 @@
+
+
+   <div class = 'row '>
+
+    <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+      <i class="w10 color5 fa fa-paint-brush fa-3x textshgrt icon_sw"></i>
+        <span class = 'textshgrt   color2 fsize17px font1 '></span>
+          </div>
+  
+      <div class = 'col-md-8 col-md-offset-2  text-center pdngno mt_2'>
+        <table  ng-repeat = 'x in themeres' border = '0' style = 'display:inline-block;' class = 'lnht40 mt_8px'>
+         <tr>
+           <td  align = 'center' width = '100px'>
+              <div  theme = '{{x.id}}'themestyle = '{{x.back}}:{{x.color}}:{{x.altcolor}}:{{x.font}}:{{x.musicimg}}'
+               ng-style = "{'background' :'{{x.back}}' }" class = ' cursor textshgrt themepreview'>
+                <i style = ''class=" nobrdrw10  fa   fa-2x textshgrt icon_sw icon_theme color5 "></i>
+                   </div>
+                      <span class = 'textshgrt color2 fsize17px fontlobster' >{{x.name}}</span></td>
+                        </tr>
+                           </table>
+                                </div>
+
+           <div class = 'col-md-8 col-md-offset-2 text-center  mt_2'>
+              <i class="w10 color5 fa fa-music fa-3x textshgrt  icon_sw"></i>
+               <span class = 'textshgrt   color2 fsize17px font1 '></span>
+                  </div> 
+
+             <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+               <table ng-repeat = 'x in audiores' cellspacing = '5px'  border = '0'  class = 'audiotable inln' >
+               <tr>
+               <td  width = '125px'  align = 'center' colspan = '4' ><span class = 'textshgrt cursor choosedtrack td fontlobster fsize22px'>{{x.audioname}}</span>
+               </td>
+               </tr>
+               <tr>
+               <td  height = '100px'width = '100px' align = 'center' >
+               
+               <img onclick = 'audio_pause(this)' ontouchstart = 'audio_pause(this)'   src = 'img/media/pr2.gif'      class = 'audiotrackimg2 ht55px cursor hover1'>
+               <img onclick = 'audio_play(this);' ontouchstart = 'audio_play(this)'  src = 'img/media/frederic.gif' class = 'audiotrackimg ht55px cursor hover1'>
+               <audio class = 'audiotrack' data-author = '{{x.author}}' data-license = '{{x.license}}' data-atr = '{{x.number}}' ng-src="{{x.audio}}"></audio>
+              
+               </td>
+               </tr>
+               <tr><td align = 'center' class = 'track_pause'><span class = 'textshgrt cursor  td fontlobster fsize17px color1'>SweetRing</td></tr>
+               </table>
+            </div>    
+
+            <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+               <ul >
+                 <li>
+                   <a class ='color2 audio_license_link' target = ''href = ''><span id = 'audio_license' class = 'font2 color2'></span></a>
+                   </li>
+                     <li>
+                      <a class = 'font2 color10 audio_author_link' target = '' href = ''><span id = 'audio_author' class = 'font2 color2'></span></a>
+                      </li>
+                         </ul>
+                           </div>   
+
+             <div class = 'col-md-8 col-md-offset-2 mt_2 ht40px  '>
+                    <i id = 'eventlist' class="w10 cursor color5 fa fa-tags  z fr iconhov fsize35px textshgrt "></i>
+                       </div>   
+
+              <div class = 'col-md-8 col-md-offset-2'>
+                <input ng-model = '$parent.event' type = 'text'  id = 'event' class = ' color2 font2 bb4 input1 w100 fsize15px' placeholder = "{{'%events%' | translate}}">
+                  </div>   
+
+             <div class = 'col-md-8 col-md-offset-2 pdngno mt_2'>
+              <div class = 'toolblock eventsblock w100' >
+                 <table cellspacing = '10' border = '0'><tr>
+                
+                 </tr></table>
+                 <table ng-repeat = "x in eventrescom" class = 'cursor minilabel_event' border = '0px'>
+                 <tr>
+                 <td ><span class = 'colorwht dispbl font2  fsize15px pdng5px'>{{x.row}}</span></td>
+                 <td  align = 'right' class = 'pdng5px'>
+                 <i class=" cursor colorwht fa fa-plus-square fsize17px  plusimg  cursor"></i>
+                 <input type = 'hidden'class = 'hidden_event' value = '{{x.row}}'>
+                 </td>
+                 </tr>
+                 </table>
+              </div>
+              </div>    
+
+             <div class = 'col-md-8 col-md-offset-2 '>
+                <table width = '100%' border = '0' align  = 'center'>
+                <tr>
+                <td  width = '25%' align = 'center' ><input id = 'receiver' ng-model = "$parent.receiver_preview"  type = 'text' class = 'font2 bb4 color2  input1 w100 fsize15px' placeholder = "{{'%receiver%' | translate}}"></td>
+                <td align = 'center' width = '10%'><i id = 'wishlist' class="w10 cursor color5 fa fa-share-alt fa-2x textshgrt w"></i></td>
+                <td  width = '25%'  align = 'center' ><input id = 'sender' ng-model = "$parent.sender_preview"   type = 'text' class = ' font2 bb4 color2  input1 w100 fsize15px' placeholder = "{{'%sender%' | translate}}"></td>
+                </tr>
+                </table>
+              </div>    
+
+            <div class = 'col-md-8 col-md-offset-2 ht40px'>
+              <div class = ''><span class = 'textshgrt color2 fsize17px font1 ml_5'></span>
+                <i id = 'wishlist' class="w10 cursor color5 fa fa-tags z iconhov fr fsize35px textshgrt "></i>
+                  </div>
+                    </div>   
+
+            <div class = 'col-md-8 col-md-offset-2 '>
+              <div class = 'toolblock wishblock w100' >
+              <table cellspacing = '10' border = '0'><tr>
+              </tr></table>
+              <table  ng-repeat = "x in wishrescom" class = 'cursor minilabel_wish' border = '0px'>
+              <tr>
+              <td><span class = 'colorwht font2  fsize15px pdng5px'>{{x.row}}
+              </span></td>
+              <td align = 'right' class = 'pdng5px'><i class=" cursor colorwht fa fa-plus-square fsize17px  plusimg  cursor"></i>
+              <input  type = 'hidden'class = 'hidden_wish' value = '{{x.row}}'>
+              </td>
+              
+              </tr>
+              </table>
+              </div>
+            </div> 
+
+         <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+           <textarea ng-model = '$parent.wishes' id = 'wishes' class = ' color2 font2 bb4 input1 w100 fsize15px' placeholder = "{{'%description%' | translate}}"></textarea>
+            </div> 
+
+            <div class = 'col-md-8 col-md-offset-2 text-center mt_2'>
+               <i class="w10 color5 fa fa-image fa-3x textshgrt icon_sw"></i>
+               <span class = 'textshgrt   color2 fsize17px font1 '></span>
+                 </div>
+
+            <div class = 'col-md-8 col-md-offset-2 mt_2 text-center'>
+              <table width = '100%' id = 'imageset' border = '0'>
+               <tr>
+               <td align = 'center'class = '' colspan = '4'>
+                 <div class = 'inln  pdng7px' ng-repeat = 'x in countimgsets' >
+                 <span class = ' ta_center'><span class = '  imgsetname cursor  fsize17px fontlobster imgsetlink' imgsetname='{{x.imgset}}'>{{x.imgset}}</span><br>
+                 <span  ng-click = "getset(x.imgset)" imgsetname='{{x.imgset}}' class = 'boxsh1 cursor br1 imgsetlink pointer imgsetname2'>{{'%click%' | translate}}</span>
+                 </div>
+               </td>
+               </tr>
+               <tr>
+               <td align = 'center' id = 'content'colspan = '4' width = '100%'>
+               <img ng-repeat = 'x in imgsetres' class = 'imgset' imgset = '{{x.imgset}}'  src = '{{x.link}}'ng-show = 'loadimgset'  >
+               <img src = 'img/media/loader.gif' ng-show = 'preloader' height = '150px'>
+                 <ul >
+                 <li>
+                 <a class ='color2' target = '{{licenselink}}'href = '{{licenselink}}'><span class = 'font2 color2'>License - {{license}}</span></a>
+                 </li>
+                 <li><span class = 'font2 color2'>Authorship - {{author}} </span>
+                 <a class = 'font2 color10' target = '{{authorlink}}' href = '{{authorlink}}'>".{{authorlink}}."</a></li>
+                 </ul>
+                </td>
+                </tr>
+                </table>
+                </div>   
+           
+
+
+             <div class = 'col-md-8 col-md-offset-2  pdngno'>
+                <button ng-click = "createswcard('common')" id = 'creategccom' class='backsw3 center-block mt_8px  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>{{'%creategc%' | translate}}</button>
+           
+                    <br><br><br><br><br><br>
+                    </div>
+</div>
+  <div class = 'testblock'>
+  <input type = 'hidden' id = 'theme'>
+  <input type = 'hidden' id = 'audiotrack'>
+</div>

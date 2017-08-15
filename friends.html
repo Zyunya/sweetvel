@@ -1,0 +1,106 @@
+<style>
+
+#friends_block
+{
+height:570px;
+}
+    </style>
+
+<div class = 'container' >
+
+ <div class = 'row' >
+
+     <div id = 'friends_block' class = 'col-md-8 col-md-offset-2 backsw2 boxsh1 pdng7px'>
+       
+      <ul class="nav nav-tabs fsize12px font2">
+         <li class="active " ><a class = 'color5 cursor'   data-toggle="tab" data-target="#friends">{{'%friends%' | translate}} {{friends_count}}</a></li>
+         <li><a class = 'color5 cursor' data-toggle="tab"  data-target="#followers">{{'%followers%' | translate}} {{followers_count}}</a></li>
+         <li><a class = 'color5 cursor' data-toggle="tab"  data-target="#ifollow">{{'%ifollow%' | translate}} {{mefollow_count}}</a></li>
+      </ul><br>
+
+<div class="tab-content pdng10px "  style = 'height:460px;overflow:scroll'>
+
+    <div data-ng-show = '!spinner' class="mdl-spinner mdl-js-spinner is-active valcenter2 ht60px w60px"></div>
+
+  <div id = 'friends' data-ng-show = "friends" class="tab-pane fade in active" >
+
+        <div class="media" data-ng-repeat = 'fr in friends' >
+        <div class="media-left" >
+         <a ui-sref = 'account.sketch({sk:fr.id})'>
+          <div   class = 'ht40px w40px cursor backimgprop center-block br boxsh1 pdng5px' style = "background-image:url({{fr.avatar}}),url({{host}}/img/media/noavatar.png)">
+         
+            <div  data-ng-class = "{0:'dp','' :'dp'}[fr.online_status]" style = 'width:19px;height:19px;padding:1px;left:22px;top:22px' class = 'backsw2 br pr  text-center boxsh1'>  
+             <span  ng-class="{desktop:'fa-circle fsize10px', mobile:'fa-mobile fsize17px'}[fr.device]" class='br color5 fa'style="line-height: 16px;" ></span>
+                </div>
+
+                </div>
+           </a>
+             </div>
+               <div class="media-body">
+                  <button   data-ng-show = 'show_if_account' data-ng-click = 'delete_friend(fr.id)' class="backsw3 fsize10px fr mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">{{"%delete%" | translate }}</button>
+                
+                   <h5 style = 'font-family:Segoe UI' class=" media-heading fsize12px color5">{{fr.firstname}} {{fr.lastname}}</h5>
+                     <p  class = 'color2 fsize10px '> {{'%friends%' | translate}} {{'%since%'| translate}} {{fr.date}} {{fr.month | month | translate}} 20{{fr.year}}</p>
+                       </div><hr>
+                          </div>
+
+                                  </div>
+
+      <div id="followers" class="tab-pane fade">
+
+      <div class="media" data-ng-repeat = 'fl in followers'>
+       <div class="media-left" >
+        <a ui-sref = 'account.sketch({sk:fl.id})'>
+         <div class = 'ht40px w40px backimgprop boxsh1 br ' style = "background-image:url({{fl.avatar}}),url({{host}}/img/media/noavatar.png)">
+            
+            <div  data-ng-class = "{0:'dp','' :'dp'}[fl.online_status]" style = 'width:19px;height:19px;padding:1px;left:22px;top:22px' class = 'backsw2 br pr  text-center boxsh1'>  
+             <span  ng-class="{desktop:'fa-circle fsize10px', mobile:'fa-mobile fsize17px'}[fl.device]" class='br color5 fa'style="line-height: 16px;" ></span>
+                </div>
+
+           </div>
+             </a>
+                </div>
+            <div class="media-body">
+                <button  data-ng-show = 'show_if_account' data-ng-click = 'confirm_friend(fl.id)' class="backsw3 fsize10px fr mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">{{"%add%" | translate }}</button>
+        
+                <h5 style = 'font-family:Segoe UI' class="media-heading color5 fsize12px ">{{fl.firstname}} {{fl.lastname}}</h5>
+                  <p class = 'color2 fsize10px'>{{fl.date}} {{fl.month | month | translate}} {{fl.hours}}:{{fl.minutes}}</p>
+                    </div><hr>
+                      </div>
+
+                      </div>     
+
+        <div id="ifollow" class="tab-pane fade">
+           
+     <div class="media" data-ng-repeat = 'mf in mefollow'>
+     <div class="media-left" >
+      <a ui-sref = 'account.sketch({sk:mf.id})'>
+      <div   class = 'ht40px w40px cursor backimgprop center-block br boxsh1 pdng5px' style = "background-image:url({{mf.avatar}}),url({{host}}/img/media/noavatar.png)">
+
+        <div data-ng-class = "{0:'dp','' :'dp'}[mf.online_status]" style = 'width:19px;height:19px;padding:1px;left:22px;top:22px' class = 'backsw2 br pr  text-center boxsh1'>  
+             <span  ng-class="{desktop:'fa-circle fsize10px', mobile:'fa-mobile fsize17px'}[mf.device]" class='br color5 fa'style="line-height: 16px;" ></span>
+                </div>
+    <h1></h1>
+        </div>
+         </a>
+          </div>
+            <div class="media-body">
+             
+               <button data-ng-click = 'follow_out(mf.id,$event)' class="backsw3 fsize10px fr mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">{{'%unfollow%' | translate}}</button>
+                <h5 style = 'font-family:Segoe UI' class="media-heading color5 fsize12px">{{mf.firstname}} {{mf.lastname}}</h5>
+                  <p class = 'color2 fsize10px'>{{mf.date}} {{mf.month | month | translate}} {{mf.hours}}:{{mf.minutes}}</p>
+                    </div><hr>
+                      </div>
+
+             </div>                                    
+
+  </div>                 
+        <button data-ng-click = 'get_friends_followers_more()' class="center-block mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">{{'%more%' | translate}}</button>
+       </div>
+
+
+        </div>
+
+       </div>
+
+

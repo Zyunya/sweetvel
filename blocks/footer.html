@@ -1,0 +1,90 @@
+<div id = 'footer'class = 'fl' >
+
+    <div class = 'w30 footertab fl mr_2'>
+<table class = '' width = '100%'  border = '0' cellspacing = '4' >
+  <tr><td align = 'left'><span  class = 'font1 color10 fsize15px'>{{ '%askme%' | translate }}</span></td></tr>
+  
+  <tr><td><input class  = 'w100 inputf ta_center font2 mt_2' name = 'com_name' type = 'text'     placeholder = "{{ '%yours%' | translate }} {{ '%name%'  | translate }}"></td></tr>
+  
+  <tr><td ><input class  = 'w100 inputf ta_center font2 mt_2 ' name = 'com_email' type = 'text'  placeholder = "{{ '%your%'  | translate }} {{ '%email%' | translate }}"></td></tr>
+  
+  <tr><td>
+  <textarea style = 'resize:none' name = 'com_comment'class  = 'w100 inputf ta_center font2 mt_2' placeholder = "{{'%your%'  | translate }} {{ '%comment%' | translate }}"></textarea>
+</td></tr>
+	
+<tr>
+	<td><label name = 'com_send'class = 'back2 font2 colorwht  cursor button1  ta_center'>{{ '%send%' | translate }}</label></td>
+</tr>
+
+
+</table>
+    </div>
+
+
+
+
+    <div class = 'w30 fl footertab'>
+<table class = ''  border = '0'  >
+  <tr>
+    <td colspan = '2' class = ''><span  class = 'fontrancho color10 fsize25px'>Sweetvel</span></td>
+  </tr>
+  <tr><td colspan = '2'><span  class = ' colorwht font2 fsize13px'>{{ '%subtitle%'  | translate }}</span></td></tr>
+  <tr>
+     <tr><td colspan = '2' class = ''><span  class = 'fontrancho color10 fsize25px'>Sweetvel in Social Networks</span></td></tr>
+  <td align = 'left'>
+<div class="">
+      <a  href = 'https://www.facebook.com/profile.php?id=100015319621535' target = 'https://www.facebook.com/profile.php?id=100015319621535' class="buttonsoc mw90px w20 fl backfb colorwht nodec">
+      <span class="fa fa-facebook mr_4"></span>Facebook</a></div>
+  <div class="">
+      <a href = 'https://vk.com/club111047636' target = 'https://vk.com/club111047636' class="buttonsoc mw90px  w20 fl backvk colorwht ml_1 nodec">
+          <span class="fa fa-vk mr_4"></span>Vkontakte</a></div>
+  <div class="">
+      <a href = 'https://www.instagram.com/sweetvelsweetvel2017/' target = 'https://www.instagram.com/sweetvelsweetvel2017/' class="buttonsoc  mw90px w20 fl backinst colorwht ml_1 nodec">
+          <span class="fa fa-instagram mr_4"></span>Instagram</a></div>
+  
+  </td>
+</tr>
+  
+</table>
+</div>
+<div class = 'w30 fl footertab'>
+<table class = ''  border = '0'  >
+    <tr><td colspan = '2' class = ''><span  class = 'fontrancho color10 fsize25px'>Sweetvel</span></td></tr>
+<tr><td colspan = '2'><span  class = 'colorwht font2 fsize13px'>{{ '%maintitle%'  | translate }}</span></td></tr>
+</table>
+</div>
+
+
+
+
+
+    <div class = 'footertab w50 mt_6' style = 'margin:auto'>
+<table width = '100%' class = ''border = '0'>
+<tr><td class = ''><span  class = 'fontrancho color10 fsize25px'>Metrics</span></td></tr>
+  <tr><td >
+      <table border = '0' cellpadding = '0' cellspacing = '5'id = 'metrics' class = 'cursor' ng-repeat = "x in metricsres">
+        <tr class ='colorwht'>
+        <td align = 'left' >Total  Views  -  <span class = 'color10 bold fr mr_2'>{{x.totalviews}}</span></td>
+        <td align = 'left'>Unique Users  -  <span class = 'color10 bold fr mr_2'>{{x.totalviewsunique}}</span></td>
+        </tr>
+        <tr class ='colorwht'>
+        <td align = 'left'>Total  Views Per Day - <span class = 'color10 bold fr mr_2'>{{x.totalday}}</span></td>
+        <td align = 'left'>Unique Users Per Day - <span class = 'color10 bold fr mr_2'>{{x.totaldayunique}}</span></td>
+        </tr>
+        <tr class ='colorwht'>
+        <td align = 'left'>Total  Views Per Week  -  <span class = 'color10 bold fr mr_2'>{{x.totalweek}}</span></td>
+        <td align = 'left'>Unique Users Per Week  -  <span class = 'color10 bold fr mr_2'>{{x.totalweekunique}}</span></td>
+        </tr>
+        <tr class ='colorwht'>
+        <td align = 'left'>Total  Views Per 30 Days  -  <span class = 'color10 bold fr mr_2'>{{x.totalmonth}}</span></td>
+        <td align = 'left'>Unique Users Per 30 Days  -  <span class = 'color10 bold fr mr_2'>{{x.totalmonthunique}}</span></td>
+        </tr>
+        </table>
+    </td></tr>
+  <tr><td span  class = 'fontrancho color10 fsize25px'><span>sweetvelsweetvel@gmail.com</span></td></tr>
+  <tr><td align = 'left' ><span  class = 'fontrancho colorwht fsize20px '>Sweetvel 2017 </span></td></tr>
+  </table>
+    </div>
+   
+
+</div>

@@ -1,0 +1,499 @@
+<style>
+  body {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .multi_lines_text {
+    white-space: pre-wrap;
+  }
+  
+  #main_image_container {
+    background-image: url('img/slider/8.png');
+    background-size: cover;
+    background-position: center;
+    height: 270px;
+    margin-left: -20px;
+    margin-right: -20px;
+    width: 110%;
+  }
+  
+  .inputindex {
+    box-shadow: 0px 0px 0px;
+    border: 2px solid yellowgreen;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.5s;
+    color: yellowgreen;
+  }
+  
+  .inputindex:focus {
+    outline: none;
+  }
+  
+  .inputindex::-webkit-input-placeholder {
+    color: yellowgreen;
+  }
+  
+  .inputindex::-moz-input-placeholder {
+    color: yellowgreen;
+  }
+  
+  .line1,
+  .line2,
+  .line3 {
+    box-shadow: 0 0 1px #656565;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    background: white;
+    height: 3px;
+    background: yellowgreen;
+    width: 45px;
+    transition: 1s;
+  }
+  
+  .change .line1 {
+    transform: rotate(45deg) translate(6px, 10px);
+    background: #ff5959;
+  }
+  
+  .change .line2 {
+    opacity: 0;
+    background: #ff5959;
+  }
+  
+  .change .line3 {
+    background: #ff5959;
+    transform: rotate(-45deg) translate(5px, -10px);
+  }
+  
+  .navbar-toggle:hover,
+  .navbar-toggle {
+    background: white !important;
+  }
+  
+  #animation_block {
+    position: relative;
+    top: 15px;
+    left: -5px;
+    width: 110%;
+    padding: 70px;
+    background: linear-gradient(to bottom, rgb(1%, 100%, 50%), rgb(1%, 5%, 50%));
+    box-shadow: 0 3px 5px solid #656565;
+  }
+  
+  #inside_logo {
+    transition: 7s;
+    font-size: 70px;
+    margin-right: 7%;
+    color: white;
+  }
+</style>
+
+
+<body class=''>
+
+  <div class='container-fluid backsw2' style='overflow:hidden'>
+
+    <div class='row '>
+
+      <nav class="navbar navbar-default backsw2  ht25px norad z">
+        <div class="container-fluid backsw2">
+          <div class="navbar-header">
+            <button onclick="iconrotate(this,'change')" type="button" class="navbar-toggle nobrdr  pdngno" data-toggle="collapse" data-target="#myNavbar">
+        <div class = 'line1'></div>
+        <div class = 'line2'></div>
+        <div class = 'line3'></div>
+      </button>
+            <a class="navbar-brand colorwht" href="#">
+              <span class='fontrancho fsize50px ml_5 textshgrt'>   </span>
+            </a>
+
+            <a class="navbar-brand colorwht inln" ui-sref='index.account'>
+              <span class='fontrancho  color5 fsize50px  textshgrt  mt_2'>  Sweetvel </span>
+            </a>
+          </div>
+          <div class="collapse navbar-collapse backsw2 z" id="myNavbar">
+            <ul class="nav navbar-nav">
+
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right text-center backsw2">
+
+              <!-- li><a class = 'color2 font1 ' href="" >{{ '%contacts%' | translate }}</a></li-->
+              <!--li><a class = 'color2 font1 ' href="">{{ '%about%' | translate }}</a></li-->
+              <li><a data-toggle="modal" data-target="#index_terms" class='color2 font1 ' href="">{{ '%terms%' | translate }}</a></li>
+
+              <li class="dropdown ">
+                <a class="dropdown-toggle color2 font1 cursor " data-toggle="dropdown">{{ '%lang%' | translate }}<span class="caret"></span></a>
+                <ul class="dropdown-menu  text-center ta_center">
+
+                  <li ng-click="changelang('ru')"><a class='color2 font2 cursor fsize15px'>Ru</a></li>
+                  <li ng-click="changelang('en')"><a class='color2 font2 cursor fsize15px'>En</a></li>
+                </ul>
+
+              </li>
+
+              <li><a href="#" class='colorwht hidden-xs'><span class="glyphicon glyphicon-tree-deciduous colorgld iconhov textshgrt"></span> Sign Up</a></li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class='row backsw2'>
+        <div class='col-md-12  text-center trans3rev bb2'>
+
+        </div>
+        <br>
+      </div>
+
+      <div class='col-md-12  text-center trans3 '>
+        <i class="ml_2  text-left color5 fa fa-globe fsize25px textshgrt icon_sw"></i>
+        <span class='font2 fsize17px color2  textshgrt'>  {{ '%fbcr%' | translate }} </span>
+      </div>
+    </div>
+
+    <br>
+
+    <div class='row  trans3'>
+      <div class='col-md-12  text-center' id='animation_block'>
+        <span class='fontrancho textshgrt ' id='inside_logo'>  Sweetvel </span>
+      </div>
+
+    </div><br><br>
+    <div class='row text-center'>
+      <div class='col-md-3  col-xs-3'>
+        <i class="  color5 fa fa-handshake-o fsize25px textshgrt icon_sw"></i>
+        <span class='font2  fsize13px color2  textshgrt'>{{ '%business%' | translate }}</span>
+      </div>
+      <div class='col-md-3 col-xs-3  '>
+        <i class="  color5 fa fa-paint-brush fsize25px textshgrt icon_sw "></i>
+        <span class='font2  fsize13px color2  textshgrt'>{{ '%creativity%' | translate }} </span>
+      </div>
+      <div class='col-md-3 col-xs-3 '>
+        <i class="   color5 fa fa-tags fsize25px textshgrt icon_sw "></i>
+        <span class='font2  fsize13px color2  textshgrt'>{{ '%startups%' | translate }} </span>
+      </div>
+      <div class='col-md-3 col-xs-3 '>
+        <i class="   color5 fa fa-heartbeat fsize25px textshgrt icon_sw"></i>
+        <span class='font2  fsize13px color2  textshgrt'>{{ '%interests%' | translate }} </span>
+      </div>
+    </div><br><br>
+
+    <div class='row bb2 trans3rev'>
+      <div class='col-md-12 text-center'></div>
+    </div>
+    </br>
+    <div class='row'>
+      <div class='col-md-12  text-center'>
+        <i class="ml_2  text-left color5 fa fa-sign-in  fsize25px textshgrt icon_sw "></i>
+        <span class='font2 fsize17px color2  textshgrt'>  {{ '%signin%' | translate }} </span>
+      </div>
+    </div>
+    </br>
+    </br>
+
+    <div class='row text-center'>
+
+      <div class='col-md-6 col-md-offset-3  text-center'>
+
+        <i class="glyphicon glyphicon-user color5 text-center"></i>
+        <input type="text" class="form-control ht50px sw_input" name="login" placeholder="Login">
+
+      </div>
+
+      <div class='col-md-6 col-md-offset-3  mt_8px text-center'>
+
+        <i class="glyphicon glyphicon-lock color5"></i>
+        <input type="password" class="form-control ht50px  sw_input" name="password" placeholder="Password">
+
+      </div>
+
+
+      <div class=' col-md-6 col-md-offset-3 mt_8px text-center'>
+        <button data-ng-click='sw_login()' type="button" class="btn pull-center center-block ht50px mt_8px btn-medium btn-success backsw3 colorwht textshgrt w100 labelswhov">Log In</button><br>
+        <span name='login_outp' class='color1 mt_4'></span>
+      </div>
+
+      <br>
+
+
+      <div class='col-md-6 col-md-offset-3 mt_4 '>
+
+        <div data-ng-click="show_hide('regestration_block')" class="col-md-4 col-xs-4   hoversp2 center-block mt_4px  color5 nodec cursor "
+          id='user_log_in'>
+          <span class="fa fa-user-circle mr_2 fsize30px textshgrt"></span><br><span>{{ '%regestration%' | translate }} </span>
+
+        </div>
+
+
+        <div class="col-md-4 col-xs-4   hoversp2 center-block mt_4px  color5 nodec cursor " data-ng-click='vk_login()'>
+          <span class="fa fa-vk mr_2 fsize30px textshgrt"></span><br><span>{{ '%signin%' | translate }} {{ '%with%' | translate }} VK</span>
+
+        </div>
+
+
+        <div class="col-md-4 col-xs-4 center-block  hoversp2 mt_4px color5 nodec cursor " data-ng-click='fb_login()'>
+          <span class="fa fa-facebook-official mr_2 fsize30px textshgrt"></span><br><span>{{ '%signin%' | translate }} {{ '%with%' | translate }} FB</span>
+
+        </div>
+      </div>
+      <br>
+      <div class='col-md-6 col-md-offset-3 trans3 mt_4'>
+        <div class='col-md-12 text-center'></div>
+      </div><br>
+
+
+      <div id='regestration_block' class='dp'>
+        <div class='col-md-6 col-md-offset-3 text-center '>
+
+          <div class='col-md-12 '>
+            <i class="glyphicon glyphicon-user color5"></i>
+            <input name='sign_up_login' type='text' class='sw_input ht50px' placeholder="{{'%login%' | translate }}"><br><br>
+            <i class="glyphicon glyphicon-lock color5"></i><br>
+            <input name='sign_up_pass1' type='password' class='sw_input ht50px mt' placeholder=" {{'%password%' | translate }}"><br><br>
+            <input name='sign_up_pass2' type='password' class='sw_input ht50px' placeholder="{{'%repeat%' | translate }} {{'%password%' | translate }}"><br><br>
+            <i class="glyphicon glyphicon-user color5"></i>
+            <input name='sign_up_fname' type='text' class='sw_input ht50px' placeholder="{{'%name%'  | translate }}"><br><br>
+            <input name='sign_up_lname' type='text' class='sw_input ht50px' placeholder="{{'%lname%' | translate }}"><br><br>
+            <i data-gender='male' class='fa ml_2  fa-2x  color5 fa-circle-o fl cursor option_gender'></i>
+            <h6 class='fl ml_2'>{{'%male%' | translate }}</h6>
+            <i data-gender='female' class='fa ml_2  fa-2x  fa-circle-o color5 cursor fl option_gender'></i>
+            <h6 class='fl ml_2'>{{'%female%' | translate }}</h6><br><br>
+            <input type='hidden' name='sign_up_gender'>
+            <button data-ng-click='sw_sign_up()' type="button" class="btn pull-center center-block ht50px mt_8px btn-medium btn-success backsw3 colorwht textshgrt w100 labelswhov">{{'%signup%'    | translate }}</button><br>
+            <span id='sign_up_outp' class='color1'></span>
+          </div>
+
+        </div>
+      </div><br>
+
+      <div class='row mt_4'>
+
+        <div class='col-md-6 col-md-offset-3 text-center '>
+          <div class='col-md-12 '>
+            <i class="ml_2  text-left color5 fa fa-mail-reply-all  fsize25px textshgrt icon_sw "></i>
+            <span class='font2  fsize17px color2  textshgrt'>{{ '%callback%' | translate }}</span>
+          </div>
+          <div class='col-md-12'>
+            <input class=' w100 inputindex fsize17px font2 ht50px mt_2' name='com_name' type='text' placeholder="{{ '%yours%' | translate }} {{ '%name%'  | translate }}">
+          </div>
+          <div class='col-md-12 '>
+            <input class=' w100 inputindex fsize17px font2 ht50px mt_2' name='com_email' type="email" placeholder="{{ '%your%' | translate }} {{ '%email%' | translate }}">
+          </div>
+          <div class='col-md-12 '>
+            <textarea style='resize:none' name='com_comment' class=' w100 inputindex fsize17px font2 ht100px mt_2' placeholder="{{'%your%'  | translate }} {{ '%comment%' | translate }}"></textarea>
+          </div>
+          <div class='col-md-12 '>
+            <div data-ng-click='sendcallback()' name='com_send' class="col-md-12 buttonsoc2  center-block mt_2  hoversp color5 cursor ">
+              <span>{{ '%send%' | translate }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class='col-md-12 mt_4'>
+        <i class="ml_2  text-left color5 fa fa-android  fsize35px textshgrt icon_sw "></i>
+        <span class='font2  fsize17px color2  textshgrt'>{{ '%coming_soon%' | translate }}</span>
+      </div>
+      <div class='col-md-12 mt_4'>
+        <img src='img/media/android2.jpg' height='80' class='boxsh1'>
+      </div>
+      <div class='col-md-12 mt_4'>
+        <i class="ml_2  text-left color5 fa fa-globe  fsize25px textshgrt icon_sw "></i>
+        <span class='font2  fsize17px color2  textshgrt'>{{ '%contacts%' | translate }}</span>
+      </div>
+
+      <div class='row mt_4 '>
+        <div class='col-md-10 col-md-offset-1 text-center '>
+          <div class='col-md-2 col-md-offset-2 text-center mt_2'>
+            <a href='https://www.facebook.com/profile.php?id=100015319621535' target='https://www.facebook.com/profile.php?id=100015319621535'
+              class="buttonsoc boxsh1 textshgrt font2  colorwht backfb fsize17px nodec">
+              <span class="fa fa-facebook mr_4 fsize20px textshgrt"></span>Facebook</a>
+          </div>
+
+
+          <div class='col-md-2 col-md-offset-1  text-center  mt_2'>
+            <a href='https://www.instagram.com/sweetvelsweetvel2017/' target='https://www.instagram.com/sweetvelsweetvel2017/' class="buttonsoc font2 boxsh1 textshgrt colorwht backinsta fsize17px   nodec">
+              <span class="fa fa-instagram mr_4 fsize20px textshgrt"></span>Instagram</a>
+          </div>
+
+
+          <div class='col-md-2 col-md-offset-1  text-center  mt_2 '>
+            <a href='https://vk.com/club111047636' target='https://vk.com/club111047636' class="buttonsoc boxsh1 font2 textshgrt colorwht backvk fsize17px   nodec">
+              <span class="fa fa-vk mr_4 fsize20px textshgrt"></span>Vkontakte</a>
+          </div>
+
+
+          <div class='col-md-12 mt_4'>
+            <i class="ml_2  text-left color5 fa fa-envelope fsize25px textshgrt icon_sw "></i>
+
+            <span class='fontrancho  fsize25px color2  textshgrt ml_2'>sweetvelsweetvel@gmail.com</span><br>
+            <!--span  class = 'fontrancho  fsize25px color2  textshgrt ml_2'>Since 9 May 2017</span-->
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+    </br>
+
+
+    <div id="index_terms" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <i class='ml_2  fa fa-handshake-o iconhov cursor fl color5 fa-3x textshgrt '></i>
+            <h3 class="modal-title fontlobster fl  color2 mt_8px ml_2">{{"%terms%" | translate}}</h3>
+
+          </div>
+          <div class="modal-body text-left color2 ta_just">
+
+            <div class='bold'>{{"%terms_title_1%" | translate}}</div><br>
+            <ul>
+              <li>{{"%terms_content_1%" | translate}}</li>
+            </ul>
+
+            <div class='bold'>{{"%terms_title_2%" | translate}}</div><br>
+            <ul>
+              <li>{{"%terms_content_2%" | translate}}</li>
+            </ul>
+
+            <div class='bold'>{{"%terms_title_3%" | translate}}</div><br>
+            <ul>
+              <li> {{"%terms_content_3%" | translate}}</li>
+            </ul>
+
+            <div class='bold'>{{"%terms_title_4%" | translate}}</div><br>
+            <ul>
+              <li class='multi_lines_text'> {{"%terms_content_4%" | translate }}</li>
+            </ul>
+
+            <div class='bold'>{{"%terms_title_5%" | translate}}</div><br>
+            <ul>
+              <li> {{"%terms_content_5%" | translate }}</li>
+            </ul>
+
+            <div class='bold'>{{"%terms_title_6%" | translate}}</div><br>
+            <ul>
+              <li>{{"%terms_content_6%" | translate }}</li>
+            </ul>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal fade" id="accept_terms_modal" role="dialog" style=''>
+      <div class="modal-dialog modal-xs">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body text-center">
+            <i class=" color5  fa fa-shield fsize60px textshgrt"></i>
+            <h4 class="modal-title  font2 color2 textshgrt mt_8px">{{"%authorization_accept%" | translate }}</h4>
+          </div>
+          <div class="modal-footer">
+            <button id='accept_terms' type="button" class="btn btn-success textshgrt">OK</button>
+            <button type="button" class="btn btn-default textshgrt color2" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <script>
+      $(function () {
+        $('.option_gender').on('click', function () {
+          $(this).removeClass('fa-circle-o').addClass('fa-check-circle');
+          $('input[name=sign_up_gender]').val($(this).attr('data-gender'));
+          $('.option_gender').not(this).removeClass('fa-check-circle').addClass('fa-circle-o');
+        })
+      })
+    </script>
+
+
+    <script>
+      var animations = document.getElementById('animation_block');
+      var logo = document.getElementById('inside_logo');
+      var counter1 = 0;
+      var counter3 = 0;
+      var state = 'start';
+      var pic = 'first';
+
+
+      class Animation {
+
+        constructor() {
+
+
+        };
+
+        start_animation() {
+
+          setInterval(function () {
+
+            ////////////////////////////////////FIRST ANIMATION START///// 
+            if (this.state == 'start' && this.pic == 'first') {
+              this.counter1 += 0.5;
+
+              if (this.counter1 == 100) {
+
+                this.state = 'finish';
+                this.pic = 'first'
+              }
+            }
+
+            ////////////////////////////////////SECOND ANIMATION START///// 
+            if (this.state == 'finish' && this.pic == 'first') {
+              this.logo.style.color = 'yellowgreen';
+              this.counter3 += 0.5;
+
+              if (this.counter3 == 100) {
+                this.state = 'start';
+                this.pic = 'second'
+              }
+
+            }
+
+            /////////////////////////BACK TO FIRST ANIMATION STATE/////////////
+            if (this.state == 'start' && this.pic == 'second') {
+              this.logo.style.color = 'white';
+              this.counter3 -= 0.5;
+              this.counter1 -= 0.5
+                ;
+              if (this.counter1 == 0) {
+                this.state = 'start';
+                this.pic = 'first'
+              }
+            }
+
+
+            animations.style.background =
+              'linear-gradient(to bottom, rgb(' + (1 + this.counter3) + '%,' + (100 - this.counter1) + '%,51%),rgb(' + (1 + this.counter3) + '%,' + (5 + this.counter1) + '%,51%))';
+          }, 70)
+        }
+
+
+
+      }
+
+      new Animation().start_animation();
+    </script>

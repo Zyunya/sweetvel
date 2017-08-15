@@ -1,0 +1,351 @@
+<style>
+  body {
+    height: 100% !important;
+    max-height: 100% !important;
+  }
+</style>
+
+
+<div class="container" style='' data-ng-cloak>
+
+  <div class='row'>
+
+    <div class=' col-md-offset-1 col-md-3  mobile_block  col-xs-12 col-sm-12'>
+
+      <div class='backsw2 boxsh1 mobile_block inln account_avatar '>
+        <div class='account_avatar backimgprop2 pdng7px br4' style="background-image:url({{profile_sketch.avatar}}),url({{host}}/img/media/noavatar.png);">
+          <table border='0' class='w100' style='border-collapse: separate;border-spacing: 5px;'>
+            <tr>
+              <td align='center'><i class=" color5 fa fa-user-circle fsize25px textshgrt icon_sw"></i></td>
+              <td> <span class='colorwht textshgrt font1 fsize15px'>{{profile_sketch.firstname}} {{profile_sketch.lastname}} </span></td>
+              <tr>
+                <td align='center'><i ng-class="[{desktop:'fa-circle fsize17px', mobile:'fa-mobile fsize25px','':'fa-circle fsize20px'}[profile_sketch.device], {1:'color5', 0:'colorwht textshgrt'}[profile_sketch.online_status]]"
+                    class=" mr_4  fa  "></i></td>
+                <td><span ng-bind="{1:'online', 0:'offline','': offline}[profile_sketch.online_status]" class='colorwht textshgrt  font2 fsize15px'></span></td>
+              </tr>
+          </table>
+        </div>
+
+        <div class="col-md-12  pdng5px text-center  w100   backsw2  inln">
+          <button data-ng-click='add_to_friends($event)' type="button" class="btn nobrdr boxsh1 btn-success backsw3 br4 boxsh1 w100">
+           <i class="ml_2 text-left  colorwht fa fa-podcast fl fsize15px textshgrt icon_sw "></i>
+             <img src  = 'img/media/loader.gif' data-ng-show = 'friend_status_preloader' height = '18px' class = 'inln'>
+              <span class = 'telips fsize13px'>{{friend_status_text | translate}}</span>
+                  </button>
+
+          <a ui-sref="account.chat({'sn': profile_sketch.id * 16 * 3 * 1992})">
+            <button type="button" class="btn btn-success nobrdr boxsh1 fl fsize13px backsw3 br4 boxsh1 mt_8px w100">
+             <i class="ml_2 text-left fl  colorwht fa fa-send fsize15px textshgrt icon_sw"></i>
+              {{"%message%" | translate}}
+                </button>
+          </a>
+        </div>
+
+      </div>
+
+
+      <div class=' backsw2 boxsh1   col-md-12 mt_8px' style='height:auto;overflow: auto;'>
+
+        <div class=' backsw2  mobile_block    col-md-12 '>
+
+          <friends class=''></friends>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class=' col-md-offset-0 col-md-7  text-center  col-xs-offset-0  col-xs-12 mobile_block top_mobile'>
+      <div class='backsw2 boxsh1 pdng7px text-left ' style='min-height:530px !important'>
+        <div data-ng-show='!sketch_block_loading_spinner' class="mdl-spinner mdl-js-spinner is-active valcenter2 w50px ht50px" style=''></div>
+        <div class='' data-ng-show='sketch_block_loading'>
+
+          <div class='pdng2px    mt_4px'>
+            <i ng-class="{male:'fa-male', female:'fa-female'}[profile_sketch.gender]" class="ml_4px  color5 fa  text-left fsize22px icon_sw"></i>
+            <a ui-sref=".profile" class='nodec'>
+              <span class='color2 ml_2  font3 fsize20px'>{{profile_sketch.firstname}} {{profile_sketch.lastname}}</span>
+
+              <div class='fr' style='width:200px'>
+
+                <span ng-class="{1:'dp', 0:''}[profile_sketch.online_status]" class='color0   font2 fsize12px fr'>
+          <span data-ng-show = 'profile_sketch.lastvisit.length !== 0'>{{'%lastvisit%' | translate}}</span> {{profile_sketch.lastvisit[0].date}} {{profile_sketch.lastvisit[0].month
+                | month | translate}} {{profile_sketch.lastvisit[0].hours}}  {{profile_sketch.lastvisit[0].minutes}}
+                </span>
+              </div>
+
+            </a>
+          </div>
+
+          <table class='w100' border='0' style='border-collapse: separate;border-spacing: 2px;'>
+            <tr>
+              <td valign='top' width='15px'><i class="ml_2 2 color5 fa fa-comments fsize22px  icon_sw inln ml_4px "></i></td>
+              <td> <span class='ta_left color5 font3 fsize12px nodec ml_4px  ta_center'>{{profile_sketch.status_account | trust | empty : '%add%'}}</span></td>
+            </tr>
+          </table>
+
+          <table class='w100 mt_4px ' border='0' style='border-collapse: separate;border-spacing: 2px;'>
+            <tr>
+              <td width='15px'>
+                <i data-ng-bind="{1 : 'chat',2 : 'sentiment_dissatisfied',3 : 'do_not_disturb_on',4 : 'hot_tub',5 :'local_cafe',6 : 'face',0: 'face'}[profile_sketch.state_point]"
+                  data-ng-class="{1 : 'colormessenger',2 : 'colorgld',3 : 'color1',4 : 'color5',5 :'color0',6 : 'color5',0 : 'color5'}[profile_sketch.state_point]"
+                  class="material-icons ml_4px "></i>
+              </td>
+              <td><span class='color0 2 font3 fsize12px nodec ml_4px  ta_center'>{{profile_sketch.state | translate}}</span></td>
+            </tr>
+          </table>
+
+          <table class='w100 mt_4px' border='0' style='border-collapse: separate;border-spacing: 2px;'>
+            <tr>
+              <td width='15px'>
+                <i data-ng-bind="{1 : 'loyalty',2 : 'favorite',3 : 'mood',4 : 'sentiment_very_dissatisfied',5 : 'flash_on',0: 'record_voice_over'}[profile_sketch.status_point]"
+                  class="material-icons ml_4px  color5"></i>
+              </td>
+              <td><span class='color0  font3 fsize12px nodec ml_4px  ta_center'>{{profile_sketch.status | translate}}</span></td>
+            </tr>
+          </table>
+
+
+
+          <div class='w100 mt_4px  pdng7px' style='border-top:1px solid #eee;border-bottom:1px solid #eee'>
+            <table class='w100 text-center lnht15' border='0'>
+              <tr>
+                <td width='20%'>
+                  <a>
+                    <span class=' font1 fsize12px color5'>{{account_images_count_sketch}}</span><br>
+                    <span class=' fsize13px color0'>{{'%images%' | translate}}</span><br>
+                  </a>
+                </td>
+                <td width='20%'>
+                  <a ui-sref="account.skfriends({sk : profile_sketch.id})" class='nodec'>
+                    <span class=' font1 fsize12px color5'>{{friends_count}}</span><br>
+                    <span class=' fsize13px color0'>{{'%friends%' | translate}}</span><br>
+                  </a>
+                </td>
+                <td width='20%'>
+                  <a ui-sref="account.skfriends({sk : profile_sketch.id})" class='nodec'>
+                    <span class=' font1 fsize12px color5'>{{followers_count}}</span><br>
+                    <span class=' fsize13px color0'>{{'%followers%' | translate}}</span><br>
+                  </a>
+                </td>
+                <td width='20%'>
+                  <a ui-sref="account.skfriends({sk : profile_sketch.id})" class='nodec'>
+                    <span class='font1 fsize12px color5'>{{mefollow_count}}</span><br>
+                    <span class=' fsize13px color0'>{{'%ifollow%' | translate}}</span><br>
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class='mt_12px' style='min-height:300px;position:relative;overflow:hidden'>
+            <div style='max-height:500px;overflow-x:scroll;max-width:100%;margin:auto'>
+
+              <div class='pdng2px' style='max-height:300px;overfolow:scroll'>
+
+                <table class='w100 fsize12px lnht35' border='0'>
+                  <tr>
+                    <td width='45%' height='30px'></td>
+                    <td align='left'></td>
+                  </tr>
+                  <!--tr><td><i class="ml_2   color5 fa fa-asterisk fsize22px  icon_sw"></i></td></tr-->
+                  <tr>
+                    <td width='170px'>
+                      <span class='color0 font3 mt_4 fsize12px w30 ml_10px'>{{"%birthday%"  | translate }} :</span>
+                    </td>
+                    <td><span data-toggle="modal" data-target="#profile_options" class='color5  ml_4px ta_center cursor'>{{profile_sketch.birth_date}} {{profile_sketch.birth_month | month | translate}} {{profile_sketch.birth_year | empty : '%add%'}}</span></td>
+                  </tr>
+                  <tr>
+                    <td class=''>
+                      <span class=' color0 font3 w30 fsize12px ml_10px'>{{"%aboutme%" | translate}} :</span>
+                    </td>
+                    <td class=''><span data-toggle="modal" data-target="#profile_options" class='cursor  color5  ml_4px ta_center'>{{profile_sketch.about_me | empty : '%add%'}}</span></td>
+                  </tr>
+                  <tr>
+                    <tr>
+                      <td><i class="ml_2   color5 fa fa-map-marker fsize22px  icon_sw ml_10px"></i></td>
+                    </tr>
+                    <td>
+                      <span class='color0 font3 w30 ml_10px'>{{"%city%" | translate }} :</span>
+                    </td>
+                    <td><span data-toggle="modal" data-target="#profile_options" class='color5 fsize12px  ml_4px ta_center cursor'>{{profile_sketch.city | empty : '%add%'}}</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class='color0 font3 fsize12px w30 ml_10px'>{{"%country%" | translate }} :</span>
+                    </td>
+                    <td><span data-toggle="modal" data-target="#profile_options" class='color5  ml_4px ta_center cursor'>{{profile_sketch.country | empty : '%add%'}}</span></td>
+                  </tr>
+                  <tr>
+                    <td><i class="ml_2   color5 fa fa-location-arrow fsize22px  icon_sw ml_10px"></i></td>
+                  </tr>
+                  <tr>
+                    <td valign='top'><span class='cursor  color0 font3 w30 fsize12px ml_10px'>{{"%activityplace2%" | translate}} :</span></td>
+                    <td>
+                      <div>
+                        <span data-toggle="modal" data-target="#profile_options" class='color5  fsize12px  ml_4px ta_center'>{{profile_sketch.place_name | translate}}               </span>
+                        <span data-toggle="modal" data-target="#profile_options" class='color5   fsize12px ml_4px ta_center cursor'>{{profile_sketch.place_adress | empty : '%add%'}}{{profile_sketch.status_account | trust | empty : '%add%'}}</span>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div data-ng-init="get_sketch_images()" class='text-left backsw2 mobile_block pdng3px boxsh1 mt_8px' style='height:190px'>
+
+        <i data-toggle="modal" data-target="#upload_account_image_modal" class="ml_4 iconhov cursor    color5 fa fa-camera mr_2 fsize20px  icon_sw mt_8px"></i>
+        <a class='nodec cursor' data-toggle="tab" data-target='#options_account_images_tab'><span   class = 'color0 font2  fsize12px  ml_4px ta_center'>{{"%images%" | translate}}</span></a>
+        <span class=' color5  pdng3px font1 fsize12px '>{{account_images_count_sketch}}</span>
+        <i class="ml_4 iconhov cursor    color5 fa fa-share  mr_2 fsize20px  icon_sw mt_8px"></i>
+        <a class='nodec cursor' data-toggle="tab" data-target='#options_saved_images_tab'><span  class = 'color0 font2  fsize12px  ml_4px ta_center'>{{"%collection%" | translate}}</span></a>
+        <span class=' color5  pdng3px font1 fsize12px '>{{saved_images_count_sketch}}</span>
+        <br>
+        <span id='output' class='color1    fsize13px ml_4px ta_center'></span>
+
+
+        <div class='text-left '>
+
+          <i style='margin-top:50px;left:20px' class="z0 pa scroll_left  cursor hover2  text-left color5 fa fa-chevron-circle-left fsize30px  "></i>
+          <i style='right:20px;margin-top:50px;' class="z0 pa scroll_right  cursor hover2  text-left color5 fa fa-chevron-circle-right fsize30px "></i>
+
+          <div id="options_account_images" class='tab-content mt_15px'>
+
+            <div id="options_account_images_tab" class='w100  tab-pane fade in active inner_images'>
+              <div data-ng-show='!preloader_gallery' class="mdl-spinner mdl-js-spinner is-active w50px ht50px" style='position:absolute;left:45%;margin-top:30px'></div>
+              <noimagessketch data-ng-show='no_account_images' class='w100 boxsh1 mt_8px'></noimagessketch>
+              <accountimages></accountimages>
+            </div>
+
+
+            <div id="options_saved_images_tab" class='w100 tab-pane fade inner_images '>
+              <noimagessketch data-ng-show='no_saved_images' class='w100 boxsh1'></noimagessketch>
+              <savedimages></savedimages>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div data-ng-init="timeline()" class='col-md-offset-1 col-md-10 mobile_block top_mobile  text-center  col-xs-offset-0  col-xs-12  '>
+
+      <div class='col-md-12 pdngno'>
+
+        <div class='col-md-12 col-md-offset-0 pdngno brdrlight boxsh1 backsw2 pdng5px'>
+          <ul class="nav nav-tabs">
+            <li class='active'><a class="cursor color5" data-toggle="tab" data-target="#home"><i class = 'fa fa-feed color5'></i>Timeline</a></li>
+            <li><a class="cursor color5" data-toggle="tab" data-target="#videos"><i class = 'fa fa-video-camera mr_4px color5'></i>Videos</a></li>
+            <li>
+              <div data-ng-show='send_message_preloader' class="mdl-spinner mdl-js-spinner is-active w20px ht20px mt_4px" style='margin-top:0px'></div>
+            </li>
+          </ul>
+
+          <div style='position:relative;bottom:5px;left:0px;right:0px;min-height:70px;border-bottom:0px solid #ccc' class=' w100 br3 backsw2'>
+
+            <table border='0' class='text-center   w100'>
+              <tr style='height:55px'>
+                <td><label for='timeline_file' class=''><i  class = 'color5   fa fa-camera  cursor iconhov fsize25px '></i></label></td>
+                <td class='' width='60%'>
+                  <input ng-paste='open_graph_timeline($event)' style='border-bottom:1px solid yellowgreen;' type='text' class='inputbot w100 fsize15px font2 text-left color2'
+                    id='timeline_text' placeholder='{{"%writesomething%" |translate}}'>
+                </td>
+                <td align='center' class=''>
+                  <i data-ng-click="clickenable || sendmessage_timeline()" id='sender' class=" color5   fa fa-paper-plane  cursor iconhov fsize25px "></i>
+                </td>
+                <td align='center'><i data-ng-click="emoji_toggle_arg('emoji_block_timeline')" class='color5   fa fa-smile-o  cursor iconhov fsize25px '></i></td>
+                <td align='center'>
+                  <i data-ng-click="audio_recorder_option_timeline()" class='color5 fa fa-music  cursor iconhov fsize25px '></i>
+                </td>
+              </tr>
+              <tr>
+                <td colspan='5' class=''>
+                  <div id="upload_timeline_audio_preview" style='' class='pdng7px  boxsh1 w100 br4 dp'>
+                    <div class='chat_audio_ready'>
+                      <i id='recorder_btn' class='start_record_timeline colorwht mr_4 fa fa-microphone backsw3 br pdng7px boxsh1  cursor  fsize25px '
+                        style='width:38px'></i>
+                      <i id='chat_audio_preview_play' class='colorwht fa fa-play-circle  cursor iconhov fsize25px boxsh1 backsw3 br pdng7px  cursor  fsize25px '
+                        style='width:38px'></i>
+                      <i id='chat_audio_preview_pause' class='ml_4 colorwht fa fa-pause-circle  cursor iconhov fsize25px boxsh1 backsw3 br pdng7px  cursor  fsize25px '
+                        style='width:38px'></i>
+                      <i id='sendmessage_audio' class='ml_4 colorwht fa fa-send  cursor iconhov backsw3 br boxsh1  cursor  fsize20px ' style='width:38px;padding:9px'></i>
+                      <i data-ng-click="show_hide('upload_timeline_audio_preview')" class='fr  fa fa-close mt_8px  cursor iconhov color5 cursor  fsize20px '></i>
+                    </div>
+                    <audio id='timeline_audio_preview' src=""></audio>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan='5' class=' dp' id='chat_og_preview' data-ng-click="show_hide('chat_og_preview')">
+                  <div class="media boxsh1 backsw2 backimgprop">
+                    <div class="media-left">
+                      <div src="{{og_data.image}}" class="media-object backimgprop boxsh1" style='background-image:url({{og_data.image}});height:100px;width:100px'>
+                      </div>
+                    </div>
+                    <div class="media-body text-left mobile_blockmobile_block">
+                      <i class='fa fa-close fa-2px color0 fr cursor iconhov'></i>
+                      <h5 class="media-heading color2">{{og_data.title | substrcustom : 50}}</h5>
+                      <span class='color2 fsize10px'>{{og_data.desc | substrcustom : 75}}</span>
+                      <span class='color0 fsize10px'>{{og_data.url}}</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan='5' class=''>
+                  <div class='boxsh1 backsw2 w100 text-center dp' style='height:100px;' id='upload_timeline_img_preview_block'>
+                    <i data-ng-click='dp($event)' class='fa fa-close fa-2px color0 fr cursor iconhov'></i>
+                    <!-- IMAGES PREVIEW -->
+                  </div>
+                  <input onchange="angular.element(this).scope().message_preview_timeline(this)" type='file' multiple class='dp' id='timeline_file'>
+                </td>
+              </tr>
+              <tr>
+                <td id='emoji_block_timeline' class='dp' colspan='5'>
+                  <emoji inpid='timeline_text'></emoji>
+                </td>
+              </tr>
+              <tr>
+                <td colspan='5' class='pdng7px'>
+                  <div class="alert alert-success alert-dismissable fade in" style='display:none'>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <span class='fsize15px' id='upload_chat_img_outp'></span>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+
+        <div class="tab-content col-md-12 col-md-offset-0 pdngno" style='height:87%;overflow:scroll'>
+
+          <div id="home" class="tab-pane fade in active">
+            <timeline></timeline>
+          </div>
+
+          <div id="videos" class="tab-pane fade">
+            <videos></videos>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+
+</div>

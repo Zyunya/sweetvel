@@ -1,0 +1,116 @@
+<html data-ng-app = 'personal_page'data-ng-controller = 'personal_pagectr' >
+
+<head>
+
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   
+    <meta id = 'viewport'  name="viewport" content="width=device-width, initial-scale=0.9,user-scalable=no">
+
+    <meta name="theme-color" content="YellowGreen">
+
+  	<link rel="shortcut icon" href="favicon.png" type="image/png">
+
+    <link rel = 'stylesheet' type = 'text/css' href = '/style/shablon.css'>
+
+    <link rel = 'stylesheet' type = 'text/css' href = '/style/bootstrap-social.css'>
+
+    <link rel = 'stylesheet' type = 'text/css' href = '/style/font-awesome.css'>
+
+    <link rel = "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type = 'text/javascript' src ='/js/selectors.js'   ></script>
+
+    <script type = 'text/javascript' src ='/js/angular.js'   ></script>
+
+    <script type = 'text/javascript' src ='js/admincontroller.js'   ></script>
+
+    
+
+
+
+   
+    <base href = "/" />
+
+ 
+   </head>
+
+<body data-ng-cloak class = 'backsw' data-ng-show = 'authorized'>
+<div data-ng-include ="'admin/blocks/header.html'"></div>
+ 
+<div class = 'container'>
+    <div class = 'row'>
+        <div class = 'col-md-10 col-md-offset-1 text-center'>
+            
+             <ul class="nav nav-tabs">
+  <li class="active">
+      
+      <a data-toggle="tab" href="#home">
+          <i class=" cursor iconhov color5 fa fa-user-circle fa-2x textshgrt "></i>
+          Users <span class = 'backsw3 font1 boxsh1 pdng3px colorwht br4'>{{user_counter}}</span></a>
+      </li>
+       <li>
+      <a data-toggle="tab" href="#menu1">
+          <i class=" cursor iconhov color5 fa fa-eye fa-2x textshgrt "></i>
+          Views</a>
+      </li>
+     <li>
+      <a data-toggle="tab" href="#menu2">
+          <i class=" cursor iconhov color5 fa fa-podcast fa-2x textshgrt "></i>
+         Callback</a>
+      </li>
+</ul>
+
+<div class="tab-content">
+
+  <div id="home" class="tab-pane fade in active">
+
+    <div class = 'w100 boxsh1 backsw2 mt_8px br4 pdng5px ht50px' data-ng-repeat = 'u in user_list'>
+        <div class = 'backimgprop boxsh1 ht40px w40px fl' style = 'background-image:url({{u.useravatar}})'></div>
+         <span class = 'color2 w20 font1 fl textshgrt ml_2'>{{u.userfname}} {{u.userlname}}</span>
+         <span class = 'color5 w20 font1 textshgrt fl ml_2'>{{u.gender}}</span>
+         <span class = 'color1 font1 textshgrt fl ml_2'>{{u.regtype}}</span>
+         <i data-ng-click = 'delete_profile(u.userid)' class=" cursor iconhov fr color1 fa fa-close fa-2x textshgrt ml_2"></i>
+         <span class = 'color5 font1 textshgrt fr ml_2'>{{u.date}}.{{u.month}}.{{u.year}}</span>
+          
+        </div>
+
+  </div>
+
+  <div id="menu1" class="tab-pane fade">
+    
+   <div class = 'w100  fsize12px boxsh1 backsw2 mt_8px br4 pdng5px text-left'style = 'min-height:100px' data-ng-repeat = 'v in visitors_list'>
+         <span class = 'color2 font1 fl ml_2'>{{v.ip}}</span>
+         <span class = 'color2 font2 fl ml_2'>{{v.referer}}</span><br>
+         <span class = 'color5 font1 fl ml_2'>{{v.time}}</span>
+         <span class = 'color5 font1 fr ml_2'>{{v.coord}}</span><br><br>
+         <span class = 'color5 font2    ml_2'>{{v.device}}</span>
+        </div>
+
+  </div>
+
+  <div id="menu2" class="tab-pane fade">
+   
+    <div class = 'w100  fsize12px boxsh1 backsw2 mt_8px br4 pdng5px text-left'style = 'min-height:100px' data-ng-repeat = 'cl in callback'>
+         <i class=" cursor iconhov fl color5 fa fa-user-circle fa-2x textshgrt ml_2"></i>
+         <span class = 'color2 font1 fl ml_2'>{{cl.name}}</span>
+         <span class = 'color2 font2 fr ml_2'>{{cl.date}}.{{cl.month}}.{{cl.year}} {{cl.hours}}:{{cl.minutes}}</span><br><br>
+         <i class=" cursor iconhov fl color5 fa fa-envelope fa-2x textshgrt ml_2"></i>
+         <span class = 'color2 font2 fl ml_2'>{{cl.email}}</span><br><br>
+         <blockquote><span class = 'color5 font2  fsize12px  ml_2'>{{cl.comment}}</span> </blockquote>
+        </div>
+
+  </div>
+
+</div>
+
+              </div>
+
+                     </div>
+</div>
+</body>
+
+</html>

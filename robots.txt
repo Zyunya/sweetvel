@@ -1,0 +1,10 @@
+User-agent: Yandex
+Allow: / 
+sitemap: https://sweetvel.com/sitemap.xml
+Crawl-delay: 2
+Host: https://sweetvel.com
+
+User-agent: *
+Allow: / 
+sitemap: https://sweetvel.com/sitemap.xml
+Crawl-delay: 2

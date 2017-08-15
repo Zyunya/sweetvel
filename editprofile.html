@@ -1,0 +1,134 @@
+<div class='container'>
+  <div class='row '>
+
+    <div class="col-md-8 col-md-offset-2 backsw2 boxsh1 color2 pdng5px" style='min-height:600px'>
+
+      <div data-ng-show='!spinner' class="mdl-spinner mdl-js-spinner is-active valcenter2 ht60px w60px"></div>
+
+      <div data-ng-show='edit_profile_block'>
+
+        <h6>{{"%name%" | translate}}</h6>
+        <input type='text' value='{{profile_self.firstname}}' class='sw_input' name="options_fname" placeholder="{{'%name%' | translate}}">
+        <h6>{{"%lname%" | translate}}</h6>
+        <input type='text' value='{{profile_self.lastname}}' class='sw_input' name="options_lname" placeholder="{{'%lname%' | translate}}">
+        <div class="form-group">
+
+          <h6 class='fl w20'>{{"%country%" | translate}}</h6>
+          <button id="demo-menu-lower-left_country" class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons color0">subject</i>
+ </button>
+
+          <input readonly type='text' value='{{profile_self.country}}' class='sw_input' name="options_country" placeholder="{{'%country%' | translate}}">
+
+          <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left_country" style='height:350px;overflow:scroll'>
+            <li onclick="angular.element(this).scope().city_list(this);editprofile.select2(this,'options_country');" ng-repeat='(key, data) in countries'
+              data-key='{{key}}' class="mdl-menu__item option_select_country">{{key}}</li>
+          </ul>
+
+          <h6 class='fl w20'>{{"%city%" | translate}}</h6>
+
+          <button id="demo-menu-lower-left_city" class="mdl-button mdl-js-button mdl-button--icon fl">
+  <i class="material-icons color0">subject</i>
+ </button>
+
+          <div data-ng-show='preloader2' class="mdl-spinner mdl-js-spinner is-active mt_8px ml_2" style='height:20px;width:20px'></div>
+
+          <input readonly type='text' value='{{profile_self.city}}' class='sw_input' name='options_city' placeholder="{{'%city%' | translate}}">
+          <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left_city" style='height:350px;overflow:scroll'>
+            <li onclick="editprofile.select2(this,'options_city');" ng-repeat='ctt in cities  track by $index' class="mdl-menu__item"
+              ng-model='md_country'>{{ctt}}</li>
+          </ul>
+
+
+          <h6>{{"%birthday%" | translate}}</h6>
+
+          <div class="form-group text-center" data-ng-init='counter()'>
+
+            <input readonly id="demo-menu-lower-left_date" type='text' value='{{profile_self.birth_date}}' class='sw_input w30' name='options_date'
+              placeholder="">
+            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left_date" style='height:350px;overflow:scroll'>
+              <li onclick="editprofile.select2(this,'options_date');" data-ng-repeat='count in counter_date' class="mdl-menu__item">{{count}}</li>
+            </ul>
+
+            <input readonly id="demo-menu-lower-left_month" type='text' value='{{profile_self.birth_month}}' class='sw_input w30' name='options_month'>
+            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left_month" style='height:350px;overflow:scroll'>
+              <li onclick="editprofile.select2(this,'options_month');" data-ng-repeat='count in counter_month' class="mdl-menu__item">{{count | month | translate}}</li>
+            </ul>
+
+            <input readonly id="demo-menu-lower-left_year" type='text' value='{{profile_self.birth_year}}' class='sw_input w30' name='options_year'>
+            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left_year" style='height:350px;overflow:scroll'>
+              <li onclick="editprofile.select2(this,'options_year');" data-ng-repeat='count in counter_year' class="mdl-menu__item">{{count}}</li>
+            </ul>
+
+          </div>
+          <h6 class='fl'>{{"%gender%" | translate}}</h6><br><br><br>
+          <i data-gender='male' class='fa  fa-2x mr_2 color5 fl cursor option_gender' data-ng-class="{female :'fa-circle-o',male :'fa-check-circle','' : 'fa-circle-o'}[profile_self.gender]"></i>
+          <h6
+            class='fl'>Male</h6>
+            <i data-gender='female' class='ml_2  fa  fa-2x mr_4 color5 cursor fl option_gender' data-ng-class="{male :'fa-circle-o',female :'fa-check-circle','' : 'fa-circle-o'}[profile_self.gender]"></i>
+            <h6>Female</h6>
+
+
+            <input type='hidden' name='options_gender' value='{{profile_self.gender}}'>
+
+            <br>
+
+            <h6>{{"%aboutme%" | translate}}</h6>
+            <div class="form-group">
+              <textarea class="form-control sw_input" rows="2" name='options_about_me' placeholder='Write About Yourself'>{{profile_self.about_me}}</textarea>
+            </div>
+            <h6>{{"%activityplace1%" | translate}}</h6>
+            <div class="form-group">
+              <input style='z-index:999;' id="pac-input" class="controls font2" value="{{profile_self.place_name }}" name='eventplace'
+                type="text" placeholder="{{profile_self.place_name}}">
+              <div id="map" style='z-index:5;height:250px;'></div>
+            </div>
+
+            <button data-ng-click='edit_account_profile()' class='backsw3 left-block mt_8px  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>{{"%edit%" | translate}}</button>
+
+            <div class="alert alert-success alert-dismissible mt_8px" style='display:none'>
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+
+            <hr>
+            <h6>{{"%login%" | translate}}</h6>
+            <input type='text' value='{{profile_self.login}}' class='sw_input' name="options_login" placeholder="{{profile_self.login}}">
+            <h6>{{"%change%" | translate}} {{"%password%" | translate}}</h6>
+            <input type='password' class='sw_input' name="options_password_old" placeholder="{{'%old%' | translate}} {{'%password%' | translate}}">
+            <br><br><br>
+            <input type='password' class='sw_input' name="options_password_new" placeholder="{{'%new2%' | translate}} {{'%password%' | translate}}">
+            <button data-ng-click='edit_account_profile_main()' class='backsw3 left-block mt_8px  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>{{"%edit%" | translate}}</button>
+
+            <input type='hidden' name='options_place_name' id='placename' value='{{profile_self.place_name}}'>
+            <input type='hidden' name='options_place_adress' id='placeadress' value='{{profile_self.place_adress}}'>
+            <input type='hidden' name='options_place_id' id='placeid' value='{{profile_self.place_id}}'>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div><br>
+
+
+<script>
+                           var editprofile = {
+
+                             select: function (elem, dom) {
+                               $name(dom).value = elem.innerHTML;
+                             },
+                             select2: function (elem, dom) {
+                               $name(dom).value = elem.innerText;
+
+                             },
+                             select_gender: function () {
+                               $('.option_gender').on('click', function () {
+                                 $(this).removeClass('fa-circle-o').addClass('fa-check-circle');
+                                 $('input[name=options_gender]').val($(this).attr('data-gender'));
+                                 $('.option_gender').not(this).removeClass('fa-check-circle').addClass('fa-circle-o');
+                               })
+                             }
+                           }
+                           editprofile.select_gender();
+</script>

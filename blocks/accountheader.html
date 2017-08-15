@@ -1,0 +1,174 @@
+<style>
+.line1,.line2,.line3{
+  box-shadow: 0 0 1px #656565;
+  margin-top:5px;
+  margin-bottom:8px;
+  background: lawngreen;
+  height:3px;
+  width:45px;
+  transition:1s;
+}
+.change .line1{
+     transform:rotate(45deg) translate(6px,10px);
+   background:#ff5959;
+}
+.change .line2{
+   opacity:0;
+  background:#ff5959;
+}
+.change .line3{
+    background:#ff5959;
+    transform:rotate(-45deg) translate(5px,-10px);
+}
+.navbar-toggle:hover,.navbar-toggle{
+    background: yellowgreen !important;
+}
+</style>
+
+<nav class="navbar navbar-default  backsw3 boxsh1 nobrdr norad z"  >
+  <div class="container-fluid">
+    <div class="navbar-header  w100" >
+     
+          <i    class="navbar-toggle nobrdr colorwht fa fa-bars fa-3x pull-right visible-sm visible-xs pdngno nav_menu_toggle" data-ng-show = 'authorized'></i>
+	  <a class="navbar-brand colorwht" href="#">
+        <span  class = 'fontrancho fsize50px ml_5 textshgrt'>   </span>
+        </a> 
+
+    
+        <a ui-sref ="account.profile"  class = 'fontrancho colorwht  fsize45px nodec fl textshgrt mr_2'>Sweetvel </a>
+        
+
+        <a  id = 'activity_plane'  data-ng-click = 'live_common_refresh()' data-ng-show = 'authorized' class="navbar-brand  w90px colorwht cursor" data-toggle="modal" data-target="#live_common">
+         <i    data-ng-init = 'live_common_checkupdates()' id = 'live_pointer'  class="ml_2 fa fa-send fsize27px colorsub "></i>
+         <span data-ng-show = 'show_checkupdates_counter' class = 'font2 fsize17px br3 boxsh0 back4 pdng3px colorwht  textshgrt'>{{checkupdates_counter}}</span>
+         </a>
+
+    <form style = 'margin-top:12px' class="navbar-form navbar-left visible-md visible-lg" id= 'search_form' data-ng-show = 'authorized'>
+      <div class="input-group " style = 'background:rgba(118, 188, 28, 0.55);border:1px solid rgba(118, 188, 28, 1);border-radius:3px'>
+        <input type="text" onfocus = 'search_modal()' data-ng-focus='search($event)' class="form-control searchinput " list="search"  name = 'search' placeholder="{{'%search%' | translate}}">
+          
+         <div class="input-group-btn">
+          <button class="btn btn-default searchinput" data-target="#search_modal"  >
+           <i class="fa fa-arrow-right colorwht textshgrt"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+        <ul class="nav navbar-nav navbar-right visible-md visible-lg">
+        <li class="dropdown " >
+		 
+		 <a class="dropdown-toggle colorwht font2 cursor"  data-toggle="dropdown">
+        <i class=" fa fa-globe  colorsub fsize20px "></i>{{"%lang%" | translate}}<span class="caret"></span>
+		      <ul class="dropdown-menu backsw3 text-center">
+		
+          <li ng-click = "changelang('ru')" ><a class = 'colorwht font2 cursor fsize15px'>Ru</a></li>
+		 
+          <li ng-click = "changelang('en')" ><a class = 'colorwht font2 cursor fsize15px'>En</a></li>
+        </ul>
+		</a>
+		</li> 
+         <li ng-click = 'logout()' class = '' data-ng-show = 'authorized'><a href="#" class = 'colorwht'><span  class = ' iconhov glyphicon glyphicon-log-in  colorsub fsize20px '></span><span > {{ '%logout%' | translate }}</span></a></li>
+      </ul>
+    </div>
+ 
+  </div>
+
+</nav>
+
+
+<div id="search_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <i class="color5 fa fa-send fsize20px fl textshgrt cursor iconhov"></i>
+        <input type="text"  data-ng-keyup='search($event,false,true)' class="sw_input w90" list="search"  id = 'search_input' placeholder="{{'%search%' | translate}}">
+      </div>
+      <div class="modal-body">
+        
+      <div id = "search_preview" class = 'backsw2  z table pdng5px lnht40px topper' data-ng-show = 'authorized'>
+        <img src = 'img/media/loader.gif' height = '100px' data-ng-show = 'search_preloader'  class = 'center-block' style = 'margin-top:100px;margin-bottom:100px' >  
+        <table class = 'table' data-ng-show = 'show_search_box'>
+          <tr>
+            <td colspan = '2' class = 'nobrdr color2 font2 textshgrt'><span >Search Box</span></td>
+            <td colspan = '2' class = 'nobrdr' align = 'right'></td>
+          </tr>
+            
+          <tr data-ng-repeat = "x in searcher | limitTo:'5'" >
+            <td  class = 'ta_center pdng5px nobrdr telips' >
+              <span class = 'br4 boxsh back2 fontlobster telips colorwht'style = 'background:{{x.logoback}} !important;color:{{x.logocolor}} !important;font-family:{{x.logofont}} !important;height:50px;min-width:50px;vertical-align: middle;font-size:13px;display:table-cell;'>{{x.labelname | translate | firstletter | substrshort}}</span></td>
+           <td class = 'nobrdr'>
+             <i class="ml_4   colorgld fa fa-star fsize25px textshgrt icon_sw"></i><br>
+             <span class = 'color2 ml_2  font1 fsize12px bb'>+{{x.rating}}%</span>
+             </td>
+            <td class = 'ta_left font2 fsize12px color5 cursor nobrdr '>
+              <a class = '' ui-sref =  'privatelabel({pl:x.id})' >{{x.labelname | translate | substrcustom : 55}}</a><br>
+              <span >sweetvel.com/privatelabel/{{x.id}}</span>
+              </td>
+              </tr>
+          </table>
+         
+         
+        <table class = 'table'   class = ''>
+          <tr class = 'bb4' data-ng-repeat = "persons in searcherpersons | limitTo:'10'">
+            <td class = 'ta_left fsize15px  font2 color5 cursor nobrdr'>
+              <div class = 'ht40px w40px br4 boxsh1 backimgprop' style = 'background-image:url({{persons.avatar}})'></div>
+               </td>
+                  <td class = 'nobrdr'> <i class=" color5 fa fa-user-circle fsize25px textshgrt icon_sw"></i></td>
+                  <td class = 'nobrdr '><a class ='ta_left  font2 fsize12px color cursor nobrdr' ui-sref =  'sketch.profile({sk:persons.id})' >@{{persons.fname | substrshort2 }} {{persons.lname | substrshort2 }}</a><br>
+                    <span class = 'font2   color5 fsize10px'>{{persons.status_account | trust}}</span>
+                  </td>  
+                    </tr>
+                      </table><hr>
+
+          <table class = 'table'  class = ''>
+          <tr  data-ng-repeat = "x in searchertags | limitTo:'10'">
+            <td class = 'ta_left fsize15px  font2 color5 cursor nobrdr'>
+               <i class="ml_2  text-left color5 fa fa-hashtag fsize20px textshgrt"></i>
+               <a  ui-sref =  "explorer({'exp':x.tags})"  >#{{x.tags | substrshort2 }}</a>
+              </td>
+              <td class = 'ta_left fsize15px  font2 color2 cursor nobrdr'>{{x.nums}} items</td>
+         </tr>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="live_common" class="modal fade" role="dialog" data-ng-show = 'authorized'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <i   class='ml_2  fa fa-send iconhov cursor fl color5 fa-3x textshgrt mr_2'></i>
+        <h3 class="modal-title fontlobster  color2 mt_8px">{{"%activity%" | translate}}</h3>
+      </div>
+      <div class="modal-body">
+  
+       <div    class = 'pdng5px text-left   backsw2 br5 mt_8px'style = '' >
+         <accountactivity></accountactivity>
+         </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<script>
+  function search_modal(){
+ $('#search_modal').modal({show: 'true'});
+ setTimeout(function(){$('#search_input').focus()},500);
+
+  }
+
+  </script>

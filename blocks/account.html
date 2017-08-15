@@ -1,0 +1,734 @@
+<style>
+  /* Bootstrap nav  tabs horizontal scroll */
+  
+  .nav-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: -webkit-box;
+    display: -moz-box;
+  }
+  
+  .nav-tabs>li {
+    float: none;
+  }
+  
+  input[type='range'] {
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  input[type='range'],
+  input[type='range']::-webkit-slider-runnable-track,
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+  
+  input[type='range']::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 3px;
+    background: yellowgreen;
+  }
+  
+  input[type='range']::-webkit-slider-thumb {
+    position: relative;
+    height: 25px;
+    width: 25px;
+    margin-top: -10px;
+    background: yellowgreen;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+</style>
+
+
+<div class="container " data-ng-cloak data-spy="scroll" id='main_account_view' >
+
+  <div class='row'>
+
+    <div class=' col-md-offset-1 col-md-3   col-xs-12 col-sm-12   mobile_block'>
+
+      <div class='cursor backsw2   boxsh1 bb2  account_avatar mobile_block' id='avatar_block'>
+        <div  data-ng-show='preloader_block' class='mdl-spinner mdl-js-spinner is-active valcenter2 w50px ht50px'></div>
+        <div id='upload_avatar_preview' class='account_avatar backimgprop2  ' style="background-image:url({{::profile_self.avatar}}),url({{host}}/img/media/noavatar.png);">
+
+          <table border='0' class='w100' style='border-collapse: separate;border-spacing: 5px;'>
+            <tr>
+              <td align='center'>
+                <label><i id = 'demo-menu-lower-left' class=" color5 cursor iconhov fa fa-user-circle fsize25px textshgrt icon_sw"></i></label>
+                <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
+                  <li class="mdl-menu__item color0 font2 fsize12px"><label for='upload_avatar_file'>{{"%load_avatar%"  | translate}}</label></li>
+                  <li class="mdl-menu__item  color0 font2 fsize12px"><a class='nodec color0' data-ui-sref='account.editprofile'>{{"%options%"  | translate}}</a></li>
+                </ul>
+              </td>
+              <td> <span class='colorwht textshgrt font1 fsize15px'>{{::profile_self.firstname}} {{::profile_self.lastname}} </span></td>
+              <tr>
+                <td align='center'><i ng-class="[{desktop:'fa-circle fsize17px', mobile:'fa-mobile fsize25px','':'fa-circle fsize20px'}[profile_self.device], {1:'color5', 0:'colorwht textshgrt',' ':'colorwht','' : 'colorwht'}[profile_self.online_status]]"
+                    class=" mr_4  fa  "></i></td>
+                <td><span ng-bind="{1:'online', 0:'offline','': offline}[profile_self.online_status]" class='colorwht textshgrt  font2 fsize15px'></span></td>
+              </tr>
+          </table>
+
+          <input onchange="angular.element(this).scope().upload_account_avatar(this)" type='file' id='upload_avatar_file' class='dp'>
+          <div id='upload_avatar_options' style='position:absolute;top:49%;left:5px;right:5px;display:none' class='font2 br3 inln text-center colorwht back11 pdng5px fsize13px'>
+            <span id='confirm_upload_avatar' class='hoversp2'>Upload Image</span>
+            <br><br>
+            <span id='decline_upload_avatar' class='hoversp2'>Decline</span>
+          </div>
+
+
+
+          <div class='visible-xs pa  pdng5px fsize17px' style='background:rgba(0,0,0,0.3);top:278px;bottom:0px;left:0px;right:0px'>
+            <i class="ml_8px  material-icons fsize30px colorgld fl">brightness_low</i>
+            <span class='textshgrt font2 ml_2 colorwht '>{{weather.temperature}} &#8451</span>
+            <span class='textshgrt font2 ml_2 colorwht '>{{weather.desc2 | uppercase}}</span>
+            <span class='textshgrt font2 ml_2 colorwht '>{{weather.country}}</span>
+            <span class='textshgrt font2 ml_2 colorwht '>{{weather.city}}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class='hidden-xs'>
+        <a ui-sref="account.messenger" class='nodec color2'>
+          <div class='backsw2 boxsh1 mt_8px pdng7px'>
+            <div class='pdng2px '>
+              <i class="ml_2 text-left  color5 fa fa-send fsize22px textshgrt icon_sw"></i>
+              <span class='ml_4    font3 fsize12px'>{{"%messenger%" | translate}}</span>
+              <i class="ml_2 iconhov color5 fa fa-arrow-circle-right fr fsize22px textshgrt icon_sw"></i>
+            </div>
+          </div>
+        </a>
+
+        <a ui-sref="account.feed.posts" class='nodec color2'>
+          <div class='backsw2 boxsh1 mt_8px pdng7px'>
+            <div class='pdng2px  '>
+              <i class="ml_2  text-left color5 fa fa-feed fsize22px textshgrt icon_sw"></i>
+              <span class='ml_4  font3 fsize12px'>{{"%feed%" | translate}}</span>
+              <i class="ml_2  color5 fa fa-arrow-circle-right iconhov fr fsize22px textshgrt icon_sw"></i>
+            </div>
+          </div>
+        </a>
+
+        <a ui-sref="account.sweetvelcard.bussiness" class='nodec color2'>
+          <div class='backsw2 boxsh1 mt_8px pdng7px'>
+            <div class='pdng2px  text-left'>
+              <i class="ml_2  text-left color5 fa fa-map fsize22px textshgrt icon_sw"></i>
+              <span class='ml_4  font3 fsize12px'>{{"%swcard%" | translate}}</span>
+              <i class="ml_2 iconhov color5 fa fa-arrow-circle-right fr fsize22px textshgrt icon_sw"></i>
+            </div>
+          </div>
+        </a>
+
+        <a ui-sref='account.editprofile' id='editprofile' class='color2 nodec'>
+          <div class='backsw2 boxsh1 mt_8px pdng7px'>
+            <div class='pdng2px  '>
+              <i class="ml_2  text-left color5 fa fa-gear fsize22px textshgrt icon_sw"></i>
+              <span class='ml_4  font3 fsize12px'>{{"%profile_options%" | translate}}</span>
+              <i class="ml_2  color5 fa fa-arrow-circle-right iconhov fr fsize22px textshgrt icon_sw"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- //////////////////////////////////////////////////////////////// -->
+    <div class=' col-md-offset-0 col-md-7  text-center  col-xs-offset-0  col-xs-12 mobile_block  '>
+
+      <div class=' top_blocks backsw2 boxsh1 pdng7px text-left' style='min-height:521px !important'>
+
+        <div data-ng-show='!account_block_loading_spinner' class="mdl-spinner mdl-js-spinner is-active valcenter2 w50px ht50px"></div>
+
+        <div class='fader' data-ng-show='account_block_loading'>
+
+          <div class='pdng2px    mt_4px  mobile_block'>
+            <i ng-class="{male:'fa-male', female:'fa-female'}[profile_self.gender]" class="ml_2  color5 fa  fsize22px  icon_sw"></i>
+            <a ui-sref="account..profile" class='nodec'>
+              <span class='color2 ml_4  font3 fsize17px'>{{::profile_self.firstname}} {{::profile_self.lastname}}</span>
+            </a>
+            <i ng-class="[{desktop:'fa-circle fsize17px', mobile:'fa-mobile fsize25px','':'fa-circle fsize20px'}[profile_self.device], {1:'color5', 0:'color0 ','':'colorwht'}[profile_self.online_status]]"
+              class=" mr_2 fr  fa  "></i>
+            <span ng-bind="{1:'online', 0:'offline','': offline}[profile_self.online_status]" class='color0 fr mr_2 font2 fsize15px'></span>
+          </div>
+
+          <div class='mt_4px'>
+            <table class='w100' border='0' style='border-collapse: separate;border-spacing: 2px;'>
+              <tr>
+                <td width='10px'><button data-ng-click='set_status_block_toggle()' id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon color0 inln"><i class="material-icons">more_vert</i></button></td>
+                <td valign='top' width='15px'><i class="ml_2 hoversp2 color5 fa fa-comments fsize22px  icon_sw inln"></i></td>
+                <td> <span class='ta_left color5 font3 fsize12px nodec ml_4px  ta_center'>{{profile_self.status_account | trust | empty : '%add%'}}</span></td>
+              </tr>
+            </table>
+
+            <div id='set_status_block' class='fsize12px cursor dp pa z backsw2' style='left:5;right:5;min-height:80px'>
+              <input id='options_status_self_id' name='options_status_self' type='text' class='sw_input' placeholder="{{'%statusaccount%' | translate}}"
+                value="{{profile_self.status_account | trust | empty : '%add%'}}">
+              <div id='emoji_block_status_account' class='w100 dp mt_8px'>
+                <emoji inpid='options_status_self_id'></emoji>
+              </div>
+              <i data-ng-click='set_status_self()' class="fa fa-send fsize25px  iconhov ml_2  mt_8px color5"></i>
+              <i data-ng-click="emoji_toggle_arg('emoji_block_status_account')" class='color5 ml_2 mt_8px  fa fa-smile-o  cursor iconhov fsize25px '></i>
+            </div>
+          </div>
+          <!-- STATE_RELATIONS -->
+
+          <table class='w100 mt_4px ' border='0' style='border-collapse: separate;border-spacing: 2px;'>
+            <tr>
+              <td width='10px'>
+                <button id="demo-menu-lower-left_state" class="mdl-button mdl-js-button mdl-button--icon color0 fl">
+                              <i  class="material-icons">more_vert</i>
+                              </button>
+              </td>
+              <td width='15px'>
+                <i data-ng-bind="{1 : 'chat',2 : 'sentiment_dissatisfied',3 : 'do_not_disturb_on',4 : 'hot_tub',5 :'local_cafe',6 : 'face',0: 'face'}[profile_self.state_point]"
+                  data-ng-class="{1 : 'colormessenger',2 : 'colorgld',3 : 'color1',4 : 'color5',5 :'color0',6 : 'color5',0 : 'color5'}[profile_self.state_point]"
+                  class="material-icons "></i>
+              </td>
+              <td><span class='color0  font3 fsize12px nodec ml_4px  ta_center'>{{profile_self.state | translate}}</span></td>
+            </tr>
+          </table>
+
+          <statelist></statelist>
+
+          <!-- STATUS_RELATIONS -->
+
+          <table class='w100 mt_4px' border='0' style='border-collapse: separate;border-spacing: 2px;'>
+            <tr>
+              <td width='10px'>
+                <button id="demo-menu-lower-left_status" class="mdl-button mdl-js-button mdl-button--icon color0 fl">
+                              <i  class="material-icons">more_vert</i>
+                              </button>
+              </td>
+              <td width='15px'>
+                <i data-ng-bind="{1 : 'loyalty',2 : 'favorite',3 : 'mood',4 : 'sentiment_very_dissatisfied',5 : 'flash_on',0: 'record_voice_over'}[profile_self.status_point]"
+                  class="material-icons  color5"></i>
+              </td>
+              <td><span class='color0  font3 fsize12px nodec ml_4px  ta_center'>{{profile_self.status | translate}}</span></td>
+            </tr>
+          </table>
+
+          <statuslist></statuslist>
+
+          <div class='w100 mt_4px  pdng7px' style='border-top:1px solid #eee;border-bottom:1px solid #eee'>
+
+            <table class='w100 text-center lnht15' border='0'>
+              <tr>
+                <td width='20%'>
+                  <a>
+                    <span class=' font1 fsize13px color5'>{{::account_images_count}}</span><br>
+                    <span class='font3 fsize12px color0'>{{'%images%' | translate}}</span><br>
+                  </a>
+
+                </td>
+                <td width='20%'>
+                  <a ui-sref="account..friends" class='nodec'>
+                    <span class=' font1 fsize13px color5'>{{::friends_count}}</span><br>
+                    <span class='font3 fsize12px color0'>{{'%friends%' | translate}}</span><br>
+
+
+                  </a>
+                </td>
+                <td width='20%'>
+                  <a ui-sref="account..followers" class='nodec'>
+                    <span class=' font1 fsize13px color5'>{{::followers_count}}</span><br>
+                    <span class='font3 fsize12px color0'>{{'%followers%' | translate}}</span><br>
+
+                  </a>
+                </td>
+                <td width='20%'>
+                  <a ui-sref="account..following" class='nodec'>
+                    <span class='font1 fsize13px color5'>{{::mefollow_count}}</span><br>
+                    <span class='font3 fsize12px color0'>{{'%ifollow%' | translate}}</span><br>
+
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+          </div>
+
+          <!-- INFO  BLOCK -->
+
+          <div style='min-height:308px;height:308px;position:relative;overflow:hidden;width:100%;margin:auto'>
+            <div style='max-height:500px;overflow-x:scroll;max-width:100%'>
+
+              <div class='pdng2px ' style='max-height:300px;overfolow:scroll'>
+
+                <table class='w100 fsize12px lnht35' border='0'>
+                  <tr>
+                    <td width='40%'>
+                      <a ui-sref='account.editprofile'><span class = 'color0 font3 mt_4 fsize12px w30'>
+                <button id="demo-menu-lower-left_editprofile" class="mdl-button mdl-js-button mdl-button--icon color0 fl">
+                  <i  class="material-icons">more_vert</i>
+                     </button>
+                </a>
+
+                    </td>
+                    <td align='left'><a ui-sref='editprofile'><span class = 'color0 font3 mt_4 fsize12px w30'>{{"%edit%"  | translate }}</span></a></td>
+                  </tr>
+                  <!--tr><td><i class="ml_2   color5 fa fa-asterisk fsize22px  icon_sw"></i></td></tr-->
+                  <tr>
+                    <td width='170px'>
+                      <span class='color0 font3 mt_4 fsize12px w30 ml_10px'>{{"%birthday%"  | translate }} :</span>
+                    </td>
+                    <td><span data-toggle="modal" data-target="#profile_options" class='color5  ml_4px ta_center cursor'>{{::profile_self.birth_date}} {{::profile_self.birth_month | month | translate}} {{::profile_self.birth_year | empty : '%add%'}}</span></td>
+                  </tr>
+                  <tr>
+                    <td class=''>
+                      <span class=' color0 font3 w30 fsize12px ml_10px'>{{"%aboutme%" | translate}} :</span>
+                    </td>
+                    <td class=''><span data-toggle="modal" data-target="#profile_options" class='cursor hoversp2 color5  ml_4px ta_center'>{{::profile_self.about_me | empty : '%add%'}}</span></td>
+                  </tr>
+                  <tr>
+                    <tr>
+                      <td><i class="ml_2   color5 fa fa-map-marker fsize22px  icon_sw ml_10px"></i></td>
+                    </tr>
+                    <td>
+                      <span class='color0 font3 w30 ml_10px'>{{"%city%" | translate }} :</span>
+                    </td>
+                    <td><span data-toggle="modal" data-target="#profile_options" class='color5 fsize12px  ml_4px ta_center cursor'>{{::profile_self.city | empty : '%add%'}}</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class='color0 font3 fsize12px w30 ml_10px'>{{"%country%" | translate }} :</span>
+                    </td>
+                    <td><span data-toggle="modal" data-target="#profile_options" class='color5  ml_4px ta_center cursor'>{{::profile_self.country | empty : '%add%'}}</span></td>
+                  </tr>
+                  <tr>
+                    <td><i class="ml_2   color5 fa fa-location-arrow fsize22px  icon_sw ml_10px"></i></td>
+                  </tr>
+                  <tr>
+                    <td valign='top'><span class='cursor hoversp2 color0 font3 w30 fsize12px ml_10px'>{{"%activityplace2%" | translate}} :</span></td>
+                    <td>
+                      <div>
+                        <span data-toggle="modal" data-target="#profile_options" class='color5  fsize12px  ml_4px ta_center'>{{::profile_self.place_name | translate}}               </span>
+                        <span data-toggle="modal" data-target="#profile_options" class='color5   fsize12px ml_4px ta_center cursor'>{{::profile_self.place_adress | empty : '%add%'}}</span>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--  Friends BLOCK -->
+  <div class='row'>
+
+    <div class='text-left col-md-3 col-md-offset-1  mobile_block top_mobile'>
+      <div class=' backsw2 boxsh1   col-md-12' style='height:auto;overflow: auto;'>
+        <div class=' backsw2   col-md-12 '>
+
+          <friends></friends>
+
+        </div>
+      </div>
+    </div>
+
+    <!--  GALLERY BLOCK -->
+
+    <div class='col-md-7 col-md-offset-0 mobile_block top_mobile'>
+
+      <div data-ng-init="get_account_images()" class='backsw2 pdng3px boxsh1 ' style='height:303px'>
+
+        <i data-toggle="modal" data-target="#upload_account_image_modal" class="ml_4 iconhov cursor  color5 fa fa-camera mr_2 fsize20px  icon_sw mt_8px"></i>
+        <a class='nodec cursor'><span  class = 'color0 font2  fsize12px  ml_4px ta_center'>{{"%images%" | translate}}</span></a>
+        <span class=' color5  pdng3px font1 fsize12px '>{{account_images_count}}</span>
+        <br>
+        <span id='output' class='color1 fsize13px ml_4px ta_center'></span>
+
+        <div class='text-left'>
+          <i style='margin-top:50px;left:20px ' onClick="createlogo.scroll_left('#options_account_images')" class="z0 pa scroll_left   cursor hover2  text-left color5 fa fa-chevron-circle-left fsize30px  "></i>
+          <i style='right:20px;margin-top:50px;' onClick="createlogo.scroll_right('#options_account_images')" class="z0 pa scroll_right  cursor hover2  text-left color5 fa fa-chevron-circle-right fsize30px "></i>
+          <div id="options_account_images" class='pdngno col-md-12 col-md-offset-0 backsw2  mt_8px br5 '>
+
+            <div data-ng-show='gallery_preloader' class="mdl-spinner mdl-js-spinner is-active  w50px ht50px z " style='position:absolute;left:45%;right:45%;top:25px'></div>
+
+            <div class='inner_images'>
+              <noimages data-ng-show='no_account_images' class='w100 '></noimages>
+              <accountimages class='fader'></accountimages>
+            </div>
+          </div>
+        </div>
+
+        <i class="ml_4 iconhov cursor    color5 fa fa-share  mr_2 fsize20px icon_sw mt_8px"></i>
+        <a class='nodec cursor'><span  class = 'color0 font2  fsize12px  ml_4px ta_center'>{{"%collection%" | translate}}</span></a>
+        <span class=' color5  pdng3px font1 fsize12px '>{{ saved_images_count}}</span>
+
+        <div class='text-left'>
+          <i style='margin-top:50px;left:20px' onClick="createlogo.scroll_left('#options_saved_images')" class="z0 pa scroll_left  cursor hover2  text-left color5 fa fa-chevron-circle-left fsize30px  "></i>
+          <i style='right:20px;margin-top:50px;' onClick="createlogo.scroll_right('#options_saved_images')" class="z0 pa scroll_right  cursor hover2  text-left color5 fa fa-chevron-circle-right fsize30px "></i>
+          <div id="options_saved_images" class='pdngno col-md-12 col-md-offset-0 backsw2  mt_8px br5 '>
+            <div data-ng-show='gallery_preloader' class="mdl-spinner mdl-js-spinner is-active  w50px ht50px z" style='position:absolute;left:45%;right:45%;top:25px'></div>
+            <div class='inner_images '>
+              <noimages data-ng-show='no_saved_images' class='w100 '></noimages>
+              <savedimages></savedimages>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class='row '>
+
+    <div class='col-md-10 col-md-offset-1 mobile_block   top_mobile'>
+
+      <div class='col-md-12  pdngno '>
+
+        <div class='col-md-12 col-md-offset-0  backsw2 pdng5px boxsh1  '>
+          <ul class="nav nav-tabs brdrno nobrdr" style='overflow-x:scroll'>
+            <li class="active"><a class="cursor color5 font2" data-toggle="tab" data-target="#bot_menu_timeline"><i class = 'fa fa-feed color5'></i>Timeline</a></li>
+            <li><a class="cursor color5 font2" data-toggle="tab" data-target="#bot_menu3"><i class = 'fa fa-share-alt color5 mr_4px'></i>Activity</a></li>
+            <li><a class="cursor color5 font2" data-toggle="tab" data-target="#home"><i class = 'fa fa-photo color5 mr_4px'></i>Labels</a></li>
+            <li><a class="cursor color5 font2" data-toggle="tab" data-target="#bot_menu1"><i class = 'fa fa-map-o color5 mr_4px'></i>Sw cards</a></li>
+            <li><a class="cursor color5 font2" data-toggle="tab" data-target="#bot_menu6"><i class = 'fa fa-video-camera color5 mr_4px'></i>Videos</a></li>
+            <li><a class="cursor color5 font2" data-toggle="tab" data-target="#bot_menu4"><i class = 'fa fa-info-circle color5 mr_4px'></i>Additional</a></li>
+          </ul>
+        </div>
+
+        <div class="tab-content col-md-12 col-md-offset-0 pdngno " style='height:88%;overflow:scroll'>
+
+          <div id="home" class="tab-pane fade ">
+            <labels></labels>
+          </div>
+          <div id="bot_menu1" class="tab-pane fade">
+            <swcards></swcards>
+          </div>
+          <div id="bot_menu6" class="tab-pane fade">
+                  <videos></videos>
+            </div>
+
+          <div data-ng-init='timeline()' id="bot_menu_timeline" class="tab-pane fade in active mt_8px ">
+
+            <div style='border-bottom:0px solid #ccc;padding-top:15px;padding-bottom:0px' class=' w100 boxsh1  brdrlight br3 backsw2'>
+
+              <table border='0' class='text-center   w100'>
+                <tr>
+                  <td><label for='timeline_file' class=''><i  class = 'color5   fa fa-camera  cursor iconhov fsize25px '></i></label></td>
+                  <td class='' width='60%'>
+                    <input ng-paste='open_graph_timeline($event)' style='border-bottom:1px solid yellowgreen;' type='text' class='nobrdr inputbot w100 fsize15px font2 text-left color2'
+                      id='timeline_text' placeholder='{{"%writesomething%" |translate}}'>
+                  </td>
+                  <td align='center' class=''>
+                    <i data-ng-click="clickenable || sendmessage_timeline()" id='sender' class=" color5   fa fa-paper-plane  cursor iconhov fsize25px "></i>
+                  </td>
+                  <td align='center'><i data-ng-click="emoji_toggle_arg('emoji_block_timeline')" class='color5   fa fa-smile-o  cursor iconhov fsize25px '></i></td>
+                  <td align='center'>
+                    <i data-ng-click="audio_recorder_option_timeline()" class='color5 fa fa-music  cursor iconhov fsize25px '></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan='5' class=''>
+                    <div id="upload_timeline_audio_preview" style='' class='pdng7px  boxsh1 w100 br4 dp'>
+                      <div class='chat_audio_ready'>
+                        <i id='recorder_btn' class='start_record_timeline colorwht mr_4 fa fa-microphone backsw3 br pdng7px boxsh1  cursor  fsize25px '
+                          style='width:38px'></i>
+                        <i id='chat_audio_preview_play' class='colorwht fa fa-play-circle  cursor iconhov fsize25px boxsh1 backsw3 br pdng7px  cursor  fsize25px '
+                          style='width:38px'></i>
+                        <i id='chat_audio_preview_pause' class='ml_4 colorwht fa fa-pause-circle  cursor iconhov fsize25px boxsh1 backsw3 br pdng7px  cursor  fsize25px '
+                          style='width:38px'></i>
+                        <i id='sendmessage_audio' class='ml_4 colorwht fa fa-send  cursor iconhov backsw3 br boxsh1  cursor  fsize20px ' style='width:38px;padding:9px'></i>
+                        <i data-ng-click="show_hide('upload_timeline_audio_preview')" class='fr  fa fa-close mt_8px  cursor iconhov color5 cursor  fsize20px '></i>
+                      </div>
+                      <audio id='timeline_audio_preview' src=""></audio>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan='5' class=' dp' id='chat_og_preview' data-ng-click="show_hide('chat_og_preview')">
+                    <div class="media boxsh1 backsw2 backimgprop">
+                      <div class="media-left">
+                        <div src="{{og_data.image}}" class="media-object backimgprop boxsh1" style='background-image:url({{og_data.image}});height:100px;width:100px'>
+                        </div>
+                      </div>
+                      <div class="media-body text-left ">
+                        <i class='fa fa-close fa-2px color0 fr cursor iconhov'></i>
+                        <h5 class="media-heading color2">{{og_data.title | substrcustom : 50}}</h5>
+                        <span class='color2 fsize10px'>{{og_data.desc | substrcustom : 75}}</span>
+                        <span class='color0 fsize10px'>{{og_data.url}}</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan='5' class=''>
+                    <div class='boxsh1 backsw2 w100 text-center dp' style='height:100px;' id='upload_timeline_img_preview_block'>
+                      <i data-ng-click='dp($event)' class='fa fa-close fa-2px color0 fr cursor iconhov'></i>
+                      <!-- IMAGES PREVIEW -->
+                    </div>
+                    <input onchange="angular.element(this).scope().message_preview_timeline(this)" type='file' multiple class='dp' id='timeline_file'>
+                  </td>
+                </tr>
+                <tr>
+                  <td id='emoji_block_timeline' class='dp' colspan='5'>
+                    <emoji inpid='timeline_text'></emoji>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan='5' class='pdng7px'>
+                    <div class="alert alert-success alert-dismissable fade in" style='display:none'>
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <span class='fsize15px' id='upload_chat_img_outp'></span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+
+            
+              <timeline></timeline>
+           
+
+          </div>
+
+          <div id="bot_menu3" class="tab-pane fade">
+
+
+            <div class='boxsh1 w100 backsw2 mt_8px color2 text-left' style='padding:5px'>
+              <i class="ml_2  text-left color5 fa fa-info-circle fsize25px textshgrt "></i>
+              <span class='color5 ml_2  font2 fsize13px'>{{"%welcome%" | translate}} {{"%to%" | translate}} Sweetvel</span><br/>
+              <div class='fsize13px'>{{"%activity_start_info%" | translate}}</div>
+            </div>
+
+            <div class=' w100 backsw2 mt_8px color2 text-left boxsh1' style='padding:5px'>
+              <accountactivity></accountactivity>
+            </div>
+          </div>
+
+          <div id="bot_menu4" class="tab-pane fade">
+
+            <div class='backsw2  mt_8px pdng12px boxsh1'>
+              <div class='  text-left'>
+                <i class="ml_2 mr_2 text-left color5 fa fa-info-circle fsize25px textshgrt icon_sw"></i>
+                <span class='ta_just font3 color2 fsize13px'>{{"%info%" | translate}}</span>
+                <hr>
+                <i class="ml_2 mr_2 text-left  colorinsta fa fa-podcast fsize25px textshgrt icon_sw"></i>
+                <span class='ta_just font3 color2 fsize10px'>{{"%follow%" | translate}}</span>
+   
+            <button data-ng-init='checkfollow_sweetvel(1)' data-ng-click='follow_sweetvel(1)' ng-class="{0:' back3', 1:'backsw3'}[follow_status1]" class='fr w20 cursor backsw3 center-block fsize12px  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'> {{follow_status0}}
+              <img data-ng-show = 'follow_loader' src = 'img/media/loader.gif' height = '20px'>
+           </button>
+                <hr>
+                <i class="ml_2 mr_2 text-left  colorgld fa fa-star-half-o fsize25px textshgrt icon_sw"></i>
+                <span class='ta_just font3 color2 fsize10px'>Guide</span>
+                  <button data-toggle="modal" data-target="#guide" class='fr w20 cursor backsw3 center-block fsize12px  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>Guide</button>
+                <hr>
+                <i class="ml_2 mr_2 text-left  color1 fa fa-external-link fsize25px textshgrt icon_sw"></i>
+                <span class='ta_just font3 color2 fsize10px '>{{"%delete%" | translate}} {{"%profile%" | translate}}</span>
+                <button data-ng-click='toggle_profile(0)' class='fr w20 cursor backsw3 center-block fsize12px  mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>{{"%delete%" | translate}}</button>
+                <hr>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+</div><br>
+
+<!-- UPPLOAD_ACCOUNT_IMAGES_MODLAL -->
+
+<div id="upload_account_image_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <i data-toggle="tab" data-target="#upload_image_panel" class='ml_2 cursor iconhov  fa fa-camera fa-2x color5 '></i>
+
+        <i data-toggle="tab" data-target="#upload_canvas_panel" class='ml_4 cursor iconhov fa fa-pencil-square fa-2x  color5'></i>
+      </div>
+
+      <div class="modal-body text-center">
+
+        <div class="tab-content">
+
+          <div id="upload_image_panel" class="tab-pane fade in active">
+            <div class='preloader_block' data-ng-show='preloader_block'></div>
+            <img class='' id='upload_image_outp' src='' height='250px' style='max-width:100%;min-height:250px'><br>
+
+            <table border='0' class='text-center   w100'>
+              <tr>
+                <td id='emoji_block_2' class='dp' colspan='2'>
+                  <emoji inpid='comment_text_2'></emoji>
+                </td>
+              </tr>
+              <tr>
+                <td width='70%' class='pdng7px'>
+                  <input placeholder="Your Comment" value="" type='text' id='comment_text_2' class='sw_input w90 color2 font2' />
+                </td>
+                <td align='center' width='10%' class='pdng7px'>
+                  <i id='upload_account_image_button' class='  fa fa-send iconhov cursor color5 fsize30px '></i>
+                </td>
+                <td align='center' width='10%'>
+                  <i data-ng-click="emoji_toggle_arg('emoji_block_2')" class='color5   fa fa-smile-o  cursor iconhov fsize30px '></i>
+                </td>
+                <td align='center' width='10%'>
+                  <label for='upload_account_image' class=''>
+            <i class ='fa fa-camera iconhov cursor color5 fsize30px '></i>
+            <input class = 'dp' id  = 'upload_account_image'   onchange = "angular.element(this).scope().upload_account_image(this)" type = 'file'>
+              </label>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div id="upload_canvas_panel" class="tab-pane fade in">
+            <div class='preloader_block' data-ng-show='preloader_block'></div>
+            <div id='upload_canvas_outp' class='fsize35px ta_center'>
+            </div>
+
+            <div>
+              <input type='range' id='canvas_range' min="20" max="60" step="2">
+            </div>
+            <div style='display:flex;' class='mt_8px'>
+              <div class=' mt_4 fl cursor ht40px w40px t boxsh1' data-ng-repeat='x in ::themeres' style='margin:3px;'>
+                <div onclick='createlogo.settheme(this)' theme='{{x.id}}' data-themestyle='{{x.back}}:{{x.color}}:{{x.altcolor}}:{{x.font}}:{{x.musicimg}}'
+                  ng-style="{'background' :'{{x.back}}' }" class='w100 ht40px'>
+                </div>
+              </div>
+            </div>
+
+            <table border='0' class='text-center   w100 mt_8px'>
+              <tr>
+                <td id='emoji_block_3' class='dp' colspan='2'>
+                  <emoji inpid='comment_text_canvas'></emoji>
+                </td>
+              </tr>
+              <tr>
+                <td class='pdng7px'>
+                  <input placeholder="Write Something" value="" type='text' id='comment_text_canvas' class='sw_input w90 color2 font2' />
+                </td>
+                <td class='pdng7px'>
+                  <i data-ng-click='upload_account_canvas_image()  ' class='ml_2px  fa fa-send iconhov cursor color5 fsize30px '></i>
+                  <i data-ng-click="emoji_toggle_arg('emoji_block_3')" class='color5 ml_2  fa fa-smile-o  cursor iconhov fsize30px '></i>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="send_card_to_friend_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        <div class = 'w100 inln'><button type="button" class="close" data-dismiss="modal">&times;</button></div>
+         <div class="media bb5" data-ng-repeat='fr in ::friends'>
+          <div class="media-left">
+            <a ui-sref='sketch.profile({sk:fr.id})'>
+              <div class='ht40px w40px backimgprop  br boxsh1 ' style='background-image:url({{fr.avatar}})'></div>
+            </a>
+          </div>
+          <div class="media-body">
+            <i data-ng-click='send_card(fr.id,"cardbs")' class='ml_2  fa fa-share-alt iconhov cursor  color5 fsize20px  fr mr_2'></i>
+            <h5 class=" media-heading color5 font4">{{fr.firstname}} {{fr.lastname}}</h5>
+            <p class='color2 fsize10px '> {{'%friends%' | translate}} {{'%since%'| translate}} {{fr.date}} {{fr.month | month | translate}} 20{{fr.year}}</p>
+          </div>
+        </div>
+      </div>
+   
+    </div>
+
+  </div>
+</div>
+
+
+
+<script>
+                              var createlogo = {
+
+                                ///////////////CREATE_LOGO_VARS//////////////
+                                range: document.getElementById('canvas_range'),
+                                logo: document.querySelector('#upload_canvas_outp'),
+                                theme: document.querySelector('#theme'),
+                                emoji: document.getElementsByClassName('emoji'),
+                                inp: document.getElementById('comment_text_canvas'),
+                                ////////////////////////SCROLL_VIEW_VARS///////
+                                left: document.getElementsByClassName('scroll_left')[0] || document.getElementsByClassName('scroll_left')[1],
+                                right: document.getElementsByClassName('scroll_right')[0] || document.getElementsByClassName('scroll_left')[1],
+                                speed: 500,
+                                scroll: 250,
+
+                                range: function () {
+                                  document.getElementById('canvas_range').addEventListener('change', function () {
+                                    document.querySelector('#upload_canvas_outp').style.fontSize = this.value;
+                                    // console.log(this.value);
+                                  })
+                                },
+
+                                settheme: function (elem) {
+
+                                  var fullstyle = elem.getAttribute('theme');
+                                  var style = elem.getAttribute('data-themestyle').split(":");
+                                  this.logo.style.backgroundColor = style[0];
+                                  this.logo.style.fontFamily = style[3];
+                                  this.logo.style.color = style[1];
+                                },
+                                setemoji: function () {
+                                  var emoji1 = document.getElementsByClassName('emoji');
+                                  var logo = this.logo;
+                                  var inp = this.inp;
+                                  for (var i = 0; i < emoji1.length; i++) {
+                                    emoji1[i].addEventListener('click', function () {
+                                      logo.innerHTML += this.innerHTML;
+                                    })
+                                  }
+                                  inp.addEventListener('input', function () {
+                                    logo.innerHTML = this.value;
+                                  })
+                                },
+                                ////////////////////////SCROLL_METHODS////////////////
+
+                                scroll_right: function (dom) {
+
+                                  var right = $(dom).scrollLeft() + createlogo.scroll;
+                                  $(dom).animate({ scrollLeft: right }, createlogo.speed);
+
+
+                                },
+                                scroll_left: function (dom) {
+
+                                  var left = $(dom).scrollLeft() - createlogo.scroll;
+                                  $(dom).animate({ scrollLeft: left }, createlogo.speed);
+
+                                },
+
+                              }
+                              createlogo.range();
+                              setTimeout(function () { createlogo.setemoji(); }, 300);
+
+</script>

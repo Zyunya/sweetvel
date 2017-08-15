@@ -1,0 +1,56 @@
+<div id="comments" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <i  class='fl cursor  fa fa-commenting iconhov color5 fa-3x mr_4 textshgrt'></i>                           
+        <h4  class="modal-title fontlobster color2  mt_8px">{{'%comments%' |translate}}</h4>
+      </div>
+
+      <div class="modal-body">
+          
+       <div class = 'comments_body ' data-ng-show = 'show_comments_body'>
+            <img src = 'img/media/loader.gif' height = '100px' data-ng-show ='preloader2' class = 'abscenterh abscenterv z' style = 'position:fixed'>
+         <div class="media pdng5px" data-ng-repeat = 'com in comments'>
+          <div class="media-left ">
+           <img src="{{com.user_avatar}}" class="media-object br4" style="width:40px">
+             </div>
+                <div class="media-body">
+                  <h4 class="media-heading fsize13px color5">{{com.user_name}} {{com.user_lname}}
+                    <small>
+                       
+                   <i class  = 'pull-right '>{{com.date | ten}} {{com.month | month | translate}} {{com.hours}}:{{com.minutes}}</i><br>
+                   <i data-ng-click = "delete_my_comment($event,com.id,'private','post')" class= 'fa fa-close color5 pull-right textshgrt cursor iconhov' ></i>
+                   
+                     </small></h4>
+                       <p class = 'color2 fsize13px font2'>{{com.text | trust}}</p>
+                          </div>
+                            </div><br>
+                            <i data-ng-click = "get_comments_more('post')" data-ng-show = 'show_get_more' class='pull-center ta_center center-block cursor  fa fa-angle-double-down iconhov color5 fa-3x textshgrt'></i>              
+                                </div>
+                                     </div><br><br><br><br>
+ 
+<div style = 'position:absolute;bottom:0px;left:0px;right:0px;min-height:15%'class = 'w100 br3 modal-footer backsw2' >
+<table border = '0' class  ='text-center   w100'>
+       <tr>
+          <td id = 'emoji_block' class = 'dp' colspan = '2'>
+            <emoji inpid = 'comment_text'></emoji>
+          </td>
+         </tr>
+       <tr>
+       <td class = 'pdng7px'>
+         <input placeholder = "Your Comment" value=""  type = 'text' id = 'comment_text' class = 'inputbot w90 color2 font2'/>
+         </td>
+       <td class = 'pdng7px'>
+         <i data-ng-click  = "send_comment('post')"  class='ml_2px  fa fa-commenting iconhov cursor color5 fsize30px textshgrt'></i>
+         <i data-ng-click = 'emoji_toggle()' class = 'color5 ml_2  fa fa-smile-o  cursor iconhov fsize30px textshgrt'></i>
+         </td>
+       </tr>
+       </table>
+    </div>
+    </div>
+
+  </div>
+</div>

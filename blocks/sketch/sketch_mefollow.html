@@ -1,0 +1,12 @@
+   <div class="media" data-ng-repeat = 'mf in mefollow'>
+     <div class="media-left" >
+     <a ui-sref = 'sketch.profile({sk:mf.id})'>
+      <div class = 'ht40px w40px backimgprop boxsh1 br4 ' style = 'background-image:url({{mf.avatar}})'>
+        </a>
+        </div>
+          </div>
+            <div class="media-body">
+                <h5 style = 'font-family:Segoe UI' class="media-heading color5">{{mf.firstname}} {{mf.lastname}}</h5>
+                  <p class = 'color2 fsize10px'>{{mf.date}} {{mf.month | month | translate}} {{mf.hours}}:{{mf.minutes}}</p>
+                    </div><hr>
+                      </div>

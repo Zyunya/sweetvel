@@ -1,0 +1,32 @@
+ <div class="modal fade" id="search_modal" role="dialog" >
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <h4 class="modal-title ta_center"></h4>
+        </div >
+        <div class="modal-body pdng5px">
+          <table data-ng-repeat = 'x in searcher'  class = 'logo_common bb2 mt_4px'> 
+               <tr >
+                 
+                 <td  style = 'background:{{x.logoback}};color:{{x.logocolor}};font-family:{{x.logofont}};height:130px;vertical-align: middle;font-size:30px'  align = 'center'><span>{{x.labelname}}</span></td>
+                
+                 </tr>
+                 <tr>
+<td  class = 'fsize12px font2 color2 ta_just' align = 'center'><span class = 'ml_2'>{{x.description}}</span></td>
+                   </tr>
+                   <tr>
+                      <td><button type="button" class="btn btn-success center-block"><a class = 'nodec colorwht textshgrt'href = 'private-label/{{x.id}}'>Go To Label</a></button></td>
+                      
+                     </tr>
+                   </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

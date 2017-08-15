@@ -1,0 +1,15 @@
+   
+   
+   <div class="media" data-ng-repeat = 'fr in friends' >
+     <div class="media-left" >
+      <a ui-sref = 'sketch.profile({sk:fr.id})'>
+      <div class = 'ht40px w40px backimgprop  br4 ' style = 'background-image:url({{fr.avatar}})'>
+        </div>
+         </a>
+          </div>
+             <div class="media-body">
+                  <h5 style = 'font-family:Segoe UI' class=" media-heading color5">{{fr.firstname}} {{fr.lastname}}</h5>
+                     <p  class = 'color2 fsize10px '> {{'%friends%' | translate}} {{'%since%'| translate}} {{fr.date}} {{fr.month | month | translate}} 20{{fr.year}}</p>
+                       </div><hr>
+                          </div>
+                           

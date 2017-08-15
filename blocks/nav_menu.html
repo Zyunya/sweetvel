@@ -1,0 +1,195 @@
+<style>
+
+#nav_menu
+{
+position:fixed;
+height:100%;
+width:330px;
+left:-350px;
+background:white;
+z-index:1001;
+top:0px;
+display:block;
+box-shadow:0 5px 14px rgba(0,0,0,0.8);
+overflow-x:scroll;
+
+}
+#test_nav
+{
+position:fixed;
+height:100%;
+width:330px;
+left:0px;
+background:white;
+z-index:1001;
+top:0px;
+display:block;
+box-shadow:0 5px 14px rgba(0,0,0,0.8);
+overflow-x:scroll;
+
+}
+#nav_menu_mask
+{
+overflow:hidden;
+position:fixed;
+left:0;right:0;top:0;bottom:0;
+height:100%;
+background: rgba(0,0,0,0.6);
+z-index:1000;
+display:none
+}
+#nav_menu_btn
+{
+	position:fixed;
+	top:50vh;
+   
+}
+</style>
+<div draggable="true" id = 'test_nav' class = 'dp'>
+  <ul>
+  <li>Nav</li>
+   <li>Nav</li>
+    <li>Nav</li>
+     <li>Nav</li>
+      <li>Nav</li>
+    </ul>
+</div>
+
+<i     class = ' iconhov ml_2 cursor visible-md visible-lg fa fa-chevron-right   fsize30px color5 ' id = 'nav_menu_btn'></i> 
+
+<div id = 'nav_menu_mask'>
+
+<div id = 'nav_menu' class = '' style = 'z-index:1000'>
+
+<div class = ''style = 'position:absolute;left:10px;top:10px;z-index:1002;width:250px;'>
+ <div class = 'ht70px left-block w70px fl   backimgprop ml_4 mr_4 br' style = "background-image:url({{profile.avatar}}),url('{{host}}/img/media/noavatar.png');"></div>
+    <br><br><br><br>
+  <span class = 'colorwht   font1 fsize15px ml_4 textshgrt telips'>{{profile.firstname}} {{profile.lastname}}</span>
+  <i  ng-class="[{desktop:'fa-circle fsize15px', mobile:'fa-mobile fsize27px'}[profile.device], {1:'color5', 0:'color0'}[profile.online_status]]" class="ml_4  fa mt_8px "></i>
+ <span ng-bind="{1:'online', 0:'offline'}[profile.online_status]" class = 'colorwht ml_4  font2 fsize15px'></span> 
+</div>
+
+<div data-ng-init = 'profileinfo()'  class = ' pdng7px br5  text-left  backimgprop2 bb2' style = 'height:190px;background-image:url({{profile.avatar}});' >
+    <a onclick = 'search_modal()' class="navbar-brand colorwht cursor fr">
+      <i class="ml_4  material-icons fsize35px color0   colorwht">search</i>
+              </a>
+</div><br>
+
+<div>
+<ul class="nav navbar">
+        <li style = 'border:0px solid yellowgreen' class = 'w40px'></li>
+        <li><a  ui-sref="account.home" class  ='nodec '><i class="ml_8px w20 material-icons fsize30px color0 fl">account_box</i><span class =' colorb font1 fsize12px '>{{"%account%" | translate}}</span></a></li>
+        <li style = 'border:0px solid yellowgreen' class = 'w40px mt_8px'></li>
+        <li><a ui-sref="account.messenger" class  ='nodec '><i class="ml_8px w20 material-icons fsize30px  color0 fl">email</i><span class =' colorb font1 fsize12px '>{{"%messenger%" | translate}}</span></a></li>
+        <li style = 'border:0px solid yellowgreen'class = 'w40px mt_8px'></li>
+        <li><a ui-sref="account.feed.posts" class  ='nodec '><i class="ml_8px w20 material-icons fsize30px color0 fl">rss_feed</i><span class =' colorb font1 fsize12px '>{{"%feed%" | translate}}</span></a></li>
+        <li><a ui-sref="account.friends"    class  ='nodec '><i class="ml_8px w20 material-icons fsize30px color0 fl">supervisor_account</i><span class =' colorb font1 fsize12px '>{{"%friends%" | translate}}</span></a></li>
+        <li><a ui-sref="account.sweetvelcard.bussiness" class  ='nodec '><i class="ml_8px w20 material-icons fsize30px color0 fl">redeem</i><span class =' colorb font1 fsize12px '>{{"%swcard%" | translate}}</span></a></li>
+        <li><a ui-sref="account.weather" class  ='nodec '><i class="ml_8px w20 material-icons fsize30px color0 fl">brightness_low</i><span class =' colorb font1 fsize12px '>{{"%weather%" | translate}}</span></a></li>
+        <li><a ui-sref="account.editprofile" class  ='nodec '><i class="ml_8px w20 material-icons fsize30px color0 fl">settings_applications</i><span class =' colorb font1 fsize12px '>{{"%options%" | translate}}</span></a></li>
+        <li style = 'border:0px solid yellowgreen'class = 'w40px mt_8px'></li>
+        <li class = '' ><a class = 'color0 cursor'><i class="ml_8px w20 material-icons fsize30px color0 fl">settings_power</i><span ng-click = 'logout()'class ='colorb font1 fsize12px '>{{ '%logout%' | translate }}</span></a><hr></li>
+	    
+        <li style = 'border:0px solid yellowgreen'class = 'w40px'></li>
+        <li ng-click = "changelang('ru')" ><a class = ' colorb font1 fsize12px'><i class="ml_8px w20 material-icons fsize30px color0 fl">language</i>Ru</a></li> 
+        <li ng-click = "changelang('en')" ><a class = ' colorb font1 fsize12px'><i class="ml_8px w20 material-icons fsize30px color0 fl">language</i>En</a></li>
+	
+      </ul>
+
+   </div>
+
+ </div>
+
+</div> 
+
+    <script>
+
+  var active = false;
+  var x      = "";
+  var xdt    = "";
+
+function click_menu(){
+ $('#nav_menu_btn ,.navbar-toggle-mt ').click(function(){
+     if(active == false){
+    $('#nav_menu_mask').fadeIn(200);
+    $('#nav_menu').animate({left:'0px'},200);
+
+      active = true;
+     }
+ else{
+      $('#nav_menu_mask').animate({left:'-350px'},200);
+      $('#nav_menu_mask').fadeOut(200);
+      active = false;
+ }
+ });		
+	  $('#nav_menu_mask').on('click',function(){
+    $('#nav_menu_mask').fadeOut(200);
+    $('#nav_menu').animate({left:'-350px'},200);
+      active = false;
+ });
+}
+	function touch_menu(){
+ 
+	$('body').on('touchstart',function(e){ x   = event.touches[0].pageX;});
+	$('body').on('swiperight',function(){
+  
+			if(x < 100 ){
+        $('#nav_menu_mask').fadeIn(200);
+        $('#nav_menu').animate({left:'0px'},200);
+			}
+	 })
+   	$('#nav_menu').on('swipeleft',function(){
+
+        $('#nav_menu_mask').fadeOut(200);
+        $('#nav_menu').animate({left:'-350px'},200);
+	 })
+	}
+        touch_menu();
+        click_menu()
+        </script>
+
+<script>
+
+$(function(){
+                
+            var body    = document.getElementsByTagName("html")[0];
+            var element = document.getElementById("test_nav");
+            var hammertime = Hammer(element);
+            var position = 0;
+            var offset   = 0;
+             
+     //Hammer(body).get('pinch').set({enable: true})       
+              Hammer(body).on("press", function (event) {
+               $('#test_nav').animate({left: event.center.x - 300},200);
+                     position = event.center.x + offset; 
+              })
+             Hammer(body).on('panright',function(event){
+                $("#test_nav").css('left',event.center.x - position);
+               })
+               Hammer(body).on('panleft',function(event){
+                $("#test_nav").css('left',event.center.x - position); 
+               })
+             Hammer(element).on("panstart", function (event) {
+                
+              position = event.center.x - offset; 
+              console.log('triggered')
+             })
+            Hammer(element).on("panleft", function (event) {
+               
+                $("#test_nav").css('left',event.center.x - position); 
+    
+            });
+            Hammer(element).on("panend", function (event) {
+              position = 0;
+              console.log(event.center.x)
+               if(event.center.x < 60)
+               {
+                 $('#test_nav').animate({left:'-350px'},200);
+               }
+               else{
+                 $('#test_nav').animate({left:'0px'},200);
+                  }
+            }) 
+})
+
+</script>

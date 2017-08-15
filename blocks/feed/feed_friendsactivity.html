@@ -1,0 +1,31 @@
+<div    class = ' text-left  br5 'style = '' >
+         <div data-ng-show = 'show_activity_feed'  class = ' w100 backsw2 pdng7px color2 boxsh1'style = '' >
+          <i  class='ml_2  text-left color5 fa fa-child fsize45px  '></i>
+         <span class = 'fsize13px text-left'>{{'%no_activity%' | translate }}</span>
+        </div>
+         <table border = '0' style = 'border-collapse:separate;border-spacing:5px;' class = 'w100  backsw2 boxsh1 mb_8px'  data-ng-repeat = 'a in activity_followed'>
+                   <tr > 
+                    <td    >
+                     <i ng-class="{friend_confirm :'fa-handshake-o color1',friend_req : 'fa-podcast color1',like:'fa-thumbs-up color5', follow:'fa-podcast color1',comment :'fa-commenting colormessenger'}[a.actiontype]" class='fa  fsize25px '></i>
+                        <span class = 'color2   font1 color2 fsize12px'>{{a.activator_fname}} {{a.activator_lname}}</span><br>
+                        <span class = 'color2 color5 font3 fsize12px'>{{a.title | substrcustom: 80 | trust |translate }}</span>
+                        <span class = 'color2 mr_2   font1 color5 fsize12px'>{{a.owner_name}}</span>
+                        <span style = 'margin-right:40px' class = ' color2  font2 fsize10px'>{{a.date | ten}} {{a.month | month  | translate}} {{a.hours}}:{{a.minutes}}</span><br>
+                        <div  class = 'backimgprop  br boxsh1 fl mt_8px ht40px w40px' style = 'background-image:url({{a.activator_avatar}}),url(../img/media/imgerror.jpg)'></div>
+                        <div  class = 'backimgprop  br boxsh1 fl mt_8px ml_2 ht30px w30px' style = 'background-image:url({{a.owner_avatar}}),url(../img/media/imgerror.jpg)'></div>
+                    </td>
+                
+                   </tr>
+            
+                    <tr>
+                      <td align = 'center' colspan = ''><img class = 'br4' src = '{{a.object_target}}' style = 'height:auto;max-height:750px;width:100%'></div></td>
+                   </tr>
+                   <tr> 
+                    <td colspan = '' align = 'center'>
+                      <hr><span class = 'mt_12px color2  font2 fsize13px '>{{a.title2 | substrcustom: 80  | trust  |translate }}</span>
+                      <span class = 'color5  font3 fsize13px '>{{a.title3 | substrcustom: 255 | trust  |translate }}</span>
+                    </td>
+                    </tr>
+               </table>
+           </div>
+              <i data-ng-click = 'activity_more()' data-ng-show = 'show_get_more' class='pull-center ta_center center-block cursor  fa fa-angle-double-down iconhov color5 fa-3x '></i> 

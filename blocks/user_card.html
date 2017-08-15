@@ -1,0 +1,45 @@
+<div id="user_card" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <i   class='ml_2  fa fa-user-circle iconhov cursor fl color5 fa-3x textshgrt mr_2'></i>
+        <h3 class="modal-title fontlobster  color2 mt_8px">{{"%user_info%" | translate}}</h3>
+      </div>
+      <div class="modal-body">
+        <img src = 'img/media/pr1.gif' height = '100px' data-ng-show ='preloader1' class = 'center-block pull-center'>
+           
+           <table data-ng-show = 'resultblock_userinfo' class = ' w100' border = '0' >
+            <tr>   
+               <td rowspan = '2' ><img src="{{user_card_user.useravatar}}" class=" boxsh1" height = '150px' width = '150px' ></td>
+               <td class = 'pdng7px'><h4 class="media-heading color2 font1 fl">{{user_card_user.userfname}} {{user_card_user.userlname}}</h4> </td>
+               <td><i ng-class="{male:'fa-mars', female:'fa-venus'}[user_card_user.usergender]" class="ml_2  color5 fa   fsize30px textshgrt icon_sw"></i><br></td>
+            </tr>
+            <tr><td class = 'pdng7px' colspan = '2' ><span data-ng-click = 'invite_to_chat_common(user_card_user.userid)' class = 'labelsw1  textshgrt labelswhov cursor pdng3px   telips'>{{"%add_to_chat%" | translate}}</span></td></tr>
+            </table>    
+                 
+                <div data-ng-repeat = 'uc in user_card_info' data-ng-class = "{0 : 'dp'}[uc.labelstatus]" >
+                    <div class = 'mt_8px pdng5px text-center'>
+                       <i class="ml_2 mr_2 text-left  colorinsta fa fa-podcast fsize25px textshgrt icon_sw"></i>
+                       <span class = 'ta_just font1 color2 fsize12px'>{{uc.followers}}</span>
+                       <i class="ml_2 mr_2 text-left  colormessenger fa fa-thumbs-o-up fsize25px textshgrt icon_sw"></i>
+                       <span class = 'ta_just font1 color2 fsize12px'>{{uc.likes}}</span>
+                       <i class="ml_2 mr_2 text-left  colorinsta fa fa-eye fsize25px textshgrt icon_sw"></i>
+                       <span class = 'ta_just font1 color2 fsize12px'>{{uc.views}}</span>
+                       <i class="ml_2 mr_2 text-left  colorgld fa fa-star fsize25px textshgrt icon_sw"></i>
+                       <span class = 'ta_just font1 color2 fsize12px'>{{uc.rating}}</span>
+                        </div>
+                  <a href = 'private-label/{{uc.labelid}}'class  ='nodec'><div class = 'pdng20px  boxsh1 text-center backsw3 mt_8px boxsh1 fontlobster colorwht fsize20px telips'  style = 'background:{{uc.labelback}} !important;color:{{uc.labelcolor}} !important;font-family:{{uc.labelfont}} !important'> {{uc.labelname | translate}}</div></a>
+                </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+ 
