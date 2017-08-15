@@ -1,0 +1,318 @@
+<style>
+
+
+.line1,.line2,.line3{
+  box-shadow: 0 0 1px #656565;
+  margin-top:5px;
+  margin-bottom:8px;
+  background: lawngreen;
+  height:3px;
+  width:45px;
+  transition:1s;
+}
+.change .line1{
+   transform:rotate(45deg) translate(6px,10px);
+   background:#ff5959;
+}
+.change .line2{
+   opacity:0;
+  background:#ff5959; 
+}
+.change .line3{
+    background:#ff5959;
+    transform:rotate(-45deg) translate(5px,-10px);
+}
+.navbar-toggle:hover,.navbar-toggle{
+    background: yellowgreen !important;
+}
+    
+  </style>
+
+
+<div class ='container-fluid pdngno'  >
+<!--img src = 'img/media/loader.gif' height = '100px' data-ng-show ='preloader2' class = 'abscenterh abscenterv z' style = 'position:fixed'-->  
+
+<div data-ng-include = "'blocks/nav_menu.html'"></div>
+<div data-ng-include = "'blocks/deleteprotection.html'"></div>
+<div data-ng-include = "'blocks/visitors_guests_followers_popup.html'"></div>
+<div data-ng-include = "'blocks/live_popups.html'"></div>
+<div data-ng-include = "'blocks/posts_gallery_full.html'"></div>
+<div data-ng-include = "'blocks/label_gallery_full.html'"></div>
+
+<errorpage></errorpage> 
+
+<header   class="  backsw3 asddddddd  norad  mb_6px pr" style = 'box-shadow:0 3px 6px #909090;z-index:999'  >
+  <div class="container-fluid">
+    <div class="navbar-header  w100"  >
+     	         
+        <a  data-ui-sref ="account.home"  class = 'fontrancho colorwht  fsize43px nodec ml_4 fl mr_2 textshgrt'>Sweetvel</a>
+        
+        <a  id = 'activity_plane'  data-ng-click = 'live_common_refresh()'  class="navbar-brand  w50px colorwht cursor" data-toggle="modal" data-target="#live_common" >
+         <i    data-ng-init = 'live_common_checkupdates()' id   = 'live_pointer'  class="ml_2 fa fa-send fsize25px colorsub "></i>
+         
+         <span style = 'position:absolute;background:rgba(118, 188, 28, 1);top:27px;margin-left:18px;width:20px'data-ng-show = 'show_checkupdates_counter' class = 'br  colorwht boxsh0 inln ta_center  font3 fsize10px  dispbl   ' data-ng-cloak>{{checkupdates_counter}}</span>
+         </a>
+
+         
+        <a ui-sref ="account.messenger"    class="navbar-brand  cursor" >
+         <i    class="fa fa-envelope fsize25px colorsub inln " id = 'message_pointer_1111' ></i>
+         <span style = 'position:absolute;background:rgba(118, 188, 28, 1);top:27px;margin-left:18px;width:20px' data-ng-show = 'unreaded_block_show'class = 'br  colorwht boxsh0 inln ta_center  font3 fsize10px  dispbl' data-ng-cloak>{{$root.unreaded_count}}</span>
+        </a>
+
+         <a class="navbar-brand colorwht cursor fr">
+            <i class="navbar-toggle-mt material-icons fsize30px  color0 visible-sm visible-xs colorwht">dehaze</i>
+              </a>      
+
+    <form style = 'margin-top:12px' class="navbar-form navbar-left visible-md visible-lg" id= 'search_form' >
+      <div class="input-group " style = 'background:rgba(118, 188, 28, 0.55);border:1px solid rgba(118, 188, 28, 1);border-radius:3px' ng-cloak>
+        <input type="text" onfocus = 'search_modal()' data-ng-focus='search($event)' class="form-control searchinput " list="search"  name = 'search' placeholder="{{'%search%' | translate}}" >
+          
+         <div class="input-group-btn">
+          <button class="btn btn-default searchinput" data-target="#search_modal"  >
+           <i class="fa fa-arrow-right colorwht textshgrt"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    </div>
+ 
+  </div>
+</header>
+
+<!-- CONNECTION STATUS_BAR -->
+<div id = 'upload_status_bar' class="alert alert-success w100 text-center norad brdrgrey dp0" style = 'position:absolute;top:0px;z-index:1 !important'>
+  <i class = 'fa fa-wifi fsize25px mr_2 color5'><span id = 'connection_status_text' class = 'font2 color2 fsize12px '></span></i>
+  <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active fr"></div>
+</div>	
+<!-- CONNECTION STATUS_BAR -->
+
+
+<!-- SEARCH_MODAL -->
+<div id="search_modal" class="modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <i class="color5 fa fa-send fsize20px fl textshgrt cursor iconhov"></i>
+        <input type="text"  data-ng-keyup='search($event,false,true)' class="sw_input w90 brdrno nobrdr" list="search"  id = 'search_input' placeholder="{{'%search%' | translate}}">
+      </div>
+      <div class="modal-body">
+        
+      <div id = "search_preview" class = 'backsw2  z table pdng5px lnht40px ' >
+        
+         <div  data-ng-show = 'search_preloader'   class='mdl-spinner mdl-js-spinner center-block is-active w60px ht60px ' ></div>
+        <table class = '' data-ng-show = 'show_search_box'>
+          <tr>
+            <td colspan = '2' class = 'nobrdr color0 font2 '><span >Search Box</span></td>
+            <td colspan = '2' class = 'nobrdr' align = 'right'></td>
+          </tr>
+            
+          <tr data-ng-repeat = "x in searcher | limitTo:'5'" >
+            <td width = '100px' class = 'ta_center pdng5px nobrdr telips' >
+              <span class = 'br4 boxsh back2 fontlobster telips colorwht'style = 'background:{{x.logoback}} !important;color:{{x.logocolor}} !important;font-family:{{x.logofont}} !important;height:50px;min-width:50px;vertical-align: middle;font-size:13px;display:table-cell;'>{{x.labelname | translate | firstletter | substrshort}}</span></td>
+           <td width = '100px' class = 'nobrdr'>
+             <i class="ml_4   colorgld fa fa-star fsize25px  "></i><br>
+             <span class = 'color2 ml_2  font1 fsize12px bb5'>+{{x.rating}}%</span>
+             </td>
+            <td class = 'ta_left font2 fsize12px color5 cursor nobrdr '>
+              <a class = '' ui-sref =  'account.privatelabel({pl:x.id})' >{{x.labelname | translate | substrcustom : 55}}</a><br>
+              <span >sweetvel.com/privatelabel/{{x.id}}</span>
+              </td>
+              </tr>
+          </table>
+         
+         
+        <table class = 'mt_8px'   >
+          <tr  data-ng-repeat = "persons in searcherpersons | limitTo:'20'">
+            <td width = '100px'   class = 'fsize15px  font2 color5 cursor pdng3px'>
+              
+              <div data-ui-sref =  'account.sketch({sk:persons.id})' class = 'ml_2 ht40px w40px br boxsh1 backimgprop' style = 'background-image:url({{persons.avatar}}),url({{host}}/img/media/noavatar.png)'></div>
+
+               </td>
+                  <td width = '100px' class = 'nobrdr'> <i class=" color5 fa fa-user-circle fsize25px  "></i></td>
+                  <td class = 'nobrdr '><a class ='ta_left  font2 fsize12px color cursor nobrdr' ui-sref =  'account.sketch({sk:persons.id})' >@{{persons.fname | substrshort2 }} {{persons.lname | substrshort2 }}</a><br>
+                    <span class = 'font2   color5 fsize10px'>{{persons.status_account | trust}}</span>
+                  </td>  
+                    </tr>
+                      </table>
+
+          <table class = 'table mt_8px' >
+          <tr  data-ng-repeat = "x in searchertags | limitTo:'10'">
+            <td class = 'ta_left fsize15px  font2 color5 cursor nobrdr'>
+               <i class="ml_2  text-left color5 fa fa-hashtag fsize20px"></i>
+               <a  ui-sref =  "account.explorer({'exp':x.tags})"  >#{{x.tags | substrshort2 }}</a>
+              </td>
+              <td class = 'ta_left fsize15px  font2 color2 cursor nobrdr'>{{x.nums}} items</td>
+         </tr>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- SEARCH_MODAL -->
+
+<!-- ACCOUNT_ACTIVITY_MODAL -->
+<div id="live_common" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <div    class = 'pdng5px text-left   backsw2 br5 mt_8px'style = '' >
+         <accountactivity></accountactivity>
+         </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- ACCOUNT_ACTIVITY_MODAL -->
+  <!-- ACCOUNT_DEACTIVATED-->
+
+    <!-- SUB_UI_VIEW -->
+    <div ui-view class='main_ui_view'   id='main_ui_view'  style='height:auto' >
+  </div>
+  
+<div class="modal fade" id="cardspreview" role="dialog" style = ''>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body pdng5px">
+         <iframe id = 'cards_preview_frame' style = '' scrolling='yes' frameborder='no' src = '' width = '100%' height ="900px"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="guide" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <i   class='ml_2  fa fa-star-half-o iconhov cursor fl colorgld fa-3x textshgrt mr_2'></i>
+        <h3 class="modal-title fontlobster  color2 mt_8px">{{"%guide%" | translate}}</h3>
+      </div>
+      <div class="modal-body">
+        <h4 class = 'color2 font1'>- {{"%signs%" | translate}}</h4><br>
+        <i   class='ml_2  fa fa-podcast iconhov cursor fl colorinsta fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%followers%" | translate}}</h6><br>
+        <i   class='ml_2  fa fa-thumbs-o-up iconhov cursor fl colormessenger fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%like%" | translate}}  </h6><br>
+        <i   class='ml_2  fa fa-eye iconhov cursor fl colorinsta fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%visitors%" | translate}} </h6><br>
+        <i   class='ml_2  fa fa-star iconhov cursor fl colorgld fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%rating%" | translate}} </h6><hr>
+        
+        <h4 class = 'color2 font1'>- {{"%labels%" | translate}}</h4><br>
+        <i   class='ml_2  fa fa-sliders iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%label_options%" | translate}} </h6><br>
+        <i   class='ml_2  fa fa-mail-forward iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'>{{"%label_open%" | translate}} </h6><br>
+        <i   class='ml_2  fa fa-toggle-on iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%label_on%"  | translate}} </h6><br>
+        <i   class='ml_2  fa fa-toggle-off iconhov cursor fl color1 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%label_of%"  | translate}} </h6><hr>
+
+        <h4 class = 'color2 font1'>- {{"%menu%"   | translate}}        </h4><br>
+        <i   class='ml_2  fa fa-user-circle iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%profile_info%"  | translate}}        </h6><br>
+        <i   class='ml_2  fa fa-map iconhov cursor fl color5 fsize35px textshgrt mr_2'> </i>
+        <h6 class = 'color2 font2'> {{"%createswcard_types%"  | translate}}  </h6><br>
+        <i   class='ml_2  fa fa-send iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%messages_chat%"       | translate}}  </h6><br>
+        <i   class='ml_2  fa fa-feed iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%feed_subscriptions%"  | translate}}  </h6><hr>
+
+        <h4 class = 'color2 font1'>- {{"%swcard%" | translate}}</h4><br>
+        <i   class='ml_2  fa fa-exchange iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%cards_toggle%" | translate }}</h6><br>
+        <i   class='ml_2  fa fa-window-maximize iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font2'> {{"%preview%" | translate}}      </h6><hr>
+
+        <h4 class = 'color2 font1'>- {{"%swcard%" | translate}} - {{"%kinds%" | translate}}</h4><br>
+        <i   class='ml_2  fa fa-shopping-bag iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font1'> BS</h6><br>
+        <h6 class = 'color2 font2'>- {{"%card_bs_info%" | translate}}</h6><br>
+        <i   class='ml_2  fa fa-gift iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font1'> GIFT</h6><br>
+        <h6 class = 'color2 font2'>- {{"%card_gift_info%" | translate}} </h6><br>
+        <i   class='ml_2  fa fa-cube iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font1'> ITEM</h6><br>
+        <h6 class = 'color2 font2'>- {{"%card_item_info%" | translate}}</h6><hr>
+       
+       <i   class='ml_2  fa fa-share-alt-square iconhov cursor fl color5 fsize35px textshgrt mr_2'></i>
+          <h6 class = 'color2 font1'>  {{"%make_share%" | translate}}</h6><br>
+          <h6 class = 'color2 font2'>- {{"%card_share_info%" | translate}}</h6><br>
+          <i   class='ml_2  fa fa-facebook-official iconhov cursor fl colorfb fsize25px textshgrt mr_2'></i>
+          <i   class='ml_2  fa fa-vk iconhov cursor fl colorvk fsize25px textshgrt mr_2'></i>
+          <i   class='ml_2  fa fa-whatsapp iconhov cursor fl color5 fsize25px textshgrt mr_2'></i>
+          <i   class='ml_2  fa fa-viber iconhov cursor fl colorviber fsize25px textshgrt mr_2'></i>
+          <i   class='ml_2  fa fa-telegram iconhov cursor fl colortg fsize25px textshgrt mr_2'></i>
+          <i   class='ml_2  fa fa-facebook-f iconhov cursor fl colormessenger fsize25px textshgrt mr_2'></i>
+          <br><br><br>
+
+        <i   class='ml_2  fa fa-info-circle iconhov cursor fl color1 fsize35px textshgrt mr_2'></i>
+        <h6 class = 'color2 font1'>  {{"%additional_info%" | translate}}</h6><br>
+        <h6 class = 'color2 font2'>- {{"%card_addinfo_info%" | translate}}</h6><br>
+        
+          <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+
+  <script>
+    $(function(){
+    $('.option_gender').on('click',function(){
+    $(this).removeClass('fa-circle-o').addClass('fa-check-circle');
+    $('input[name=options_gender]').val($(this).attr('data-gender'));
+    $('.option_gender').not(this).removeClass('fa-check-circle').addClass('fa-circle-o');
+ })
+})
+    </script>
+    
+<script>
+  function search_modal(){
+ $('#search_modal').modal({show: 'true'});
+ setTimeout(function(){$('#search_input').focus()},500);
+
+  }
+
+  </script>
+
+    <script>
+      var status_bar = document.getElementById('upload_status_bar');
+Hammer(status_bar).on("tap", function (event) {
+   
+        $("#main_ui_view").animate({opacity : '1'},200);
+        $("#upload_status_bar").css('display','none').animate({top : '0px'},200);
+
+              })
+
+   </script>
+
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmB791RkbN_FF9wB2bqC5thrC0iMqp5kk&libraries=places&callback=initAutocomplete"
+     async></script> 
+  
+
+
+
+
