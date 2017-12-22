@@ -19,10 +19,9 @@ const options_ssl_opt = {
         cert : fs.readFileSync("/etc/letsencrypt/archive/sweetvel.com/fullchain1.pem"),
         ca   : fs.readFileSync("/etc/letsencrypt/archive/sweetvel.com/chain1.pem")
 };
-var server = https.createServer(options_ssl_opt,app);
+var server = https.createServer(options_ssl_opt,app);///Все наше Express приложение будет уже на сеервере мы как бы завернули его в server
 
-
-server.listen(4000, function () { console.log('listening on *:4000') });
+server.listen(3000, function () { console.log('listening on *:4000') });
 var io = require('socket.io').listen(server);
 io.use(function (socket, next) {
 
@@ -40,14 +39,14 @@ io.use(function (socket, next) {
         var data = JSON.parse(response.getBody())
         handshakeData.user = data;
         socket.id = data.id * hash
-         console.log(data);
+        //console.log(data);
         next();
     }, function (err) {
     });
 });
 
 try {
-
+    
     io.on('connection', function (socket) {
 
         var cookie_header    = socket.request.headers["cookie"];
@@ -111,7 +110,7 @@ try {
         socket.on('chat_msg', function (data) {
             try {
                 user.id        = data.id;   
-                user.sender    = socket.id;
+                user.sender_id = socket.id;
                 user.message   = data.message;
                 user.image     = data.image;
                 user.status    = online_status ? 1 : 0;

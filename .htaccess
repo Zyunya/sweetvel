@@ -35,8 +35,8 @@ RewriteRule  ^sw$ /account.html
 
 
 
-RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 #Redirect 301 /core/swcproxy.php http://localhost/sc
 

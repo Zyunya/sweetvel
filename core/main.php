@@ -7,7 +7,7 @@ public $mycon;
 //public  $host       = 'localhost';    public  $login    = 'schak_schakirrr';
 //public  $password   = 'Mediamatrix16';public  $db       = 'schakirrr-29321_sweetvel';
 public  $host     = 'localhost';     public  $login    = 'root';
-public  $password = 'Mediamatrix16'; public  $db       = 'giftcard';
+public  $password = 'Mediamatrix16'; public  $db       = 'gift_card';
 private $res;
 public  $prefix   = 'gc_';
 private $lang;

@@ -1,5 +1,5 @@
 <?php
-//header('Access-Control-Allow-Origin:*');   
+header('Access-Control-Allow-Origin:*');   
 
 include_once '../template.php';
 include_once '../core/main.php';

@@ -23,7 +23,7 @@ var host = window.location.protocol + '//' + window.location.hostname;
 var socket = "";
 var error_img = host + '/img/media/imgerror.jpg';
 var sw_img = host + '/img/media/icon1.png';
-var socket_adress = 'https://sweetvel.com:4000';
+var socket_adress = 'https://sweetvel.com:3000';
 
 
 angular.module('locconfig', []).config(['$locationProvider', function ($locationProvider) {
@@ -1012,7 +1012,7 @@ com.controller('messengerctr', function ($scope, $http, $location, $filter, $com
 
                 ////////////////////NEW MESSAGES_POINTER////////////////////////
         socket.on('chat_msg_messenger_previous', function (data) {
-        var id = data.sender;
+        var id = data.sender_id;
         var message_list = document.getElementsByClassName('message_list');
         var data_r = data;
        
@@ -1142,7 +1142,7 @@ com.controller('messengerctr', function ($scope, $http, $location, $filter, $com
     })
     //////////////////LISTEN FOR NEW MESSAGES/////////////
     socket.on('chat_msg_client', function (data) {
-        console.log('new_message')
+        //console.log('new_message',data)
         var id = data.id;
         $scope.$apply(function () {
            
@@ -1155,7 +1155,7 @@ com.controller('messengerctr', function ($scope, $http, $location, $filter, $com
 
     //////////////////////////////////////////////////////////
     socket.on('chat_msg_messenger', function (data) {
-        var id  = data.sender;
+        var id  = data.sender_id;
         var opp = data.opponent * 16 * 3 * 1992;
         var message_list = document.getElementsByClassName('message_list');
        
@@ -1178,6 +1178,7 @@ com.controller('messengerctr', function ($scope, $http, $location, $filter, $com
     ////////////////////USER_IS_TYPING///////////////
 
     socket.on('user_typing_emit', function (data) {
+        //console.log(data)
         //alert(data  + " = "+ $location.search().sn );
         if (opponent_num  == data.typer) {
            //alert('typing')
@@ -1843,28 +1844,27 @@ com.service('$socket', function ($q, $state, $transitions, $location,$rootScope,
         socket = io(socket_adress);
 
         ////////////////////////CONNECTION_EVENT_FROM_CLIENT///////
+       // socket.on('connect',function(){});
 
-        socket.on('connect', function (data) {
 
-            if ($location.search().sn !== undefined) {
-                socket.emit('opponent', $location.search().sn / hash);
-            }
-        })
-     
-        $transitions.onFinish({ from: 'account.chat' }, function ($transitions, event) {
-            socket.emit('leave_room');
-        });
+      $transitions.onFinish({ from: 'account.chat' }, function ($transitions, event) {   socket.emit('leave_room');});
 
         $transitions.onSuccess({ to: 'account.chat' }, function ($transitions, event) {
-            if ($location.search().sn !== undefined) {
-                socket.emit('opponent', $location.search().sn / hash);
-            }
+           
+            //if ($location.search().sn !== undefined) {
+              //  socket.emit('opponent', $location.search().sn / hash);
+           // }
 
         });
+        //if($location.path().match('account/chat') ){   socket.emit('opponent', $location.search().sn / hash); }
 
-        $transitions.onSuccess({ to: 'index' }, function ($transitions, event) {
-            socket.disconnect('leave_room');
-        })
+      window.addEventListener('hashchange',function(){
+           if($location.path().match('account/chat') && $location.search().sn !== undefined )
+          
+                socket.emit('opponent', $location.search().sn / hash);
+           
+       })
+       // $transitions.onSuccess({ to: 'index' }, function ($transitions, event) {  socket.disconnect('leave_room'); })
 
       socket.on('chat_msg_messenger_previous', function (data) {
     
